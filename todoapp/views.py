@@ -1,9 +1,17 @@
 from django.views import generic
-from .models import Task
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
+from .models import Task, TaskGroup
 
 class IndexView(generic.ListView):
     template_name = 'todoapp/index.html'
-    context_object_name = 'task_list'
+    context_object_name = 'taskgroup_list'
 
     def get_queryset(self):
-        return Task.objects.all()
+        return TaskGroup.objects.all()
+
+class TaskGroupUpdate(generic.UpdateView):
+    model = TaskGroup
+    fields = ['name']
+    template_name_suffix = '_update_form'
+    success_url = reverse_lazy('index')

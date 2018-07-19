@@ -1,9 +1,40 @@
-{% if task_list %}
-    <ul>
-    {% for task in task_list %}
-        <li>{{ task.id}} {{ task.name }} {{ task.details }}</li>
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MikGor App</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'todoapp/style.css' %}"/>
+</head>
+<body>
+   <header><h1>ToDo App</h1></header>
+   <fieldset>
+   <h3>New task:</h3>
+   <input type="text" name="tasktext" placeholder="Task name" id="taskNameInput"></br></br>
+   <input type="submit" class="btn-add" value="Add task" id="addTaskBtn">
+   </fieldset>
+   <div id="tasks">
+   {% if taskgroup_list %}
+   <h1>Tasks</h1>
+
+    {% for group in taskgroup_list %}
+	 <table id="tasksTable">
+		 <tr><th class="groupname" colspan="7" style="background-color: {{ group.colour }}">{{ group.name}} <a class="fas fa-edit" href="{% url 'TaskGroupUpdate' group.id %}"></a></th></tr>
+ 		<tr><th>ID</th><th>Name</th><th>Details</th><th>Deadline</th><th>Done</th><th>Priority</th></tr>
+
+	 {% for task in group.tasks.all %}
+      <tr><td>{{ task.id }}</td><td>{{ task.name }}</td><td>{{ task.details }}</td><td>{{ task.deadline }}</td><td>{{ task.is_done }}</td><td>{{ task.priority }}</td><td><a class="fas fa-edit"></a></td></tr>
     {% endfor %}
-    </ul>
+		</table>
+	 {% endfor %}
+ </div>
 {% else %}
     <p>No tasks.</p>
 {% endif %}
+<footer>
+  <p>ToDo @ 2018</p>
+</footer>
+</body>
+</html>

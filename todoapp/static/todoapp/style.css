@@ -1,0 +1,78 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+	margin: 0;
+}
+
+#tasks {
+	margin-top: 20px;
+}
+
+#tasks table {
+	margin: 10px auto;
+	width: 100%;
+}
+
+table td {
+	width: auto;
+	height: 35px;
+}
+
+fieldset {
+	border: none;
+	background-color: whitesmoke;
+	padding-bottom: 30px;
+	box-shadow: 0px 0 2px #ababab;
+}
+
+input[type=text] {
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.btn-rmv, .btn-add {
+    border: none;
+    color: white;
+    border-radius: 10%;
+	box-shadow: 0px 0 2px #ababab;
+	font-weight: bold;
+	padding: 6px 10px;
+}
+
+.btn-add {
+	background: #4CAF50;
+}
+
+.btn-rmv {
+	background: red;
+}
+
+.groupname {
+	text-align: center;
+	font-weight: bold;
+	width: 100%;
+	font-size: 20px;
+	background-color: whitesmoke;
+	padding: 7px;
+}
+
+footer {
+  padding: 3px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: whitesmoke;
+  text-align: center;
+}
+
+.fa, .fas {
+	font-weight: 900;
+	color: white;
+	text-shadow: 0px 0px 3px #c3c3c3;
+}
+
+td .fa-edit {
+	color: #737373;
+	text-shadow: none;
+}
