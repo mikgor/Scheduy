@@ -21,11 +21,11 @@
 
     {% for group in taskgroup_list %}
 	 <table id="tasksTable">
-		 <tr><th class="groupname" colspan="7" style="background-color: {{ group.colour }}">{{ group.name}} <a class="fas fa-edit" href="{% url 'TaskGroupUpdate' group.id %}"></a></th></tr>
+		 <tr><th class="groupname" colspan="8" style="background-color: {{ group.colour }}">{{ group.name}} <a class="fas fa-edit" href="{% url 'TaskGroupUpdate' group.id %}"></a> <a class="fas fa-trash-alt" href="{% url 'TaskGroupDelete' group.id %}"></a></th></tr>
  		<tr><th>ID</th><th>Name</th><th>Details</th><th>Deadline</th><th>Done</th><th>Priority</th></tr>
 
 	 {% for task in group.tasks.all %}
-      <tr><td>{{ task.id }}</td><td>{{ task.name }}</td><td>{{ task.details }}</td><td>{{ task.deadline }}</td><td>{{ task.is_done }}</td><td>{{ task.priority }}</td><td><a class="fas fa-edit"></a></td></tr>
+      <tr><td>{{ task.id }}</td><td>{{ task.name }}</td><td>{{ task.details }}</td><td>{{ task.deadline }}</td><td>{{ task.is_done }}</td><td>{{ task.priority }}</td><td><a class="fas fa-edit"  href="{% url 'TaskUpdate' task.id %}"></a></td><td><a class="fas fa-trash-alt"  href="{% url 'TaskDelete' task.id %}"></a></td></tr>
     {% endfor %}
 		</table>
 	 {% endfor %}
