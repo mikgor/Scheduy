@@ -10,23 +10,25 @@
 </head>
 <body>
    <header><h1>ToDo App</h1></header>
-   <fieldset>
+
    <h3>New task:</h3>
-   <input type="text" name="tasktext" placeholder="Task name" id="taskNameInput"></br></br>
-   <input type="submit" class="btn-add" value="Add task" id="addTaskBtn">
-   </fieldset>
+
+   <a href="{% url 'TaskCreate' %}" ><input type="button" class="btn-add" value="Add task" id="addTaskBtn"></a>
+
    <div id="tasks">
    {% if taskgroup_list %}
    <h1>Tasks</h1>
 
     {% for group in taskgroup_list %}
 	 <table id="tasksTable">
-		 <tr><th class="groupname" colspan="8" style="background-color: {{ group.colour }}">{{ group.name}} <a class="fas fa-edit" href="{% url 'TaskGroupUpdate' group.id %}"></a> <a class="fas fa-trash-alt" href="{% url 'TaskGroupDelete' group.id %}"></a></th></tr>
+		 <tr><th class="groupname" colspan="8" style="background-color: {{ group.color }}">{{ group.name}} <a class="fas fa-edit" href="{% url 'TaskGroupUpdate' group.id %}"></a> <a class="fas fa-trash-alt" href="{% url 'TaskGroupDelete' group.id %}"></a></th></tr>
  		<tr><th>ID</th><th>Name</th><th>Details</th><th>Deadline</th><th>Done</th><th>Priority</th></tr>
 
-	 {% for task in group.tasks.all %}
+	 {% for task in task_list %}
+	 	{% if task.group.id == group.id %}
       <tr><td>{{ task.id }}</td><td>{{ task.name }}</td><td>{{ task.details }}</td><td>{{ task.deadline }}</td><td>{{ task.is_done }}</td><td>{{ task.priority }}</td><td><a class="fas fa-edit"  href="{% url 'TaskUpdate' task.id %}"></a></td><td><a class="fas fa-trash-alt"  href="{% url 'TaskDelete' task.id %}"></a></td></tr>
-    {% endfor %}
+		{% endif %}
+	 {% endfor %}
 		</table>
 	 {% endfor %}
  </div>

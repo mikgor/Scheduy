@@ -1,0 +1,7 @@
+{% load static %}
+<script src="{% static 'todoapp/js/Inputs.js' %}" type="text/javascript"></script>
+<form method="post">{% csrf_token %}
+   {{ form.as_p }}
+   <p>Color: <input type="color" required id="colorp" onchange="ColorpickedEvent()" value="#dedede"></input></p>
+   <input type="submit" value="Save" />
+</form>

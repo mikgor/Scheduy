@@ -5,7 +5,9 @@ from django.conf.urls import url
 
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
+    url('^$', views.IndexView.as_view(), name='index'),
+    url(r'tcreate/$', views.TaskCreate.as_view(), name='TaskCreate'),
+    url(r'tgcreate/$', views.TaskGroupCreate.as_view(), name='TaskGroupCreate'),
     url(r'^(?P<pk>[0-9]+)/tgupdate/$', views.TaskGroupUpdate.as_view(), name='TaskGroupUpdate'),
     url(r'^(?P<pk>[0-9]+)/tupdate/$', views.TaskUpdate.as_view(), name='TaskUpdate'),
     url(r'^(?P<pk>[0-9]+)/tgdelete/$', views.TaskGroupDelete.as_view(), name='TaskGroupDelete'),

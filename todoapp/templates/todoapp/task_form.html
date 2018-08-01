@@ -3,6 +3,5 @@
 <form method="post">{% csrf_token %}
    {{ form.as_p }}
    <p>Deadline: <input type="datetime-local" required id="datetimep" onchange="DatetimepickedEvent()"></input></p>
-   <input type="submit" value="Update" />
+   <input type="submit" value="Save" />
 </form>
-<script type="text/javascript">Updatedatetimepicker();</script>
