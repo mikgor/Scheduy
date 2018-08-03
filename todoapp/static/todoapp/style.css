@@ -8,16 +8,6 @@ body {
 	margin-top: 20px;
 }
 
-#tasks table {
-	margin: 10px auto;
-	width: 100%;
-}
-
-table td {
-	width: auto;
-	height: 35px;
-}
-
 fieldset {
 	border: none;
 	background-color: whitesmoke;
@@ -48,15 +38,6 @@ input[type=text] {
 	background: red;
 }
 
-.groupname {
-	text-align: center;
-	font-weight: bold;
-	width: 100%;
-	font-size: 20px;
-	background-color: whitesmoke;
-	padding: 7px;
-}
-
 footer {
   padding: 3px;
   right: 0;
@@ -68,11 +49,111 @@ footer {
 
 .fa, .fas {
 	font-weight: 900;
-	color: white;
-	text-shadow: 0px 0px 3px #c3c3c3;
+	color: black;
+	text-shadow: 0px 0px 3px #f5f5f5;
 }
 
-td .fa-edit, td .fa-trash-alt {
-	color: #737373;
-	text-shadow: none;
+
+a {
+	text-decoration: none;
 }
+
+.group {
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.groupTitle {
+	background-color: whitesmoke;
+	font-size: 25px;
+	font-weight: bold;
+	padding: 9px;
+	box-shadow: #989898 0px -1px 7px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.task {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: #989898 0px 0px 7px;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.taskColumn, .taskColumnFirst, .taskGroupColumn, .taskGroupColumnFirst {
+   float: left;
+   width: 15%;
+	padding: 12px;
+}
+
+.taskColumnFirst {
+   width: 70%;
+}
+
+.taskGroupColumnFirst {
+   width: 85%;
+}
+
+.taskTitle {
+	font-size: 24px;
+}
+
+.taskDeadline {
+	font-size: 14px;
+	color: #989898;
+}
+
+.taskTimeRemainingR, .taskTimeRemainingG{
+	color: white;
+	background-color: red;
+	border-radius: 4px;
+	padding: 1px;
+}
+
+.taskTimeRemainingR {
+	background-color: red;
+}
+
+.taskTimeRemainingG {
+	background-color: #4CAF50;
+}
+
+.taskColumn input {
+    position: absolute;
+    left: -9999px;
+}
+
+.taskColumn label {
+	 display: inline-block;
+	 box-shadow: #989898 0px 0px 7px;
+	 transition: all 0.3s ease-in 0s;
+	 background-color: whitesmoke;
+	 padding: 6px 10px;
+}
+
+.taskColumn label:hover {
+    box-shadow: #989898 0px 0px 16px;
+	 transition: all 0.3s ease-in 0s;
+}
+
+input:checked + label {
+    background-color: #4CAF50;
+	 transition: all 0.3s ease-in 0s;
+}
+
+input + label:before {
+    content: "Undone";
+    float: left;
+	 transition: all 0.3s ease-in 0s;
+}
+
+input:checked + label:before {
+    content: "Done";
+    color: white;
+    float: left;
+	 transition: all 0.3s ease-in 0s;
+ }

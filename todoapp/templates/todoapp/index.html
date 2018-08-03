@@ -14,22 +14,42 @@
    <h3>New task:</h3>
 
    <a href="{% url 'TaskCreate' %}" ><input type="button" class="btn-add" value="Add task" id="addTaskBtn"></a>
-
+	<a href="{% url 'TaskGroupCreate' %}" ><input type="button" class="btn-add" value="Add task group" id="addTaskGroupBtn"></a>
    <div id="tasks">
    {% if taskgroup_list %}
    <h1>Tasks</h1>
 
     {% for group in taskgroup_list %}
-	 <table id="tasksTable">
-		 <tr><th class="groupname" colspan="8" style="background-color: {{ group.color }}">{{ group.name}} <a class="fas fa-edit" href="{% url 'TaskGroupUpdate' group.id %}"></a> <a class="fas fa-trash-alt" href="{% url 'TaskGroupDelete' group.id %}"></a></th></tr>
- 		<tr><th>ID</th><th>Name</th><th>Details</th><th>Deadline</th><th>Done</th><th>Priority</th></tr>
-
+	 <div class="group">
+ 		<div class="groupTitle" style="background-color: {{group.color}};">
+			<div class="taskGroupColumnFirst">{{ group.name }}</div>
+			<div class="taskGroupColumn"><div class="groupBtns"><a class="fas fa-edit"  href="{% url 'TaskGroupUpdate' group.id %}"> Edit</a> <a class="fas fa-trash-alt"  href="{% url 'TaskGroupDelete' group.id %}"> Delete</a></div></div>
+		</div>
 	 {% for task in task_list %}
 	 	{% if task.group.id == group.id %}
-      <tr><td>{{ task.id }}</td><td>{{ task.name }}</td><td>{{ task.details }}</td><td>{{ task.deadline }}</td><td>{{ task.is_done }}</td><td>{{ task.priority }}</td><td><a class="fas fa-edit"  href="{% url 'TaskUpdate' task.id %}"></a></td><td><a class="fas fa-trash-alt"  href="{% url 'TaskDelete' task.id %}"></a></td></tr>
+		<div class="task">
+			<div class="taskColumnFirst">
+				<div class="taskTitle">{{ task.name }}</div>
+				<div class="taskDeadline">{{ task.deadline }}
+					{% if task.isExpired %}
+					<span class="taskTimeRemainingR">{{ task.remainingTime }}</span>
+					{% else %}
+					<span class="taskTimeRemainingG">{{ task.remainingTime }}</span>
+					{% endif %}
+				</div>
+				<div class="taskDetails">{{ task.details }}</div>
+			</div>
+			<div class="taskColumn">
+				<input id="{{ task.id }}" type="checkbox" {% if task.is_done %} checked {% endif %} onclick="{location.replace('{% url 'IsDoneUpdate' task.id %}')}">
+  				<label for="{{ task.id }}"></label>
+			</div>
+			<div class="taskColumn">
+				<div><a class="fas fa-edit"  href="{% url 'TaskUpdate' task.id %}"> Edit</a></div><td><a class="fas fa-trash-alt"  href="{% url 'TaskDelete' task.id %}"> Delete</a>
+			</div>
+		</div>
 		{% endif %}
 	 {% endfor %}
-		</table>
+ </div>
 	 {% endfor %}
  </div>
 {% else %}

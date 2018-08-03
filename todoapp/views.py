@@ -1,6 +1,8 @@
 from django.views import generic
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from .models import Task, TaskGroup
 from .forms import *
 
@@ -44,3 +46,8 @@ class TaskGroupDelete(DeleteView):
 class TaskDelete(DeleteView):
     model = Task
     success_url = reverse_lazy('index')
+
+def IsDoneUpdate(request, task_id):
+    task = get_object_or_404(Task, pk=task_id)
+    task.setIsDone()
+    return HttpResponseRedirect(reverse('index'))
