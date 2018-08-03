@@ -1,16 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>MikGor App</title>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<link rel="stylesheet" href="{% static 'todoapp/style.css' %}"/>
-</head>
-<body>
-   <header><h1>ToDo App</h1></header>
+{% extends "todoapp/base.html" %}
+{% block title %}
+Index
+{% endblock title %}
 
+{% block content %}
    <h3>New task:</h3>
 
    <a href="{% url 'TaskCreate' %}" ><input type="button" class="btn-add" value="Add task" id="addTaskBtn"></a>
@@ -23,7 +16,7 @@
 	 <div class="group">
  		<div class="groupTitle" style="background-color: {{group.color}};">
 			<div class="taskGroupColumnFirst">{{ group.name }}</div>
-			<div class="taskGroupColumn"><div class="groupBtns"><a class="fas fa-edit"  href="{% url 'TaskGroupUpdate' group.id %}"> Edit</a> <a class="fas fa-trash-alt"  href="{% url 'TaskGroupDelete' group.id %}"> Delete</a></div></div>
+			<div class="taskGroupColumn"><div class="groupBtns"><a href="{% url 'TaskGroupUpdate' group.id %}"><span class="fas fa-edit"></span> Edit</a> <a href="{% url 'TaskGroupDelete' group.id %}"><span class="fas fa-trash-alt"></span> Delete</a></div></div>
 		</div>
 	 {% for task in task_list %}
 	 	{% if task.group.id == group.id %}
@@ -40,11 +33,11 @@
 				<div class="taskDetails">{{ task.details }}</div>
 			</div>
 			<div class="taskColumn">
-				<input id="{{ task.id }}" type="checkbox" {% if task.is_done %} checked {% endif %} onclick="{location.replace('{% url 'IsDoneUpdate' task.id %}')}">
+				<input id="{{ task.id }}" type="checkbox" {% if task.is_done %} checked {% endif %} onclick="{location.href='{% url 'IsDoneUpdate' task.id %}'}">
   				<label for="{{ task.id }}"></label>
 			</div>
 			<div class="taskColumn">
-				<div><a class="fas fa-edit"  href="{% url 'TaskUpdate' task.id %}"> Edit</a></div><td><a class="fas fa-trash-alt"  href="{% url 'TaskDelete' task.id %}"> Delete</a>
+				<div><a href="{% url 'TaskUpdate' task.id %}"><span class="fas fa-edit"></span> Edit</a></div><a href="{% url 'TaskDelete' task.id %}"><span class="fas fa-trash-alt"></span> Delete</a>
 			</div>
 		</div>
 		{% endif %}
@@ -55,8 +48,4 @@
 {% else %}
     <p>No tasks.</p>
 {% endif %}
-<footer>
-  <p>ToDo @ 2018</p>
-</footer>
-</body>
-</html>
+{% endblock content %}

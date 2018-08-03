@@ -1,4 +1,12 @@
+{% extends "todoapp/base.html" %}
+{% load static %}
+{% block title %}
+Delete Group
+{% endblock title %}
+{% block content %}
 <form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete group "{{ object }}"?</p>
+   <h2>Delete group</h2>
+    <p>Are you sure you want to delete group <b>{{ object }}</b>?</p>
     <input type="submit" value="Confirm" />
 </form>
+{% endblock content %}

@@ -8,23 +8,36 @@ body {
 	margin-top: 20px;
 }
 
-fieldset {
+input, select, input[type="color"] {
+   padding: 6px 10px;
+   margin: 8px 0;
+   box-sizing: border-box;
+	box-shadow: #989898 0px 0px 7px;
 	border: none;
+	background-color: white;
+}
+
+input[type="color"] {
+   padding: 0px;
+}
+
+form {
+    width: 90%;
+    padding: 12px;
+    margin: 20px auto 20px auto;
+    box-shadow: #989898 0px 0px 7px;
+}
+
+input[type="submit"] {
 	background-color: whitesmoke;
-	padding-bottom: 30px;
-	box-shadow: 0px 0 2px #ababab;
+	font-weight: bold;
+	box-shadow: #989898 0px 0px 7px;
 }
 
-input[type=text] {
-    padding: 6px 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
-.btn-rmv, .btn-add {
-    border: none;
-    color: white;
-    border-radius: 10%;
+.btn-add {
+	border: none;
+   color: white;
+   border-radius: 10%;
 	box-shadow: 0px 0 2px #ababab;
 	font-weight: bold;
 	padding: 6px 10px;
@@ -32,10 +45,6 @@ input[type=text] {
 
 .btn-add {
 	background: #4CAF50;
-}
-
-.btn-rmv {
-	background: red;
 }
 
 footer {
@@ -53,9 +62,10 @@ footer {
 	text-shadow: 0px 0px 3px #f5f5f5;
 }
 
-
 a {
 	text-decoration: none;
+	color: black;
+	text-shadow: 0px 0px 3px #f5f5f5;
 }
 
 .group {
