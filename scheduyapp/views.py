@@ -7,7 +7,7 @@ from .models import Task, TaskGroup
 from .forms import *
 
 class IndexView(generic.ListView):
-    template_name = 'todoapp/index.html'
+    template_name = 'scheduyapp/index.html'
     context_object_name = 'IndexList'
     queryset = Task.objects.all()
 
@@ -19,12 +19,12 @@ class IndexView(generic.ListView):
 
 class TaskCreate(CreateView):
     form_class = TaskCreateUpdateForm
-    template_name = 'todoapp/task_form.html'
+    template_name = 'scheduyapp/task_form.html'
     success_url = reverse_lazy('index')
 
 class TaskGroupCreate(CreateView):
     form_class = TaskGroupCreateUpdateForm
-    template_name = 'todoapp/taskgroup_form.html'
+    template_name = 'scheduyapp/taskgroup_form.html'
     success_url = reverse_lazy('index')
 
 class TaskGroupUpdate(UpdateView):
@@ -36,7 +36,7 @@ class TaskGroupUpdate(UpdateView):
 class TaskUpdate(UpdateView):
     model = Task
     form_class = TaskCreateUpdateForm
-    template_name = 'todoapp/task_update_form.html'
+    template_name = 'scheduyapp/task_update_form.html'
     success_url = reverse_lazy('index')
 
 class TaskGroupDelete(DeleteView):

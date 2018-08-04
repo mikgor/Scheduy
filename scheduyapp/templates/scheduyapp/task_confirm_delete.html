@@ -1,12 +1,12 @@
-{% extends "todoapp/base.html" %}
+{% extends "scheduyapp/base.html" %}
 {% load static %}
 {% block title %}
-Delete Group
+Delete Task
 {% endblock title %}
 {% block content %}
 <form method="post">{% csrf_token %}
-   <h2>Delete group</h2>
-    <p>Are you sure you want to delete group <b>{{ object }}</b>?</p>
+   <h2>Delete task</h2>
+    <p>Are you sure you want to delete task <b>{{ object }}</b>?</p>
     <input type="submit" value="Confirm" />
 </form>
 {% endblock content %}

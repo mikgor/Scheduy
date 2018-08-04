@@ -1,10 +1,10 @@
-{% extends "todoapp/base.html" %}
+{% extends "scheduyapp/base.html" %}
 {% load static %}
 {% block title %}
 Add Group
 {% endblock title %}
 {% block scripts %}
-<script src="{% static 'todoapp/js/Inputs.js' %}" type="text/javascript"></script>
+<script src="{% static 'scheduyapp/js/Inputs.js' %}" type="text/javascript"></script>
 {% endblock scripts %}
 {% block content %}
 <form method="post">{% csrf_token %}
