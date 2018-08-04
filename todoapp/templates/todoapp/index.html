@@ -6,8 +6,8 @@ Index
 {% block content %}
    <h3>New task:</h3>
 
-   <a href="{% url 'TaskCreate' %}" ><input type="button" class="btn-add" value="Add task" id="addTaskBtn"></a>
-	<a href="{% url 'TaskGroupCreate' %}" ><input type="button" class="btn-add" value="Add task group" id="addTaskGroupBtn"></a>
+   <a href="{% url 'TaskCreate' %}" ><input type="button" value="Add task"></a>
+	<a href="{% url 'TaskGroupCreate' %}" ><input type="button" value="Add task group"></a>
    <div id="tasks">
    {% if taskgroup_list %}
    <h1>Tasks</h1>

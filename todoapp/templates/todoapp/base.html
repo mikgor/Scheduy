@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ToDo App - {% block title %}{% endblock %}</title>
+        <title>Scheduy - {% block title %}{% endblock %}</title>
         {% block scripts %}{% endblock %}
         <meta charset="UTF-8">
      	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
@@ -10,10 +10,18 @@
       	<link rel="stylesheet" href="{% static 'todoapp/style.css' %}"/>
     </head>
     <body>
-    <header><h1>ToDo App</h1></header>
+      <header></div>Scheduy</header>
+      <div id="navbar"><ul>
+         <li><a href="{% url 'index' %}">Home</a></li>
+         <li><a href="">News</a></li>
+         <li><a href="">Privacy policy</a></li>
+         <li><a href="">About</a></li>
+         <li><a href="">Support project</a></li>
+         <li><a href="">Contact</a></li>
+      </ul></div>
     {% block content %}{% endblock %}
     <footer>
-         <p>ToDo @ 2018</p>
+         <p>Scheduy @ 2018</p>
     </footer>
     </body>
 </html>
