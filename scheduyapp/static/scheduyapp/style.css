@@ -160,12 +160,16 @@ a {
 	background-color: #4CAF50;
 }
 
-.taskColumn input {
+#menuSettings {
+
+}
+
+.taskColumn input, #menuSettings input {
     position: absolute;
     left: -9999px;
 }
 
-.taskColumn label {
+.taskColumn label, #menuSettings label {
 	 display: inline-block;
 	 box-shadow: #989898 0px 0px 7px;
 	 transition: all 0.3s ease-in 0s;
@@ -174,12 +178,12 @@ a {
 	 cursor: pointer;
 }
 
-.taskColumn label:hover {
+.taskColumn label:hover, #menuSettings label:hover {
     box-shadow: #989898 0px 0px 16px;
 	 transition: all 0.3s ease-in 0s;
 }
 
-input:checked + label {
+input:checked + label, #menuSettings input:checked + label {
     background-color: #4CAF50;
 	 transition: all 0.3s ease-in 0s;
 }
@@ -196,3 +200,11 @@ input:checked + label:before {
     float: left;
 	 transition: all 0.3s ease-in 0s;
  }
+
+input#showDone + label:before {
+     content: "Hiding done";
+ }
+
+ input#showDone:checked + label:before {
+      content: "Showing done";
+  }

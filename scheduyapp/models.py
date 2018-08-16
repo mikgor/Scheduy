@@ -1,5 +1,7 @@
 from django.db import models
 from datetime import datetime, timezone
+from django.contrib.auth.models import AbstractUser
+
 class TaskGroup(models.Model):
     name = models.CharField(max_length=40)
     color = models.CharField(max_length=30, default="whitesmoke")
@@ -49,3 +51,18 @@ class Task(models.Model):
             else:
                 self.is_done = True
             self.save()
+
+class AppUser(AbstractUser):
+    taskGroups = models.ManyToManyField(TaskGroup)
+    tasks = models.ManyToManyField(Task)
+    showDonePreference = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.email
+
+    def SetShowDonePreference(self):
+        if self.showDonePreference:
+            self.showDonePreference = False
+        else:
+            self.showDonePreference = True
+        self.save()

@@ -7,7 +7,11 @@ Index
    <h3>New task:</h3>
 
    <a href="{% url 'TaskCreate' %}" ><input type="button" value="Add task"></a>
-	<a href="{% url 'TaskGroupCreate' %}" ><input type="button" value="Add task group"></a>
+	 <a href="{% url 'TaskGroupCreate' %}" ><input type="button" value="Add task group"></a>
+   <div id="menuSettings"><input id="showDone" type="checkbox" {% if user.showDonePreference %} checked {% endif %} onclick="{location.href='{% url 'SetUserPreference' %}?showdone=True'}">
+     <label for="showDone"></label>
+   </div>
+
    <div id="tasks">
    {% if taskgroup_list %}
    <h1>Tasks</h1>

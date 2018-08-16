@@ -10,7 +10,7 @@
       	<link rel="stylesheet" href="{% static 'scheduyapp/style.css' %}"/>
     </head>
     <body>
-      <header></div>Scheduy</header>
+      <header>Scheduy</header>
       <div id="navbar"><ul>
          <li><a href="{% url 'index' %}">Home</a></li>
          <li><a href="">News</a></li>
@@ -18,7 +18,16 @@
          <li><a href="">About</a></li>
          <li><a href="">Support project</a></li>
          <li><a href="">Contact</a></li>
-      </ul></div>
+      </ul>
+      </div>
+      {% if user.is_authenticated %}
+      Hi {{ user.username }}!
+      <p><a href="{% url 'logout' %}">logout</a></p>
+      {% else %}
+      <p>You are not logged in</p>
+      <a href="{% url 'login' %}">login</a> |
+      <a href="{% url 'signup' %}">signup</a>
+      {% endif %}
     {% block content %}{% endblock %}
     <footer>
          <p>Scheduy @ 2018</p>

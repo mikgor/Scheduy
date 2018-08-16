@@ -95,3 +95,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'scheduyapp/static')
+AUTH_USER_MODEL = 'scheduyapp.AppUser'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+LOGIN_URL= 'signup'

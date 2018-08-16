@@ -1,0 +1,17 @@
+{% extends 'scheduyapp/base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<style>
+.helptext, form ul {
+   display: block;
+   color: #989898;
+   font-size: 12px;
+}
+</style>
+<h2>Sign up</h2>
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit"></input>
+</form>
+{% endblock %}
