@@ -16,8 +16,8 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         if self.request.user.is_authenticated:
-            context['task_list'] = self.request.user.tasks.all()
-            context['taskgroup_list'] = self.request.user.taskGroups.all()
+            context['task_list'] = self.request.user.GetTasks()
+            context['taskgroup_list'] = self.request.user.GetTaskGroups()
         return context
 
 class TaskCreate(LoginRequiredMixin, CreateView):

@@ -27,7 +27,7 @@ Index
 		<div class="task">
 			<div class="taskColumnFirst">
 				<div class="taskTitle">{{ task.name }}</div>
-				<div class="taskDeadline">{{ task.deadline }}
+				<div class="taskDeadline">{{ task.deadline|date:'d-m-Y H:i' }}
 					{% if task.isExpired %}
 					<span class="taskTimeRemainingR">{{ task.remainingTime }}</span>
 					{% else %}
