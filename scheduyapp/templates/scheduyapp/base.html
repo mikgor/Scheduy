@@ -10,7 +10,19 @@
       	<link rel="stylesheet" href="{% static 'scheduyapp/style.css' %}"/>
     </head>
     <body>
-      <header>Scheduy</header>
+      <div class="content">
+      <header>Scheduy
+         {% if user.is_authenticated %}
+            <div id="userMenu" onclick="SetMenuVisibility();">
+               <div id="userMenuLetter" title="Show or hide menu"> {{ user.username|capfirst|first }} </div>
+               <ul id="userMenuOptions">
+                  <a href="{% url 'UserUpdate' %}"><li>Preferences</li></a>
+                  <a href="{% url 'logout' %}"><li>Logout</li></a>
+               </ul>
+            </div>
+
+         {% endif %}
+      </header>
       <div id="navbar"><ul>
          <li><a href="{% url 'index' %}">Home</a></li>
          <li><a href="">News</a></li>
@@ -18,19 +30,29 @@
          <li><a href="">About</a></li>
          <li><a href="">Support project</a></li>
          <li><a href="">Contact</a></li>
+         <div id="userTimezone">{{ user.timezonePreference }}</div>
       </ul>
       </div>
       {% if user.is_authenticated %}
-      Hi {{ user.username }}!
-      <p><a href="{% url 'logout' %}">logout</a></p>
       {% else %}
+      <div>
       <p>You are not logged in</p>
       <a href="{% url 'login' %}">login</a> |
-      <a href="{% url 'signup' %}">signup</a>
+      <a href="{% url 'signup' %}">signup</a></div>
       {% endif %}
     {% block content %}{% endblock %}
     <footer>
          <p>Scheduy @ 2018</p>
     </footer>
+    </div>
+    <script type="text/javascript">
+    function SetMenuVisibility() {
+      var menu = document.getElementById("userMenuOptions");
+      if (menu.style.display=="none")
+         menu.style.display = "block";
+      else
+         menu.style.display = "none";
+    }
+    </script>
     </body>
 </html>

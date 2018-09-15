@@ -1,21 +1,62 @@
 {% extends "scheduyapp/base.html" %}
+{% load tz %}
 {% block title %}
 Index
 {% endblock title %}
 
 {% block content %}
-   <h3>New task:</h3>
-
+{% if user.is_authenticated %}
    <a href="{% url 'TaskCreate' %}" ><input type="button" value="Add task"></a>
-	 <a href="{% url 'TaskGroupCreate' %}" ><input type="button" value="Add task group"></a>
-   <div id="menuSettings"><input id="showDone" type="checkbox" {% if user.showDonePreference %} checked {% endif %} onclick="{location.href='{% url 'SetUserPreference' %}?showdone=True'}">
-     <label for="showDone"></label>
+	<a href="{% url 'TaskGroupCreate' %}" ><input type="button" value="Add task group"></a>
+   <div id="menuSettings">
+      <input id="showDone" type="checkbox" {% if user.showDonePreference %} checked {% endif %} onclick="{location.href='{% url 'SetUserPreference' %}?showdone=True'}">
+      <label for="showDone"></label>
    </div>
-
    <div id="tasks">
    {% if taskgroup_list %}
+   <script type="text/javascript">
+   function UpdateTimer(taskEl, seconds, initialDate) {
+     var secondsTotal = seconds - (new Date() - initialDate) / 1000;
+     var days = 0;
+     var hours = 0;
+     var mins = 0;
+     var text = 'remaining';
+     var value = '';
+      if (secondsTotal < 0) {
+           secondsTotal = secondsTotal * -1;
+           text = 'ago';
+           if (taskEl.className == "taskTimeRemainingG")
+               taskEl.className = "taskTimeRemainingR";
+        }
+      if (secondsTotal >= 24*3600) {
+           var secondsOffset = secondsTotal % (24*3600);
+           days = parseInt((secondsTotal - secondsOffset) / (24*3600));
+           secondsTotal = secondsOffset;
+        }
+      if (secondsTotal >= 3600) {
+           var secondsOffset = secondsTotal % 3600;
+           hours = parseInt((secondsTotal - secondsOffset) / 3600);
+           secondsTotal = secondsOffset;
+        }
+      if (secondsTotal >= 60) {
+           var secondsOffset = secondsTotal % 60;
+           mins = parseInt((secondsTotal - secondsOffset) / 60);
+        }
+      if (days < 1 && hours < 1)
+           value = mins + " m " + text;
+      else if (days < 1)
+           value = hours + " h, " + mins + " m " + text;
+      else
+           value = days + " d, " + hours + " h, " + mins + " m " + text;
+      taskEl.innerHTML =  value;
+   }
+   function SetTimer(taskId, secondsRemaining) {
+     var el = document.getElementById(taskId);
+     var initialDate = new Date();
+     setInterval(UpdateTimer, 10000, el, secondsRemaining, initialDate);
+   }
+   </script>
    <h1>Tasks</h1>
-
     {% for group in taskgroup_list %}
 	 <div class="group">
  		<div class="groupTitle" style="background-color: {{group.color}};">
@@ -27,11 +68,11 @@ Index
 		<div class="task">
 			<div class="taskColumnFirst">
 				<div class="taskTitle">{{ task.name }}</div>
-				<div class="taskDeadline">{{ task.deadline|date:'d-m-Y H:i' }}
+				<div class="taskDeadline">{{ task.deadline|timezone:user.timezonePreference|date:'Y-m-d H:i'}}
 					{% if task.isExpired %}
-					<span class="taskTimeRemainingR">{{ task.remainingTime }}</span>
+					<span class="taskTimeRemainingR" id="task{{ task.id }}timer">{{ task.remainingTime }}</span>
 					{% else %}
-					<span class="taskTimeRemainingG">{{ task.remainingTime }}</span>
+					<span class="taskTimeRemainingG" id="task{{ task.id }}timer">{{ task.remainingTime }}</span>
 					{% endif %}
 				</div>
 				<div class="taskDetails">{{ task.details }}</div>
@@ -44,12 +85,17 @@ Index
 				<div><a href="{% url 'TaskUpdate' task.id %}"><span class="fas fa-edit"></span> Edit</a></div><a href="{% url 'TaskDelete' task.id %}"><span class="fas fa-trash-alt"></span> Delete</a>
 			</div>
 		</div>
+      <script>
+      SetTimer('task{{ task.id }}timer', '{{ task.remainingTimeSeconds }}' );
+      </script>
 		{% endif %}
 	 {% endfor %}
  </div>
 	 {% endfor %}
  </div>
+
 {% else %}
     <p>No tasks.</p>
+{% endif %}
 {% endif %}
 {% endblock content %}

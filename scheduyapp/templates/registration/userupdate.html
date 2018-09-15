@@ -1,0 +1,21 @@
+{% extends 'scheduyapp/base.html' %}
+
+{% block title %}Edit account{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+function onSubmit() {
+   location.href = '{% url 'SetUserPreference' %}?timezone=' + document.getElementById("timezonePreference").value;
+}
+</script>
+{% endblock %}
+{% block content %}
+{% if timezone_list %}
+<label for="timezonePreference">Timezone:</label>
+<select id="timezonePreference">
+{% for timezone in timezone_list %}
+    <option value="{{ timezone }}" {% if user.timezonePreference == timezone %} selected {% endif %}>{{ timezone }}</option>
+{% endfor %}
+</select>
+<input type="submit" onclick="onSubmit();"></input>
+{% endif %}
+{% endblock %}

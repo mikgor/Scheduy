@@ -17,5 +17,7 @@ urlpatterns = [
     url(r'^signup/$', views.SignUp.as_view(), name='signup'),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^userupdate/$', views.UserUpdate, name='UserUpdate'),
+
     path('admin/', admin.site.urls),
 ]
