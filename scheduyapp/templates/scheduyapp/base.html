@@ -11,28 +11,28 @@
     </head>
     <body>
       <div class="content">
-      <header>Scheduy
+      <header><div id="logoMenu">Scheduy
+         <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="">News</a></li>
+            <li><a href="">Privacy policy</a></li>
+            <li><a href="">Support project</a></li>
+         </ul>
+      </div>
          {% if user.is_authenticated %}
-            <div id="userMenu" onclick="SetMenuVisibility();">
-               <div id="userMenuLetter" title="Show or hide menu"> {{ user.username|capfirst|first }} </div>
+            <div id="userActions"><div id="userMenu" title="Show or hide menu" onclick="SetMenuVisibility();">{{ user.username|capfirst }}</div>
+            <div id="userTimezone">{{ user.timezonePreference }}</div></div>
                <ul id="userMenuOptions">
                   <a href="{% url 'UserUpdate' %}"><li>Preferences</li></a>
                   <a href="{% url 'logout' %}"><li>Logout</li></a>
                </ul>
-            </div>
 
+         {% else %}
+         <div id="registration"><div id="userMenu">Log in</div>
+         <div id="userMenu">Sign up</div></div>
          {% endif %}
       </header>
-      <div id="navbar"><ul>
-         <li><a href="{% url 'index' %}">Home</a></li>
-         <li><a href="">News</a></li>
-         <li><a href="">Privacy policy</a></li>
-         <li><a href="">About</a></li>
-         <li><a href="">Support project</a></li>
-         <li><a href="">Contact</a></li>
-         <div id="userTimezone">{{ user.timezonePreference }}</div>
-      </ul>
-      </div>
+
       {% if user.is_authenticated %}
       {% else %}
       <div>
@@ -41,15 +41,21 @@
       <a href="{% url 'signup' %}">signup</a></div>
       {% endif %}
     {% block content %}{% endblock %}
+    </div>
     <footer>
          <p>Scheduy @ 2018</p>
     </footer>
-    </div>
+
     <script type="text/javascript">
     function SetMenuVisibility() {
       var menu = document.getElementById("userMenuOptions");
       if (menu.style.display=="none")
+      {
+         var element = document.getElementById("userMenu");
          menu.style.display = "block";
+         menu.style.top = element.getBoundingClientRect().bottom + "px";
+         menu.style.left = element.getBoundingClientRect().x + (element.getBoundingClientRect().width - menu.offsetWidth)/2 + "px";
+      }
       else
          menu.style.display = "none";
     }

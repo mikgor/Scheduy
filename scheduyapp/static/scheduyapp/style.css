@@ -8,64 +8,87 @@ body {
 	margin: 0;
 	color: #3c4759;
 	min-height: 100%;
+
+}
+
+.content {
+    min-height: calc( 100vh - 57px );
+    margin: 0;
 }
 
 header {
-	font-weight: bold;
-	margin: 10px;
-	color: #3c4759;
+	display: flex;
+	justify-content: space-around;
+	width: 90%;
+	margin: 0 auto;
+	padding: 20px;
+	align-items: stretch;
 	font-size: 30px;
 }
 
+#logoMenu {
+    margin: auto;
+    font-weight: bold;
+	 margin-left: 0;
+ }
+
+#logoMenu ul li a {
+   color: #3c4759;
+	transition: 0.5s;
+}
+
+#logoMenu ul li a:hover {
+   color: #68768c;
+	transition: 0.5s;
+}
+
+#registration, #userActions {
+   margin-right: 0;
+}
+
 #userMenu {
-	border-radius: 100%;
- 	background-color: #f5f5f5;
-	width: 35px;
-	color: #414759;
+	transition: 0.5s;
+	border: 1px solid;
+	border-radius: 4px;
 	cursor: pointer;
-	align-items: center;
-   border: 1px solid #3c4759;
-   font-size: 24px;
-   justify-content: center;
-	height: 35px;
-   float: right;
-	background: linear-gradient(238deg, #f5f5f5, #aecaf9, #dbe8ff, #e9f1fd);
-	background-size: 800% 800%;
-	-webkit-animation: rainbow 30s ease infinite;
-   animation: rainbow 30s ease infinite;
+   font-size: 16px;
+	padding: 3px;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin: 8px;
+	display: inline;
+	color: #0095ff;
 }
 
-@keyframes rainbow {
-	0% { background-position: 0% 50% }
-	50% { background-position: 100% 50% }
-	100% { background-position: 0% 50% }
-}
-
-#userMenuLetter {
-	margin: 3px;
+#userMenu:hover {
+	transition: 0.5s;
+	background-color: #f9f9f9;
+	color: #0095ff;
 }
 
 ul#userMenuOptions {
 	list-style-type: none;
 	margin: 0;
-	transition: all 0.3s ease-in 0s;
 	background-color: white;
-	box-shadow: #989898 0px 0px 7px;
+	border-bottom: 3px solid #0095ff;
 	padding: 6px;
-	color: black;
-	font-size: 17px;
+	font-size: 14px;
+	left: 0;
+	top: 0;
 	display: none;
 	position: absolute;
-	right: 0px;
-	top: 57px;
 }
 
 ul#userMenuOptions li {
 	display: block;
 }
 
+ul#userMenuOptions a {
+	color: #3c4759;
+}
+
 ul#userMenuOptions li:hover {
-    text-decoration: underline;
+	color: #68768c;
 }
 
 #navbar {
@@ -75,18 +98,19 @@ ul#userMenuOptions li:hover {
 
 #userTimezone {
 	font-size: 14px;
-   display: inline-block;
-   color: #c6dafc;
    font-weight: bold;
-   float: right;
-   margin: 14px;
+   margin: auto 0;
+	display: inline;
 }
 
 ul {
     list-style-type: none;
     margin: 0;
+	 margin-left: 10px;
+	 display: inline;
     padding: 0;
     overflow: hidden;
+	 font-weight: normal;
 }
 
 li {
@@ -95,14 +119,13 @@ li {
 
 li a {
     display: block;
-    color: white;
     text-align: center;
-    padding: 14px 16px;
+    margin: 5px;
+	 font-size: 16px;
     text-decoration: none;
 }
 
 li a:hover {
-   background-color: white;
 	color: #3c4759;
 	transition: 1s;
 }
@@ -111,14 +134,30 @@ li a:hover {
 	margin-top: 20px;
 }
 
-input, select, input[type="color"] {
-   padding: 6px 10px;
-   margin: 8px 0;
-   box-sizing: border-box;
-	box-shadow: #989898 0px 0px 7px;
-	border: none;
+input, select, input[type="color"], input[type="submit"] {
 	background-color: white;
 	cursor: pointer;
+	transition: 0.5s;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 6px;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin: 8px;
+	display: inline;
+}
+
+input[type="button"]:active {
+    border-color: #0095ff;
+	 transition: 0.5s;
+}
+
+input:hover, .taskColumn label:hover, #menuSettings label:hover {
+    border-color: #0095ff;
+	 color: #68768c;
+	 transition: 0.5s;
 }
 
 input[type="color"] {
@@ -128,43 +167,41 @@ input[type="color"] {
 form {
     width: 90%;
     padding: 12px;
-    margin: 20px auto 20px auto;
-    box-shadow: #989898 0px 0px 7px;
+    margin: 20px auto 0 auto;
+    border: 1px solid #ddd;
+	 border-radius: 4px;
 }
 
-input[type="submit"] {
-	background-color: whitesmoke;
-	font-weight: bold;
-	box-shadow: #989898 0px 0px 7px;
-}
 
 footer {
   padding: 3px;
+  position: relative;
+  height: 50px;
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: #3c4759;
-  box-shadow: 0px 0px 3px #c7c7c7;
+  border-top: 1px solid #ddd;
+  background-color: #0095ff;
   color: white;
   text-align: center;
 }
 
 .fa, .fas {
-	font-weight: 900;
+	font-weight: 300;
 	color: #3c4759;
-	text-shadow: 0px 0px 3px #f5f5f5;
+	margin-left: 10px;
 }
 
 a {
 	text-decoration: none;
-	color: black;
-	text-shadow: 0px 0px 3px #f5f5f5;
+	color: #3c4759;
 }
 
 .group {
 	width: 90%;
 	margin: 0 auto;
 	margin-bottom: 50px;
+	box-shadow: 1px 1px 3px #ddd;
 }
 
 .groupTitle {
@@ -172,7 +209,6 @@ a {
 	font-size: 25px;
 	font-weight: bold;
 	padding: 9px;
-	box-shadow: #989898 0px -1px 7px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -182,7 +218,6 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	box-shadow: #989898 0px 0px 7px;
 	width: 100%;
 	margin-bottom: 10px;
 }
@@ -210,19 +245,20 @@ a {
 	color: #989898;
 }
 
-.taskTimeRemainingR, .taskTimeRemainingG{
-	color: white;
-	background-color: red;
+.taskTimeRemainingR, .taskTimeRemainingG {
+	border: 1px solid red;
 	border-radius: 4px;
-	padding: 1px;
+	padding: 2px;
 }
 
 .taskTimeRemainingR {
-	background-color: red;
+	border-color: red;
+	color: red;
 }
 
 .taskTimeRemainingG {
-	background-color: #4CAF50;
+	border-color: #4CAF50;
+	color: #4CAF50;
 }
 
 #menuSettings {
@@ -236,20 +272,16 @@ a {
 
 .taskColumn label, #menuSettings label {
 	 display: inline-block;
-	 box-shadow: #989898 0px 0px 7px;
+	 border-radius: 4px;
+	 border: 2px solid #ddd;
 	 transition: all 0.3s ease-in 0s;
-	 background-color: whitesmoke;
+	 background-color: white;
 	 padding: 6px 10px;
 	 cursor: pointer;
 }
 
-.taskColumn label:hover, #menuSettings label:hover {
-    box-shadow: #989898 0px 0px 16px;
-	 transition: all 0.3s ease-in 0s;
-}
-
 input:checked + label, #menuSettings input:checked + label {
-    background-color: #4CAF50;
+    border-color: #4CAF50;
 	 transition: all 0.3s ease-in 0s;
 }
 
@@ -261,7 +293,7 @@ input + label:before {
 
 input:checked + label:before {
     content: "Done";
-    color: white;
+    color: #4CAF50;
     float: left;
 	 transition: all 0.3s ease-in 0s;
  }

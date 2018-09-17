@@ -58,14 +58,14 @@ Index
    </script>
    <h1>Tasks</h1>
     {% for group in taskgroup_list %}
-	 <div class="group">
+	 <div class="group" style="border-left: 2px solid {{group.color}}; border-right: 2px solid {{group.color}};">
  		<div class="groupTitle" style="background-color: {{group.color}};">
 			<div class="taskGroupColumnFirst">{{ group.name }}</div>
-			<div class="taskGroupColumn"><div class="groupBtns"><a href="{% url 'TaskGroupUpdate' group.id %}"><span class="fas fa-edit"></span> Edit</a> <a href="{% url 'TaskGroupDelete' group.id %}"><span class="fas fa-trash-alt"></span> Delete</a></div></div>
+			<div class="taskGroupColumn"><div class="groupBtns"><a href="{% url 'TaskGroupUpdate' group.id %}"><span class="fas fa-edit"></span></a> <a href="{% url 'TaskGroupDelete' group.id %}"><span class="fas fa-trash-alt"></span></a></div></div>
 		</div>
 	 {% for task in task_list %}
 	 	{% if task.group.id == group.id %}
-		<div class="task">
+		<div class="task" style="border-bottom: 2px solid {{group.color}};">
 			<div class="taskColumnFirst">
 				<div class="taskTitle">{{ task.name }}</div>
 				<div class="taskDeadline">{{ task.deadline|timezone:user.timezonePreference|date:'Y-m-d H:i'}}
@@ -82,7 +82,7 @@ Index
   				<label for="{{ task.id }}"></label>
 			</div>
 			<div class="taskColumn">
-				<div><a href="{% url 'TaskUpdate' task.id %}"><span class="fas fa-edit"></span> Edit</a></div><a href="{% url 'TaskDelete' task.id %}"><span class="fas fa-trash-alt"></span> Delete</a>
+				<a href="{% url 'TaskUpdate' task.id %}"><span class="fas fa-edit"></span></a><a href="{% url 'TaskDelete' task.id %}"><span class="fas fa-trash-alt"></span></a>
 			</div>
 		</div>
       <script>
