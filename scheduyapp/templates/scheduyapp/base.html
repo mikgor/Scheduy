@@ -23,7 +23,7 @@
          {% if user.is_authenticated %}
             <div id="userActions"><div id="userMenu" title="{% trans "Show or hide menu" %}" onclick="SetMenuVisibility();">{{ user.username|capfirst }}</div>
             <div id="userTimezone" title="{% trans "Timezone" %}">{{ user.timezonePreference }}</div></div>
-               <ul id="userMenuOptions">
+               <ul id="userMenuOptions" style="visibility: hidden;">
                   <a href="{% url 'UserUpdate' %}"><li>{% trans "Preferences" %}</li></a>
                   <a href="{% url 'logout' %}"><li>{% trans "Logout" %}</li></a>
                </ul>
@@ -42,15 +42,15 @@
     <script type="text/javascript">
     function SetMenuVisibility() {
       var menu = document.getElementById("userMenuOptions");
-      if (menu.style.display=="none")
+      if (menu.style.visibility=="hidden")
       {
          var element = document.getElementById("userMenu");
-         menu.style.display = "block";
          menu.style.top = element.getBoundingClientRect().bottom + "px";
          menu.style.left = element.getBoundingClientRect().x + (element.getBoundingClientRect().width - menu.offsetWidth)/2 + "px";
+         menu.style.visibility = "visible";
       }
       else
-         menu.style.display = "none";
+         menu.style.visibility = "hidden";
     }
     </script>
     </body>

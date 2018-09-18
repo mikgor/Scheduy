@@ -29,19 +29,42 @@ input#showDone + label:before {
   }
 </style>
 {% if user.is_authenticated %}
-   <a href="{% url 'TaskCreate' %}" ><input type="button" value="{% trans "Add task" %}">
-      <span class="lengthCounter" title="{% trans "Tasks" %}">{{ user.tasks.all.count }}</span>
-   </a>
-	<a href="{% url 'TaskGroupCreate' %}" ><input type="button" value="{% trans "Add group" %}">
-      <span class="lengthCounter" title="{% trans "Groups" %}">{{ user.taskGroups.all.count }}</span>
-   </a>
-   <div id="menuSettings">
-      <input id="showDone" type="checkbox" {% if user.showDonePreference %} checked {% endif %} onclick="{location.href='{% url 'SetUserPreference' %}?showdone=True'}">
-      <label for="showDone"></label>
+   <div class="taskActions">
+      <div class="taskManagment">
+         <h4>{% trans "Creating" %}</h4>
+         {% if total_taskgroup_count > 0 %}<a href="{% url 'TaskCreate' %}" ><input type="button" value="{% trans "Add task" %}"></a>{% endif %}
+      	<a href="{% url 'TaskGroupCreate' %}" ><input type="button" value="{% trans "Add group" %}"></a>
+      </div>
+      {% if total_task_count > 0 %}<div class="taskVisibility">
+         <h4>{% trans "Visibility" %}</h4>
+         <input id="showDone" type="checkbox" {% if user.showDonePreference %} checked {% endif %} onclick="{location.href='{% url 'SetUserPreference' %}?showdone=True'}">
+         <label for="showDone"></label>
+      </div>
+      <div class="taskSort">
+         <h4>{% trans "Sorting" %}</h4>
+         <select id="taskOrderPreference">
+             <option value="priority">{% trans "Priority" %}</option>
+             <option value="name">{% trans "Name" %}</option>
+             <option value="deadline">{% trans "Deadline" %}</option>
+         </select>
+         <select id="taskOrderPreferenceValue">
+             <option value="ascending">{% trans "Ascending" %}</option>
+             <option value="descending">{% trans "Descending" %}</option>
+         </select>
+         <input type="button" value="{% trans "Save" %}" onclick="SetTaskOrderPreference();"/>
+      </div>{% endif %}
    </div>
-   <div id="tasks">
+
    {% if taskgroup_list %}
+   <div id="tasks">
    <script type="text/javascript">
+   function SetTaskOrderPreference() {
+      var order = document.getElementById("taskOrderPreference").value;
+      if (document.getElementById("taskOrderPreferenceValue").value == "descending")
+          order = '-' + order;
+      location.href = '{% url 'SetUserPreference' %}?taskorder=' + order;
+   }
+
    function UpdateTimer(taskEl, seconds, initialDate) {
      var secondsTotal = parseInt(seconds) - (new Date() - initialDate) / 1000;
      var days = 0;
@@ -122,7 +145,18 @@ input#showDone + label:before {
  </div>
 
 {% else %}
-    <p>{% trans "No tasks" %}</p>
+    {% if total_taskgroup_count < 1 %}
+    <p><h1>{% trans "You have not added any group yet" %}</h1>
+        <a href="{% url 'TaskGroupCreate' %}"><div id="userMenu">{% trans "Add group" %}</div></a>
+    </p>
+    {% else %}
+      {% if total_task_count < 1 %}
+      <p><h1>{% trans "You have added group, create task now" %}</h1>
+          <a href="{% url 'TaskCreate' %}"><div id="userMenu">{% trans "Add task" %}</div></a>
+      </p>
+      {% endif %}
+    {% endif %}
+
 {% endif %}
 {% endif %}
 {% endblock content %}

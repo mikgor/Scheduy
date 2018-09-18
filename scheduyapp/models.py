@@ -70,18 +70,17 @@ class AppUser(AbstractUser):
     taskGroups = models.ManyToManyField(TaskGroup)
     tasks = models.ManyToManyField(Task)
     showDonePreference = models.BooleanField(default=False)
-    TIMEZONES = tuple(zip(pytz.all_timezones, pytz.all_timezones))
-    LANGUAGES = settings.LANGUAGES
-    timezonePreference = models.CharField(_('Timezone'), max_length=32, choices=TIMEZONES, default='UTC')
-    languagePreference = models.CharField(_('Language'), max_length=32, choices=LANGUAGES, default='en')
+    timezonePreference = models.CharField(_('Timezone'), max_length=32, choices=tuple(zip(pytz.all_timezones, pytz.all_timezones)), default='UTC')
+    languagePreference = models.CharField(_('Language'), max_length=32, choices=settings.LANGUAGES, default='en')
+    taskOrderPreference = models.CharField(_('Task order'), max_length=20, default='-priority')
 
     def __str__(self):
         return self.email
 
     def GetTasks(self):
         if self.showDonePreference == False:
-            return self.tasks.filter(is_done=False)
-        return self.tasks.all()
+            return self.tasks.filter(is_done=False).order_by(self.taskOrderPreference)
+        return self.tasks.all().order_by(self.taskOrderPreference)
 
     def GetTaskGroups(self):
         return self.taskGroups.filter(id__in=self.GetTasks().values("group"))
@@ -94,6 +93,8 @@ class AppUser(AbstractUser):
         self.save()
 
     def SetTimezonePreference(self, timezone):
+        if "etc/gmt" in timezone.lower():
+            timezone = timezone.replace(" ", "+")
         if timezone in pytz.all_timezones:
             self.timezonePreference = timezone
             self.save()
@@ -103,3 +104,7 @@ class AppUser(AbstractUser):
             if language in l:
                 self.languagePreference = language
                 self.save()
+
+    def SetTaskOrderPreference(self, order):
+        self.taskOrderPreference = order
+        self.save()

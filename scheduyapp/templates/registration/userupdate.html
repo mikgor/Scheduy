@@ -6,6 +6,19 @@
 function onSubmit() {
    location.href = '{% url 'SetUserPreference' %}?timezone=' + document.getElementById("timezonePreference").value + '&language=' + document.getElementById("languagePreference").value;
 }
+
+function updateTimezoneFieldTimezone() {
+
+}
+
+function getLocalTimezone() {
+   var offset = new Date().getTimezoneOffset() / 60;
+   if (offset==0)
+      offset = '+' + offset;
+   var local = 'Etc/GMT' + offset;
+   document.getElementById("localTimezone").innerHTML = "{% trans 'Detected timezone' %}" + ": <span style='color: #0095ff; cursor: pointer;'>" + local + "</span>";
+   document.getElementById("localTimezone").addEventListener("click", function(){ document.getElementById("timezonePreference").value = local; });
+}
 </script>
 {% endblock %}
 {% block content %}
@@ -17,6 +30,10 @@ function onSubmit() {
     <option value="{{ timezone }}" {% if user.timezonePreference == timezone %} selected {% endif %}>{{ timezone }}</option>
 {% endfor %}
 </select></p>
+<p id="localTimezone"></p>
+<script>
+getLocalTimezone();
+</script>
 <p><label for="languagePreference">{% trans "Language" %}:</label>
 <select id="languagePreference">
 {% for language in language_list %}

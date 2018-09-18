@@ -14,7 +14,6 @@ from django.utils import translation
 from django.conf import settings
 
 class IndexView(LoginRequiredMixin, generic.ListView):
-
     template_name = 'scheduyapp/index.html'
     context_object_name = 'IndexList'
     queryset = ''
@@ -25,6 +24,8 @@ class IndexView(LoginRequiredMixin, generic.ListView):
             self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.user.languagePreference
             context['task_list'] = self.request.user.GetTasks()
             context['taskgroup_list'] = self.request.user.GetTaskGroups()
+            context['total_task_count'] = self.request.user.tasks.all().count()
+            context['total_taskgroup_count'] = self.request.user.taskGroups.all().count()
         return context
 
 class TaskCreate(LoginRequiredMixin, CreateView):
@@ -143,12 +144,15 @@ def SetUserPreference(request):
     showdone = request.GET.get('showdone', None)
     timezone = request.GET.get('timezone', None)
     language = request.GET.get('language', None)
+    order = request.GET.get('taskorder', None)
     if showdone is not None:
         request.user.SetShowDonePreference()
     if timezone is not None:
         request.user.SetTimezonePreference(timezone)
     if language is not None:
         request.user.SetLanguagePreference(language)
+    if order is not None:
+        request.user.SetTaskOrderPreference(order)
     return HttpResponseRedirect(reverse('index'))
 
 class SignUp(CreateView):

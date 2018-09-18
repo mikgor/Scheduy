@@ -9,6 +9,16 @@
    font-size: 12px;
 }
 </style>
+<script type="text/javascript">
+function getLocalTimezone() {
+   var offset = new Date().getTimezoneOffset() / 60;
+   if (offset==0)
+      offset = '+' + offset;
+   var local = 'Etc/GMT' + offset;
+   document.getElementById("id_timezonePreference").value = local;
+   document.getElementById("localTimezone").innerHTML = "{% trans 'Detected timezone' %}" + ": " + local;
+}
+</script>
 <h2>{% trans "Sign up" %}</h2>
 <a href="{% url 'login' %}"><div id="userMenu">{% trans "I have already account" %}</div></a>
 <form method="post">
@@ -16,4 +26,8 @@
 {{ form.as_p }}
 <input type="submit" value="{% trans "Submit" %}"></input>
 </form>
+<p id="localTimezone"></p>
+<script>
+getLocalTimezone();
+</script>
 {% endblock %}
