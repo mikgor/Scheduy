@@ -24,11 +24,11 @@ class AppUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = AppUser
-        fields = ('username', 'email', 'timezonePreference')
+        fields = ('username', 'email', 'timezonePreference', 'languagePreference')
 
 class AppUserChangeForm(forms.ModelForm):
 
     class Meta:
         model = AppUser
-        fields = ('timezonePreference',)
+        fields = ('timezonePreference', 'languagePreference')
         exclude = ('password',)

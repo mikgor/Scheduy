@@ -10,8 +10,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import pytz
 from django.utils import timezone
 from datetime import timezone, datetime
+from django.utils import translation
+from django.conf import settings
 
-class IndexView(generic.ListView):
+class IndexView(LoginRequiredMixin, generic.ListView):
+
     template_name = 'scheduyapp/index.html'
     context_object_name = 'IndexList'
     queryset = ''
@@ -19,6 +22,7 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         if self.request.user.is_authenticated:
+            self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.user.languagePreference
             context['task_list'] = self.request.user.GetTasks()
             context['taskgroup_list'] = self.request.user.GetTaskGroups()
         return context
@@ -138,10 +142,13 @@ def SetUserPreference(request):
         return HttpResponseRedirect(reverse('signup'))
     showdone = request.GET.get('showdone', None)
     timezone = request.GET.get('timezone', None)
+    language = request.GET.get('language', None)
     if showdone is not None:
         request.user.SetShowDonePreference()
     if timezone is not None:
         request.user.SetTimezonePreference(timezone)
+    if language is not None:
+        request.user.SetLanguagePreference(language)
     return HttpResponseRedirect(reverse('index'))
 
 class SignUp(CreateView):
@@ -152,6 +159,7 @@ class SignUp(CreateView):
 def UserUpdate(request):
     context = {}
     context['timezone_list'] = pytz.all_timezones
+    context['language_list'] = tuple(settings.LANGUAGES)
 
     if request.user.is_anonymous:
         return HttpResponseRedirect(reverse('signup'))

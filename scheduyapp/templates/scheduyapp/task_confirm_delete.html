@@ -1,12 +1,13 @@
 {% extends "scheduyapp/base.html" %}
 {% load static %}
+{% load i18n %}
 {% block title %}
-Delete Task
+{% trans "Delete task" %}
 {% endblock title %}
 {% block content %}
 <form method="post">{% csrf_token %}
-   <h2>Delete task</h2>
-    <p>Are you sure you want to delete task <b>{{ object }}</b>?</p>
-    <input type="submit" value="Confirm" />
+   <h2>{% trans "Delete task" %}</h2>
+    <p>{% trans "Are you sure you want to delete task" %} <b>{{ object }}</b>?</p>
+    <input type="submit" value="{% trans "Confirm" %}"/>
 </form>
 {% endblock content %}

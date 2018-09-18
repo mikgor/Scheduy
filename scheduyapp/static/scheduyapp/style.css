@@ -8,7 +8,6 @@ body {
 	margin: 0;
 	color: #3c4759;
 	min-height: 100%;
-
 }
 
 .content {
@@ -130,6 +129,21 @@ li a:hover {
 	transition: 1s;
 }
 
+.lengthCounter {
+	right: 23px;
+   top: -16px;
+   color: white;
+   text-align: center;
+   padding: 1px;
+   font-size: 13px;
+   background-color: #0095ff;
+   min-width: 16px;
+   text-shadow: 0 1px #0073c5;
+   border-radius: 4px;
+   position: relative;
+   display: inline-block;
+}
+
 #tasks {
 	margin-top: 20px;
 }
@@ -243,6 +257,7 @@ a {
 .taskDeadline {
 	font-size: 14px;
 	color: #989898;
+	margin: 5px;
 }
 
 .taskTimeRemainingR, .taskTimeRemainingG {
@@ -285,23 +300,12 @@ input:checked + label, #menuSettings input:checked + label {
 	 transition: all 0.3s ease-in 0s;
 }
 
-input + label:before {
-    content: "Undone";
-    float: left;
-	 transition: all 0.3s ease-in 0s;
+ul.errorlist {
+    color: red;
+    border-radius: 4px;
+    padding: 8px;
+	 font-weight: bold;
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
 }
-
-input:checked + label:before {
-    content: "Done";
-    color: #4CAF50;
-    float: left;
-	 transition: all 0.3s ease-in 0s;
- }
-
-input#showDone + label:before {
-     content: "Hiding done";
- }
-
- input#showDone:checked + label:before {
-      content: "Showing done";
-  }

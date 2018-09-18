@@ -1,13 +1,40 @@
 {% extends "scheduyapp/base.html" %}
 {% load tz %}
+{% load i18n %}
 {% block title %}
-Index
+{% trans "Index" %}
 {% endblock title %}
 
 {% block content %}
+<style>
+input + label:before {
+    content: "{% trans 'Undone' %}";
+    float: left;
+	 transition: all 0.3s ease-in 0s;
+}
+
+input:checked + label:before {
+    content: "{% trans 'Done' %}";
+    color: #4CAF50;
+    float: left;
+	 transition: all 0.3s ease-in 0s;
+ }
+
+input#showDone + label:before {
+     content: "{% trans 'Hiding done' %}";
+ }
+
+ input#showDone:checked + label:before {
+      content: "{% trans 'Showing done' %}";
+  }
+</style>
 {% if user.is_authenticated %}
-   <a href="{% url 'TaskCreate' %}" ><input type="button" value="Add task"></a>
-	<a href="{% url 'TaskGroupCreate' %}" ><input type="button" value="Add task group"></a>
+   <a href="{% url 'TaskCreate' %}" ><input type="button" value="{% trans "Add task" %}">
+      <span class="lengthCounter" title="{% trans "Tasks" %}">{{ user.tasks.all.count }}</span>
+   </a>
+	<a href="{% url 'TaskGroupCreate' %}" ><input type="button" value="{% trans "Add group" %}">
+      <span class="lengthCounter" title="{% trans "Groups" %}">{{ user.taskGroups.all.count }}</span>
+   </a>
    <div id="menuSettings">
       <input id="showDone" type="checkbox" {% if user.showDonePreference %} checked {% endif %} onclick="{location.href='{% url 'SetUserPreference' %}?showdone=True'}">
       <label for="showDone"></label>
@@ -16,15 +43,15 @@ Index
    {% if taskgroup_list %}
    <script type="text/javascript">
    function UpdateTimer(taskEl, seconds, initialDate) {
-     var secondsTotal = seconds - (new Date() - initialDate) / 1000;
+     var secondsTotal = parseInt(seconds) - (new Date() - initialDate) / 1000;
      var days = 0;
      var hours = 0;
      var mins = 0;
-     var text = 'remaining';
+     var text = '{% trans "remaining" %}';
      var value = '';
       if (secondsTotal < 0) {
            secondsTotal = secondsTotal * -1;
-           text = 'ago';
+           text = '{% trans "ago" %}';
            if (taskEl.className == "taskTimeRemainingG")
                taskEl.className = "taskTimeRemainingR";
         }
@@ -53,15 +80,15 @@ Index
    function SetTimer(taskId, secondsRemaining) {
      var el = document.getElementById(taskId);
      var initialDate = new Date();
+     UpdateTimer(el, secondsRemaining, initialDate);
      setInterval(UpdateTimer, 10000, el, secondsRemaining, initialDate);
    }
    </script>
-   <h1>Tasks</h1>
     {% for group in taskgroup_list %}
 	 <div class="group" style="border-left: 2px solid {{group.color}}; border-right: 2px solid {{group.color}};">
  		<div class="groupTitle" style="background-color: {{group.color}};">
 			<div class="taskGroupColumnFirst">{{ group.name }}</div>
-			<div class="taskGroupColumn"><div class="groupBtns"><a href="{% url 'TaskGroupUpdate' group.id %}"><span class="fas fa-edit"></span></a> <a href="{% url 'TaskGroupDelete' group.id %}"><span class="fas fa-trash-alt"></span></a></div></div>
+			<div class="taskGroupColumn"><div class="groupBtns"><a href="{% url 'TaskGroupUpdate' group.id %}"><span class="fas fa-edit" title="{% trans "Edit" %}"></span></a> <a href="{% url 'TaskGroupDelete' group.id %}"><span class="fas fa-trash-alt" title="{% trans "Delete" %}"></span></a></div></div>
 		</div>
 	 {% for task in task_list %}
 	 	{% if task.group.id == group.id %}
@@ -82,7 +109,7 @@ Index
   				<label for="{{ task.id }}"></label>
 			</div>
 			<div class="taskColumn">
-				<a href="{% url 'TaskUpdate' task.id %}"><span class="fas fa-edit"></span></a><a href="{% url 'TaskDelete' task.id %}"><span class="fas fa-trash-alt"></span></a>
+				<a href="{% url 'TaskUpdate' task.id %}"><span class="fas fa-edit" title="{% trans "Edit" %}"></span></a><a href="{% url 'TaskDelete' task.id %}"><span class="fas fa-trash-alt" title="{% trans "Delete" %}"></span></a>
 			</div>
 		</div>
       <script>
@@ -95,7 +122,7 @@ Index
  </div>
 
 {% else %}
-    <p>No tasks.</p>
+    <p>{% trans "No tasks" %}</p>
 {% endif %}
 {% endif %}
 {% endblock content %}

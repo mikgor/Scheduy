@@ -1,12 +1,12 @@
 {% extends 'scheduyapp/base.html' %}
-
-{% block title %}Login{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Log in" %}{% endblock %}
 
 {% block content %}
-  <h2>Login</h2>
+  <h2>{% trans "Log in" %}</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit"></input>
+    <input type="submit" value="{% trans "Submit" %}"></input>
   </form>
 {% endblock %}

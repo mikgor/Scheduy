@@ -1,5 +1,6 @@
 {% extends 'scheduyapp/base.html' %}
-{% block title %}Sign Up{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Sign up" %}{% endblock %}
 {% block content %}
 <style>
 .helptext, form ul {
@@ -8,10 +9,11 @@
    font-size: 12px;
 }
 </style>
-<h2>Sign up</h2>
+<h2>{% trans "Sign up" %}</h2>
+<a href="{% url 'login' %}"><div id="userMenu">{% trans "I have already account" %}</div></a>
 <form method="post">
 {% csrf_token %}
 {{ form.as_p }}
-<input type="submit"></input>
+<input type="submit" value="{% trans "Submit" %}"></input>
 </form>
 {% endblock %}

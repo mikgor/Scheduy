@@ -1,8 +1,10 @@
 from django.db import models
 from datetime import datetime, timezone
 from django.contrib.auth.models import AbstractUser
-import pdb
+from django.conf import settings
 import pytz
+from django.utils.translation import ugettext_lazy as _
+
 class TaskGroup(models.Model):
     name = models.CharField(max_length=40)
     color = models.CharField(max_length=30, default="whitesmoke")
@@ -11,12 +13,12 @@ class TaskGroup(models.Model):
         return self.name
 
 class Task(models.Model):
-    name = models.CharField(max_length=40)
-    details = models.CharField(max_length=80, blank=True)
+    name = models.CharField(_('Name'), max_length=40)
+    details = models.CharField(_('Details'), max_length=80, blank=True)
     is_done = models.BooleanField(default=False)
-    deadline = models.DateTimeField('Deadline')
-    priority = models.PositiveSmallIntegerField(default=1)
-    group = models.ForeignKey(TaskGroup, on_delete=models.CASCADE)
+    deadline = models.DateTimeField(_('Deadline'))
+    priority = models.PositiveSmallIntegerField(_('Priority'), default=1)
+    group = models.ForeignKey(TaskGroup, on_delete=models.CASCADE, verbose_name = _('Group'))
 
     def __str__(self):
         return self.name
@@ -69,7 +71,9 @@ class AppUser(AbstractUser):
     tasks = models.ManyToManyField(Task)
     showDonePreference = models.BooleanField(default=False)
     TIMEZONES = tuple(zip(pytz.all_timezones, pytz.all_timezones))
-    timezonePreference = models.CharField('Timezone', max_length=32, choices=TIMEZONES, default='UTC')
+    LANGUAGES = settings.LANGUAGES
+    timezonePreference = models.CharField(_('Timezone'), max_length=32, choices=TIMEZONES, default='UTC')
+    languagePreference = models.CharField(_('Language'), max_length=32, choices=LANGUAGES, default='en')
 
     def __str__(self):
         return self.email
@@ -93,3 +97,9 @@ class AppUser(AbstractUser):
         if timezone in pytz.all_timezones:
             self.timezonePreference = timezone
             self.save()
+
+    def SetLanguagePreference(self, language):
+        for l in settings.LANGUAGES:
+            if language in l:
+                self.languagePreference = language
+                self.save()

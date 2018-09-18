@@ -1,17 +1,18 @@
 {% extends "scheduyapp/base.html" %}
 {% load static %}
+{% load i18n %}
 {% block title %}
-Add Group
+{% trans "Edit task" %}
 {% endblock title %}
 {% block scripts %}
 <script src="{% static 'scheduyapp/js/Inputs.js' %}" type="text/javascript"></script>
 {% endblock scripts %}
 {% block content %}
 <form method="post">{% csrf_token %}
-   <h2>Edit task</h2>
+   <h2>{% trans "Edit task" %}</h2>
    {{ form.as_p }}
-   <p>Deadline: <input type="datetime-local" required id="datetimep" onchange="DatetimepickedEvent()"></input></p>
-   <input type="submit" value="Update" />
+   <p>{% trans "Deadline" %}: <input type="datetime-local" required id="datetimep" onchange="DatetimepickedEvent()"></input></p>
+   <input type="submit" value="{% trans "Confirm" %}"/>
 </form>
 <script type="text/javascript">Updatedatetimepicker();</script>
 {% endblock content %}

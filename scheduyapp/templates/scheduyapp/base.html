@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,33 +14,25 @@
       <div class="content">
       <header><div id="logoMenu">Scheduy
          <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="">News</a></li>
-            <li><a href="">Privacy policy</a></li>
-            <li><a href="">Support project</a></li>
+            <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+            <li><a href="">{% trans "News" %}</a></li>
+            <li><a href="">{% trans "Privacy policy" %}</a></li>
+            <li><a href="">{% trans "Contribute" %}</a></li>
          </ul>
       </div>
          {% if user.is_authenticated %}
-            <div id="userActions"><div id="userMenu" title="Show or hide menu" onclick="SetMenuVisibility();">{{ user.username|capfirst }}</div>
-            <div id="userTimezone">{{ user.timezonePreference }}</div></div>
+            <div id="userActions"><div id="userMenu" title="{% trans "Show or hide menu" %}" onclick="SetMenuVisibility();">{{ user.username|capfirst }}</div>
+            <div id="userTimezone" title="{% trans "Timezone" %}">{{ user.timezonePreference }}</div></div>
                <ul id="userMenuOptions">
-                  <a href="{% url 'UserUpdate' %}"><li>Preferences</li></a>
-                  <a href="{% url 'logout' %}"><li>Logout</li></a>
+                  <a href="{% url 'UserUpdate' %}"><li>{% trans "Preferences" %}</li></a>
+                  <a href="{% url 'logout' %}"><li>{% trans "Logout" %}</li></a>
                </ul>
 
          {% else %}
-         <div id="registration"><div id="userMenu">Log in</div>
-         <div id="userMenu">Sign up</div></div>
+         <div id="registration"><a href="{% url 'login' %}"><div id="userMenu">{% trans "Log in" %}</div></a>
+         <a href="{% url 'signup' %}"><div id="userMenu">{% trans "Sign up" %}</div></a></div>
          {% endif %}
       </header>
-
-      {% if user.is_authenticated %}
-      {% else %}
-      <div>
-      <p>You are not logged in</p>
-      <a href="{% url 'login' %}">login</a> |
-      <a href="{% url 'signup' %}">signup</a></div>
-      {% endif %}
     {% block content %}{% endblock %}
     </div>
     <footer>
