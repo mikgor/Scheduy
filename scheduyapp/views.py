@@ -143,14 +143,18 @@ def SetUserPreference(request):
         return HttpResponseRedirect(reverse('signup'))
     showdone = request.GET.get('showdone', None)
     timezone = request.GET.get('timezone', None)
+    datetimeFormatPreference = request.GET.get('datetimeFormatPreference', None)
     language = request.GET.get('language', None)
     order = request.GET.get('taskorder', None)
     if showdone is not None:
         request.user.SetShowDonePreference()
     if timezone is not None:
         request.user.SetTimezonePreference(timezone)
+    if datetimeFormatPreference is not None:
+        request.user.SetDatetimeFormatPreference(datetimeFormatPreference)
     if language is not None:
         request.user.SetLanguagePreference(language)
+        request.session[translation.LANGUAGE_SESSION_KEY] = request.user.languagePreference
     if order is not None:
         request.user.SetTaskOrderPreference(order)
     return HttpResponseRedirect(reverse('index'))
@@ -164,6 +168,8 @@ def UserUpdate(request):
     context = {}
     context['timezone_list'] = pytz.all_timezones
     context['language_list'] = tuple(settings.LANGUAGES)
+    context['datetimeformat_list'] = settings.DATETIME_FORMAT_PREFERENCES
+    context['datetimeNow'] = pytz.timezone(request.user.timezonePreference).localize(datetime.now().replace(tzinfo=None)).astimezone(pytz.timezone('UCT'))
 
     if request.user.is_anonymous:
         return HttpResponseRedirect(reverse('signup'))

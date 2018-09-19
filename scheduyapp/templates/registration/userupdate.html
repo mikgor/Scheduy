@@ -1,14 +1,11 @@
 {% extends 'scheduyapp/base.html' %}
+{% load tz %}
 {% load i18n %}
 {% block title %}{% trans "Edit account" %}{% endblock %}
 {% block scripts %}
 <script type="text/javascript">
 function onSubmit() {
-   location.href = '{% url 'SetUserPreference' %}?timezone=' + document.getElementById("timezonePreference").value + '&language=' + document.getElementById("languagePreference").value;
-}
-
-function updateTimezoneFieldTimezone() {
-
+   location.href = '{% url 'SetUserPreference' %}?timezone=' + document.getElementById("timezonePreference").value + '&language=' + document.getElementById("languagePreference").value + '&datetimeFormatPreference=' + document.getElementById("datetimeFormatPreference").value;
 }
 
 function getLocalTimezone() {
@@ -38,6 +35,12 @@ getLocalTimezone();
 <select id="languagePreference">
 {% for language in language_list %}
     <option value="{{ language.0 }}" {% if user.languagePreference == language.0 %} selected {% endif %}>{{ language.1 }}</option>
+{% endfor %}
+</select></p>
+<p><label for="datetimeFormatPreference">{% trans "Datetime format" %}:</label>
+<select id="datetimeFormatPreference">
+{% for datetime in datetimeformat_list %}
+    <option value="{{ datetime }}" {% if user.datetimeFormatPreference == datetime %} selected {% endif %}>{{ datetimeNow|timezone:user.timezonePreference|date:datetime }}</option>
 {% endfor %}
 </select></p>
 <input type="submit" onclick="onSubmit();" value="{% trans "Submit" %}"></input>

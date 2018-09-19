@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-18 21:36+0200\n"
+"POT-Creation-Date: 2018-09-19 19:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,17 +51,22 @@ msgid "Group"
 msgstr "Grupa"
 
 #: .\scheduyapp\models.py:73
-#: .\scheduyapp\templates\registration\userupdate.html:27
+#: .\scheduyapp\templates\registration\userupdate.html:24
 #: .\scheduyapp\templates\scheduyapp\base.html:25
 msgid "Timezone"
 msgstr "Strefa czasowa"
 
 #: .\scheduyapp\models.py:74
-#: .\scheduyapp\templates\registration\userupdate.html:37
+#: .\scheduyapp\templates\registration\userupdate.html:40
+msgid "Datetime format"
+msgstr "Formt daty i czasu"
+
+#: .\scheduyapp\models.py:75
+#: .\scheduyapp\templates\registration\userupdate.html:34
 msgid "Language"
 msgstr "Język"
 
-#: .\scheduyapp\models.py:75
+#: .\scheduyapp\models.py:76
 msgid "Task order"
 msgstr "Kolejność zadań"
 
@@ -72,28 +77,28 @@ msgid "Log in"
 msgstr "Logowanie"
 
 #: .\scheduyapp\templates\registration\login.html:10
-#: .\scheduyapp\templates\registration\signup.html:27
-#: .\scheduyapp\templates\registration\userupdate.html:43
+#: .\scheduyapp\templates\registration\signup.html:28
+#: .\scheduyapp\templates\registration\userupdate.html:46
 msgid "Submit"
 msgstr "Wyślij"
 
 #: .\scheduyapp\templates\registration\signup.html:3
-#: .\scheduyapp\templates\registration\signup.html:22
+#: .\scheduyapp\templates\registration\signup.html:23
 #: .\scheduyapp\templates\scheduyapp\base.html:33
 msgid "Sign up"
 msgstr "Rejestracja"
 
 #: .\scheduyapp\templates\registration\signup.html:19
-#: .\scheduyapp\templates\registration\userupdate.html:19
+#: .\scheduyapp\templates\registration\userupdate.html:16
 msgid "Detected timezone"
 msgstr "Wykryta strefa czasowa"
 
-#: .\scheduyapp\templates\registration\signup.html:23
+#: .\scheduyapp\templates\registration\signup.html:24
 msgid "I have already account"
 msgstr "Mam już konto"
 
-#: .\scheduyapp\templates\registration\userupdate.html:3
-#: .\scheduyapp\templates\registration\userupdate.html:25
+#: .\scheduyapp\templates\registration\userupdate.html:4
+#: .\scheduyapp\templates\registration\userupdate.html:22
 msgid "Edit account"
 msgstr "Zmień ustawienia"
 

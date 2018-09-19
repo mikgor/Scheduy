@@ -90,6 +90,21 @@ LANGUAGES = [
     ('en', _('English')),
 ]
 
+DATETIME_FORMAT_PREFERENCES = [
+    'Y-m-d H:i',
+    'Y-m-d H:i a',
+    'Y/m/d H:i',
+    'Y/m/d H:i a',
+    'm-d-Y H:i',
+    'm-d-Y H:i a',
+    'm/d/Y H:i',
+    'm/d/Y H:i a',
+    'd-m-Y H:i',
+    'd-m-Y H:i a',
+    'd/m/Y H:i',
+    'd/m/Y H:i a',
+]
+
 TIME_ZONE = 'UCT'
 
 USE_I18N = True

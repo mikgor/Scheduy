@@ -16,7 +16,8 @@ function getLocalTimezone() {
       offset = '+' + offset;
    var local = 'Etc/GMT' + offset;
    document.getElementById("id_timezonePreference").value = local;
-   document.getElementById("localTimezone").innerHTML = "{% trans 'Detected timezone' %}" + ": " + local;
+   document.getElementById("localTimezone").innerHTML = "{% trans 'Detected timezone' %}" + ": <span style='color: #0095ff; cursor: pointer;'>" + local + "</span>";
+   document.getElementById("localTimezone").addEventListener("click", function(){ document.getElementById("id_timezonePreference").value = local; });
 }
 </script>
 <h2>{% trans "Sign up" %}</h2>

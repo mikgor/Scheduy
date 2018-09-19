@@ -71,6 +71,7 @@ class AppUser(AbstractUser):
     tasks = models.ManyToManyField(Task)
     showDonePreference = models.BooleanField(default=False)
     timezonePreference = models.CharField(_('Timezone'), max_length=32, choices=tuple(zip(pytz.all_timezones, pytz.all_timezones)), default='UTC')
+    datetimeFormatPreference  = models.CharField(_('Datetime format'), max_length=12, choices=tuple(zip(settings.DATETIME_FORMAT_PREFERENCES, settings.DATETIME_FORMAT_PREFERENCES)), default='Y-m-d H:i a')
     languagePreference = models.CharField(_('Language'), max_length=32, choices=settings.LANGUAGES, default='en')
     taskOrderPreference = models.CharField(_('Task order'), max_length=20, default='-priority')
 
@@ -95,15 +96,22 @@ class AppUser(AbstractUser):
     def SetTimezonePreference(self, timezone):
         if "etc/gmt" in timezone.lower():
             timezone = timezone.replace(" ", "+")
-        if timezone in pytz.all_timezones:
+        if not (timezone==self.timezonePreference) and timezone in pytz.all_timezones:
             self.timezonePreference = timezone
             self.save()
 
+    def SetDatetimeFormatPreference(self, datetime):
+        if not (datetime==self.datetimeFormatPreference) and datetime in settings.DATETIME_FORMAT_PREFERENCES:
+            self.datetimeFormatPreference = datetime
+            self.save()
+
     def SetLanguagePreference(self, language):
-        for l in settings.LANGUAGES:
-            if language in l:
-                self.languagePreference = language
-                self.save()
+        if not (language==self.languagePreference):
+            for l in settings.LANGUAGES:
+                if language in l:
+                    self.languagePreference = language
+                    self.save()
+                    break
 
     def SetTaskOrderPreference(self, order):
         self.taskOrderPreference = order

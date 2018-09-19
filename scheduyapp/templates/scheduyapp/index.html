@@ -118,7 +118,7 @@ input#showDone + label:before {
 		<div class="task" style="border-bottom: 2px solid {{group.color}};">
 			<div class="taskColumnFirst">
 				<div class="taskTitle">{{ task.name }}</div>
-				<div class="taskDeadline">{{ task.deadline|timezone:user.timezonePreference|date:'Y-m-d H:i'}}
+				<div class="taskDeadline">{{ task.deadline|timezone:user.timezonePreference|date:user.datetimeFormatPreference}}
 					{% if task.isExpired %}
 					<span class="taskTimeRemainingR" id="task{{ task.id }}timer">{{ task.remainingTime }}</span>
 					{% else %}
