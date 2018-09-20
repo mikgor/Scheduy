@@ -148,10 +148,6 @@ li a:hover {
    display: inline-block;
 }
 
-.taskActions {
-
-}
-
 #tasks {
 	margin-top: 20px;
 }
@@ -206,12 +202,6 @@ footer {
   background-color: #0095ff;
   color: white;
   text-align: center;
-}
-
-.fa, .fas {
-	font-weight: 300;
-	color: #3c4759;
-	margin-left: 10px;
 }
 
 a {
@@ -315,4 +305,43 @@ ul.errorlist {
     width: 300px;
     margin: 0 auto;
     text-align: center;
+}
+
+.icon, .icon-big {
+   display: inline-block;
+   width: 20px;
+	height: 20px;
+   background-size: 100%;
+	margin-left: 10px;
+}
+
+.icon-big {
+	width: 25px;
+	height: 25px;
+	margin-left: 0;
+	margin-right: 5px;
+}
+
+.icon-edit {
+   background-image: url("icons/edit.png");
+}
+
+.icon-delete {
+   background-image: url("icons/delete.png");
+}
+
+.icon-arrow-up {
+   background-image: url("icons/arrow-up.png");
+}
+
+.icon-create {
+   background-image: url("icons/create.png");
+}
+
+.icon-visibility {
+   background-image: url("icons/visibility.png");
+}
+
+.icon-sort {
+   background-image: url("icons/sort.png");
 }

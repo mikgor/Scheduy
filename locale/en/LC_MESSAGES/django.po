@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-19 19:38+0200\n"
+"POT-Creation-Date: 2018-09-20 16:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,51 +26,62 @@ msgstr "Polish"
 msgid "English"
 msgstr "English"
 
-#: .\scheduyapp\models.py:16 .\scheduyapp\templates\scheduyapp\index.html:47
+#: .\scheduyapp\models.py:9 .\scheduyapp\models.py:38
+#: .\scheduyapp\templates\scheduyapp\index.html:47
 msgid "Name"
 msgstr "Name"
 
-#: .\scheduyapp\models.py:17
+#: .\scheduyapp\models.py:10
+#: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:14
+#: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:14
+msgid "Color"
+msgstr "Color"
+
+#: .\scheduyapp\models.py:12
+msgid "Updated at"
+msgstr "Updated at"
+
+#: .\scheduyapp\models.py:39
 msgid "Details"
 msgstr "Details"
 
-#: .\scheduyapp\models.py:19 .\scheduyapp\templates\scheduyapp\index.html:48
+#: .\scheduyapp\models.py:41 .\scheduyapp\templates\scheduyapp\index.html:48
 #: .\scheduyapp\templates\scheduyapp\task_form.html:14
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:14
 msgid "Deadline"
 msgstr "Deadline"
 
-#: .\scheduyapp\models.py:20 .\scheduyapp\templates\scheduyapp\index.html:46
+#: .\scheduyapp\models.py:42 .\scheduyapp\templates\scheduyapp\index.html:46
 msgid "Priority"
 msgstr "Priority"
 
-#: .\scheduyapp\models.py:21
+#: .\scheduyapp\models.py:43
 msgid "Group"
 msgstr "Group"
 
-#: .\scheduyapp\models.py:73
+#: .\scheduyapp\models.py:95
 #: .\scheduyapp\templates\registration\userupdate.html:24
-#: .\scheduyapp\templates\scheduyapp\base.html:25
+#: .\scheduyapp\templates\scheduyapp\base.html:24
 msgid "Timezone"
 msgstr "Timezone"
 
-#: .\scheduyapp\models.py:74
+#: .\scheduyapp\models.py:96
 #: .\scheduyapp\templates\registration\userupdate.html:40
 msgid "Datetime format"
 msgstr "Date and time format"
 
-#: .\scheduyapp\models.py:75
+#: .\scheduyapp\models.py:97
 #: .\scheduyapp\templates\registration\userupdate.html:34
 msgid "Language"
 msgstr "Language"
 
-#: .\scheduyapp\models.py:76
+#: .\scheduyapp\models.py:98
 msgid "Task order"
 msgstr "Task order"
 
 #: .\scheduyapp\templates\registration\login.html:3
 #: .\scheduyapp\templates\registration\login.html:6
-#: .\scheduyapp\templates\scheduyapp\base.html:32
+#: .\scheduyapp\templates\scheduyapp\base.html:31
 msgid "Log in"
 msgstr "Log in"
 
@@ -82,7 +93,7 @@ msgstr "Submit"
 
 #: .\scheduyapp\templates\registration\signup.html:3
 #: .\scheduyapp\templates\registration\signup.html:23
-#: .\scheduyapp\templates\scheduyapp\base.html:33
+#: .\scheduyapp\templates\scheduyapp\base.html:32
 msgid "Sign up"
 msgstr "Sign up"
 
@@ -100,31 +111,31 @@ msgstr "I have already account"
 msgid "Edit account"
 msgstr "Edit account"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:17
+#: .\scheduyapp\templates\scheduyapp\base.html:16
 msgid "Home"
 msgstr "Home"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:18
+#: .\scheduyapp\templates\scheduyapp\base.html:17
 msgid "News"
 msgstr "News"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:19
+#: .\scheduyapp\templates\scheduyapp\base.html:18
 msgid "Privacy policy"
 msgstr "Privacy policy"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:20
+#: .\scheduyapp\templates\scheduyapp\base.html:19
 msgid "Contribute"
 msgstr "Contribute"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:24
+#: .\scheduyapp\templates\scheduyapp\base.html:23
 msgid "Show or hide menu"
 msgstr "Show or hide menu"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:27
+#: .\scheduyapp\templates\scheduyapp\base.html:26
 msgid "Preferences"
 msgstr "Preferences"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:28
+#: .\scheduyapp\templates\scheduyapp\base.html:27
 msgid "Logout"
 msgstr "Logout"
 
@@ -153,14 +164,14 @@ msgid "Creating"
 msgstr "Creating"
 
 #: .\scheduyapp\templates\scheduyapp\index.html:35
-#: .\scheduyapp\templates\scheduyapp\index.html:155
+#: .\scheduyapp\templates\scheduyapp\index.html:161
 #: .\scheduyapp\templates\scheduyapp\task_form.html:5
 #: .\scheduyapp\templates\scheduyapp\task_form.html:12
 msgid "Add task"
 msgstr "Add task"
 
 #: .\scheduyapp\templates\scheduyapp\index.html:36
-#: .\scheduyapp\templates\scheduyapp\index.html:150
+#: .\scheduyapp\templates\scheduyapp\index.html:156
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:5
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:12
 msgid "Add group"
@@ -196,21 +207,25 @@ msgstr "remaining"
 msgid "ago"
 msgstr "ago"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:114
-#: .\scheduyapp\templates\scheduyapp\index.html:135
+#: .\scheduyapp\templates\scheduyapp\index.html:116
+msgid "Move upper"
+msgstr "Move upper"
+
+#: .\scheduyapp\templates\scheduyapp\index.html:117
+#: .\scheduyapp\templates\scheduyapp\index.html:141
 msgid "Edit"
 msgstr "Edit"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:114
-#: .\scheduyapp\templates\scheduyapp\index.html:135
+#: .\scheduyapp\templates\scheduyapp\index.html:118
+#: .\scheduyapp\templates\scheduyapp\index.html:141
 msgid "Delete"
 msgstr "Delete"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:149
+#: .\scheduyapp\templates\scheduyapp\index.html:155
 msgid "You have not added any group yet"
 msgstr "You have not added any group yet"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:154
+#: .\scheduyapp\templates\scheduyapp\index.html:160
 msgid "You have added group, create task now"
 msgstr "You have added group, create task now"
 
@@ -243,11 +258,6 @@ msgstr "Delete group"
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:10
 msgid "Are you sure you want to delete group"
 msgstr "Are you sure you want to delete group"
-
-#: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:14
-#: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:14
-msgid "Color"
-msgstr "Color"
 
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:5
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:12

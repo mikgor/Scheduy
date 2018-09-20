@@ -26,6 +26,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
             context['taskgroup_list'] = self.request.user.GetTaskGroups()
             context['total_task_count'] = self.request.user.tasks.all().count()
             context['total_taskgroup_count'] = self.request.user.taskGroups.all().count()
+            context['groups_limit'] = settings.GROUPS_LIMIT_PERUSER
         return context
 
 class TaskCreate(LoginRequiredMixin, CreateView):
@@ -52,9 +53,10 @@ class TaskGroupCreate(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
+        if self.request.user.taskGroups.count() >= settings.GROUPS_LIMIT_PERUSER:
+            return HttpResponseRedirect(reverse('index'))
         self.object = form.save()
         self.request.user.taskGroups.add(self.object)
-        self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
 class TaskGroupUpdate(LoginRequiredMixin, UpdateView):
@@ -146,6 +148,7 @@ def SetUserPreference(request):
     datetimeFormatPreference = request.GET.get('datetimeFormatPreference', None)
     language = request.GET.get('language', None)
     order = request.GET.get('taskorder', None)
+    moveup = request.GET.get('moveup', None)
     if showdone is not None:
         request.user.SetShowDonePreference()
     if timezone is not None:
@@ -157,6 +160,9 @@ def SetUserPreference(request):
         request.session[translation.LANGUAGE_SESSION_KEY] = request.user.languagePreference
     if order is not None:
         request.user.SetTaskOrderPreference(order)
+    if moveup is not None:
+        userGroups = request.user.GetTaskGroups()
+        userGroups.get(id=moveup).setOrderIndex(userGroups)
     return HttpResponseRedirect(reverse('index'))
 
 class SignUp(CreateView):
