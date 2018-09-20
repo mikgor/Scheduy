@@ -59,7 +59,7 @@ msgstr "Priorytet"
 
 #: .\scheduyapp\models.py:43
 msgid "Group"
-msgstr "Grupa"
+msgstr "Kategoria"
 
 #: .\scheduyapp\models.py:95
 #: .\scheduyapp\templates\registration\userupdate.html:24
@@ -177,7 +177,7 @@ msgstr "Dodaj zadanie"
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:5
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:12
 msgid "Add group"
-msgstr "Dodaj grupę"
+msgstr "Dodaj kategorię"
 
 #: .\scheduyapp\templates\scheduyapp\index.html:39
 msgid "Visibility"
@@ -225,11 +225,11 @@ msgstr "Usuń"
 
 #: .\scheduyapp\templates\scheduyapp\index.html:155
 msgid "You have not added any group yet"
-msgstr "Nie dodano jeszcze żadnej grupy"
+msgstr "Nie dodano jeszcze żadnej kategorii"
 
 #: .\scheduyapp\templates\scheduyapp\index.html:160
 msgid "You have added group, create task now"
-msgstr "Utworzono grupę, teraz dodaj zadanie"
+msgstr "Utworzono kategorię, teraz dodaj zadanie"
 
 #: .\scheduyapp\templates\scheduyapp\task_confirm_delete.html:5
 #: .\scheduyapp\templates\scheduyapp\task_confirm_delete.html:9
@@ -255,22 +255,22 @@ msgstr "Edytuj zadanie"
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:5
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:9
 msgid "Delete group"
-msgstr "Usuń grupę"
+msgstr "Usuń kategorię"
 
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:10
 msgid "Are you sure you want to delete group"
-msgstr "Czy na pewno chcesz usunąć grupę"
+msgstr "Czy na pewno chcesz usunąć kategorię"
 
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:5
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:12
 msgid "Edit group"
-msgstr "Edytuj grupę"
+msgstr "Edytuj kategorię"
 
 #~ msgid "Tasks"
 #~ msgstr "Zadania"
 
 #~ msgid "Groups"
-#~ msgstr "Grupy"
+#~ msgstr "Kategorie"
 
 #~ msgid "Sort tasks by"
 #~ msgstr "Sortuj zadania według"
@@ -279,4 +279,4 @@ msgstr "Edytuj grupę"
 #~ msgstr "Brak zadań"
 
 #~ msgid "Add task group"
-#~ msgstr "Dodaj grupę"
+#~ msgstr "Dodaj kategorię"

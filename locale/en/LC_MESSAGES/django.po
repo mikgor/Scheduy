@@ -57,7 +57,7 @@ msgstr "Priority"
 
 #: .\scheduyapp\models.py:43
 msgid "Group"
-msgstr "Group"
+msgstr "Category"
 
 #: .\scheduyapp\models.py:95
 #: .\scheduyapp\templates\registration\userupdate.html:24
@@ -175,7 +175,7 @@ msgstr "Add task"
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:5
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:12
 msgid "Add group"
-msgstr "Add group"
+msgstr "Add category"
 
 #: .\scheduyapp\templates\scheduyapp\index.html:39
 msgid "Visibility"
@@ -223,11 +223,11 @@ msgstr "Delete"
 
 #: .\scheduyapp\templates\scheduyapp\index.html:155
 msgid "You have not added any group yet"
-msgstr "You have not added any group yet"
+msgstr "You have not added any category yet"
 
 #: .\scheduyapp\templates\scheduyapp\index.html:160
 msgid "You have added group, create task now"
-msgstr "You have added group, create task now"
+msgstr "You have added category, create task now"
 
 #: .\scheduyapp\templates\scheduyapp\task_confirm_delete.html:5
 #: .\scheduyapp\templates\scheduyapp\task_confirm_delete.html:9
@@ -253,22 +253,22 @@ msgstr "Edit task"
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:5
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:9
 msgid "Delete group"
-msgstr "Delete group"
+msgstr "Delete category"
 
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:10
 msgid "Are you sure you want to delete group"
-msgstr "Are you sure you want to delete group"
+msgstr "Are you sure you want to delete category"
 
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:5
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:12
 msgid "Edit group"
-msgstr "Edit group"
+msgstr "Edit category"
 
 #~ msgid "Tasks"
 #~ msgstr "Tasks"
 
 #~ msgid "Groups"
-#~ msgstr "Groups"
+#~ msgstr "Categories"
 
 #~ msgid "Sort tasks by"
 #~ msgstr "Sort tasks by"

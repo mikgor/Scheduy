@@ -106,7 +106,7 @@ class AppUser(AbstractUser):
         return self.tasks.all().order_by(self.taskOrderPreference)
 
     def GetTaskGroups(self):
-        return self.taskGroups.filter(id__in=self.GetTasks().values("group")).order_by('orderIndex', 'updatedAt')
+        return self.taskGroups.filter(id__in=self.GetTasks().values("group")).order_by('orderIndex', '-updatedAt')
 
     def SetShowDonePreference(self):
         if self.showDonePreference:
