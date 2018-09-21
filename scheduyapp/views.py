@@ -56,6 +56,7 @@ class TaskGroupCreate(LoginRequiredMixin, CreateView):
         if self.request.user.taskGroups.count() >= settings.GROUPS_LIMIT_PERUSER:
             return HttpResponseRedirect(reverse('index'))
         self.object = form.save()
+        self.object.initializeOrderIndex(self.request.user.taskGroups.all().order_by('orderIndex').last())
         self.request.user.taskGroups.add(self.object)
         return HttpResponseRedirect(self.get_success_url())
 

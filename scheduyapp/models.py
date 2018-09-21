@@ -8,29 +8,27 @@ from django.utils.translation import ugettext_lazy as _
 class TaskGroup(models.Model):
     name = models.CharField(_('Name'),max_length=40)
     color = models.CharField(_('Color'),max_length=30, default="whitesmoke")
-    orderIndex = models.PositiveIntegerField(default=settings.GROUPS_LIMIT_PERUSER)
-    updatedAt = models.DateTimeField(_('Updated at'),auto_now_add=True)
+    orderIndex = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        self.updatedAt = datetime.now(pytz.timezone('UTC'))
-        return super(TaskGroup,self).save(*args, **kwargs)
+    def initializeOrderIndex(self, previousGroup):
+        if previousGroup:
+            self.orderIndex = previousGroup.orderIndex + 1
+        else:
+            self.orderIndex = 1
+        self.save()
 
     def setOrderIndex(self, userGroups):
         previouGroup = self
         for group in userGroups:
             if group.id == self.id and not (previouGroup.id == self.id):
                 currentIndex = self.orderIndex
-                if currentIndex-1 == previouGroup.orderIndex:
-                    self.orderIndex = previouGroup.orderIndex
-                    previouGroup.orderIndex = currentIndex
-                    self.save()
-                    previouGroup.save()
-                else:
-                    self.orderIndex = currentIndex - 1
-                    self.save()
+                self.orderIndex = previouGroup.orderIndex
+                previouGroup.orderIndex = currentIndex
+                self.save()
+                previouGroup.save()
                 break
             previouGroup = group
 
@@ -106,7 +104,7 @@ class AppUser(AbstractUser):
         return self.tasks.all().order_by(self.taskOrderPreference)
 
     def GetTaskGroups(self):
-        return self.taskGroups.filter(id__in=self.GetTasks().values("group")).order_by('orderIndex', '-updatedAt')
+        return self.taskGroups.filter(id__in=self.GetTasks().values("group")).order_by('orderIndex')
 
     def SetShowDonePreference(self):
         if self.showDonePreference:

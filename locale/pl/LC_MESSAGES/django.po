@@ -39,10 +39,6 @@ msgstr "Nazwa"
 msgid "Color"
 msgstr "Kolor"
 
-#: .\scheduyapp\models.py:12
-msgid "Updated at"
-msgstr "Ostatnia aktualizacja"
-
 #: .\scheduyapp\models.py:39
 msgid "Details"
 msgstr "Szczegóły"
