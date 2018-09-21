@@ -11,8 +11,9 @@
 <form method="post">{% csrf_token %}
    <h2>{% trans "Edit group" %}</h2>
    {{ form.as_p }}
-   <p>{% trans "Color" %}: <input type="color" required id="colorp" onchange="ColorpickedEvent()"></input></p>
+   <p>{% trans "Color" %}: <select required id="colorp" value="whitesmoke" onblur="ColorpickedEvent()" onchange="ColorpickedEvent()"></select></p>
    <input type="submit" value="{% trans "Confirm" %}"/>
 </form>
-<script type="text/javascript">Updatecolorpicker();</script>
+<script type="text/javascript">AddColorOptions();
+Updatecolorpicker();</script>
 {% endblock content %}

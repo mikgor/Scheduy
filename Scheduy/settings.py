@@ -105,6 +105,8 @@ DATETIME_FORMAT_PREFERENCES = [
     'd/m/Y H:i a',
 ]
 
+GROUPS_LIMIT_PERUSER = 20
+
 TIME_ZONE = 'UCT'
 
 USE_I18N = True
@@ -112,9 +114,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-GROUPS_LIMIT_PERUSER = 20
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
