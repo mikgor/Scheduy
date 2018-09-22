@@ -1,11 +1,13 @@
 function DatetimepickedEvent() {
-   var elvalue = document.getElementById("datetimep").value.replace("T", " ");
-   document.getElementById("id_deadline").value = elvalue;
+   var deadlineDate = document.getElementById("deadlineDate").value;
+   var deadlineTime = document.getElementById("deadlineTime").value;
+   document.getElementById("id_deadline").value = deadlineDate + " " + deadlineTime;
 }
 
 function Updatedatetimepicker() {
-   var elvalue = document.getElementById("id_deadline").value.replace(" ", "T");
-   document.getElementById("datetimep").value = elvalue;
+   var elvalue = document.getElementById("id_deadline").value;
+   document.getElementById("deadlineDate").value = elvalue.split(" ")[0];
+   document.getElementById("deadlineTime").value = elvalue.split(" ")[1];
 }
 
 function ColorpickedEvent() {

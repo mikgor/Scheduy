@@ -11,7 +11,8 @@
 <form method="post">{% csrf_token %}
    <h2>{% trans "Add task" %}</h2>
    {{ form.as_p }}
-   <p>{% trans "Deadline" %}: <input type="datetime-local" required id="datetimep" onchange="DatetimepickedEvent()" value="2018-09-01T00:00" ></input></p>
+   <p>{% trans "Deadline" %}: <input type="date" required id="deadlineDate" onchange="DatetimepickedEvent()"></input>
+   <input type="time" required id="deadlineTime" onchange="DatetimepickedEvent()"></input></p>
    <input type="submit" value="{% trans "Save" %}" />
 </form>
 <script type="text/javascript">DatetimepickedEvent();</script>

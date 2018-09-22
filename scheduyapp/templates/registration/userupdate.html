@@ -19,6 +19,7 @@ function getLocalTimezone() {
 </script>
 {% endblock %}
 {% block content %}
+<div id="form">
    <h2>{% trans "Edit account" %}</h2>
    {% if timezone_list %}
 <p><label for="timezonePreference">{% trans "Timezone" %}:</label>
@@ -45,4 +46,5 @@ getLocalTimezone();
 </select></p>
 <input type="submit" onclick="onSubmit();" value="{% trans "Submit" %}"></input>
 {% endif %}
+</div>
 {% endblock %}

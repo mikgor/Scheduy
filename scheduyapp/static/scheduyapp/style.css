@@ -75,7 +75,7 @@ ul#userMenuOptions {
 	background-color: white;
 	border-bottom: 3px solid #0095ff;
 	padding: 6px;
-	font-size: 14px;
+	font-size: 16px;
 	left: 0;
 	top: 0;
 	visibility: hidden;
@@ -92,6 +92,10 @@ ul#userMenuOptions a {
 
 ul#userMenuOptions li:hover {
 	color: #68768c;
+}
+
+#menuUrlsBtn {
+	display: none;
 }
 
 #navbar {
@@ -182,7 +186,7 @@ input[type="color"] {
    padding: 0px;
 }
 
-form {
+form, #form {
     width: 90%;
     padding: 12px;
     margin: 20px auto 0 auto;
@@ -313,6 +317,9 @@ ul.errorlist {
 	height: 20px;
    background-size: 100%;
 	margin-left: 10px;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
 }
 
 .icon-big {
@@ -320,6 +327,7 @@ ul.errorlist {
 	height: 25px;
 	margin-left: 0;
 	margin-right: 5px;
+	margin-top: 3px;
 }
 
 .icon-edit {
@@ -344,4 +352,59 @@ ul.errorlist {
 
 .icon-sort {
    background-image: url("icons/sort.png");
+}
+
+.icon-arrow-down {
+   background-image: url("icons/arrow-down.png");
+	display: none;
+	margin-right: 15px;
+	margin-top: 5px;
+}
+
+@media only screen and (max-width: 1000px) {
+	 .taskManagment, .taskVisibility, .taskSort {
+    	width: auto;
+    	display: inline-block;
+	 }
+    .taskActions {
+	    display: inline-block;
+	 }
+}
+
+@media only screen and (max-width: 800px) {
+	  	.icon-arrow-down {
+		   display: inline-block;
+	 	}
+		#menuUrls {
+			display: none;
+			background-color: white;
+			border-bottom: 3px solid #0095ff;
+		}
+		#menuUrls.responsive li {
+			 display: block;
+		}
+		#menuUrls.responsive {
+			 position: absolute;
+			 margin-left: 0;
+			 display: block;
+			 left: 5%;
+		}
+}
+
+@media only screen and (max-width: 600px) {
+	 .taskColumn, .taskColumnFirst {
+    	width: auto;
+	 }
+	 .taskGroupColumnFirst, .taskGroupColumn {
+    	width: 50%;
+ 	 }
+    .task {
+	    display: inline-grid;
+	 }
+	 .groupBtns {
+		 display: inline-flex;
+	 }
+	 #registration, #userActions {
+	    white-space: pre-line;
+	 }
 }
