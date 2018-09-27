@@ -11,11 +11,9 @@
 <form method="post">{% csrf_token %}
    <h2>{% trans "Add task" %}</h2>
    {{ form.as_p }}
-   <p>{% trans "Deadline" %}: <input type="date" required id="deadlineDate" onchange="DatetimepickedEvent()"></input>
-   <input type="time" required id="deadlineTime" onchange="DatetimepickedEvent()"></input></p>
-   <input type="submit" value="{% trans "Save" %}" />
+   <div class="userMenu" id="addDeadlineBtn" onclick="displayDeadlineInputs();">{% trans "Add date and time" %}</div>
+   <div id="deadlineInputs">{% trans "Deadline" %}: <input type="date" id="deadlineDate" onchange="DatetimepickedEvent()"></input>
+   <input type="time" id="deadlineTime" onchange="DatetimepickedEvent()"></input></div>
+   </br></br><input type="submit" value="{% trans "Save" %}" />
 </form>
-<script type="text/javascript">DatetimepickedEvent();</script>
-
-
 {% endblock content %}

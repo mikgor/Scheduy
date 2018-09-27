@@ -1,13 +1,16 @@
 function DatetimepickedEvent() {
    var deadlineDate = document.getElementById("deadlineDate").value;
    var deadlineTime = document.getElementById("deadlineTime").value;
-   document.getElementById("id_deadline").value = deadlineDate + " " + deadlineTime;
+   if (deadlineDate!='')
+      document.getElementById("id_deadline").value = deadlineDate + " " + deadlineTime;
 }
 
 function Updatedatetimepicker() {
    var elvalue = document.getElementById("id_deadline").value;
    document.getElementById("deadlineDate").value = elvalue.split(" ")[0];
    document.getElementById("deadlineTime").value = elvalue.split(" ")[1];
+   if (elvalue!='')
+      displayDeadlineInputs();
 }
 
 function ColorpickedEvent() {
@@ -55,5 +58,16 @@ function AddColorOptions() {
        option.value = option.text = groupColors[i];
        option.style.backgroundColor = groupColors[i];
        el.add(option);
-       }
+   }
+}
+
+function displayDeadlineInputs() {
+   document.getElementById("deadlineInputs").style.display = "block";
+   document.getElementById("addDeadlineBtn").style.display = "none";
+}
+
+function hideDeadlineInputsAndClear() {
+   document.getElementById("deadlineInputs").style.display = "none";
+   document.getElementById("addDeadlineBtn").style.display = "inline-block";
+   document.getElementById("id_deadline").value = "";
 }

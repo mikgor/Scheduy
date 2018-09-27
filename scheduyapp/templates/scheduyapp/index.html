@@ -113,7 +113,9 @@ input#showDone + label:before {
 			<div class="taskGroupColumnFirst">{{ group.name }}</div>
 			<div class="taskGroupColumn">
             <div class="groupBtns">
-               <a href="{% url 'SetUserPreference' %}?moveup={{ group.id }}"><span class="icon icon-arrow-up" title="{% trans "Move upper" %}"></span></a>
+               {% if group.id != taskgroup_list.0.id %}
+                  <a href="{% url 'SetUserPreference' %}?moveup={{ group.id }}"><span class="icon icon-arrow-up" title="{% trans "Move upper" %}"></span></a>
+               {% endif %}
                <a href="{% url 'TaskGroupUpdate' group.id %}"><span class="icon icon-edit" title="{% trans "Edit" %}"></span></a>
                <a href="{% url 'TaskGroupDelete' group.id %}"><span class="icon icon-delete" title="{% trans "Delete" %}"></span></a>
             </div>
@@ -124,13 +126,18 @@ input#showDone + label:before {
 		<div class="task" style="border-bottom: 2px solid {{group.color}};">
 			<div class="taskColumnFirst">
 				<div class="taskTitle">{{ task.name }}</div>
+            {% if task.deadline %}
 				<div class="taskDeadline">{{ task.deadline|timezone:user.timezonePreference|date:user.datetimeFormatPreference}}
 					{% if task.isExpired %}
 					<span class="taskTimeRemainingR" id="task{{ task.id }}timer">{{ task.remainingTime }}</span>
 					{% else %}
 					<span class="taskTimeRemainingG" id="task{{ task.id }}timer">{{ task.remainingTime }}</span>
 					{% endif %}
+               <script>
+                  SetTimer('task{{ task.id }}timer', '{{ task.remainingTimeSeconds }}' );
+               </script>
 				</div>
+            {% endif %}
 				<div class="taskDetails">{{ task.details }}</div>
 			</div>
 			<div class="taskColumn">
@@ -141,9 +148,6 @@ input#showDone + label:before {
 				<a href="{% url 'TaskUpdate' task.id %}"><span class="icon icon-edit" title="{% trans "Edit" %}"></span></a><a href="{% url 'TaskDelete' task.id %}"><span class="icon icon-delete" title="{% trans "Delete" %}"></span></a>
 			</div>
 		</div>
-      <script>
-      SetTimer('task{{ task.id }}timer', '{{ task.remainingTimeSeconds }}' );
-      </script>
 		{% endif %}
 	 {% endfor %}
  </div>

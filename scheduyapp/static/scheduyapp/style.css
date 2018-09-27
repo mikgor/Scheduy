@@ -29,6 +29,17 @@ header, .taskActions {
 	width: 33.3%;
 }
 
+#logo {
+	background-image: url("img/logo.png");
+	display: inline-block;
+   width: 161px;
+	height: 38px;
+   background-size: 100%;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
 #logoMenu {
     margin: auto;
     font-weight: bold;
@@ -49,7 +60,7 @@ header, .taskActions {
    margin-right: 0;
 }
 
-#userMenu {
+#userMenu, .userMenu {
 	transition: 0.5s;
 	border: 1px solid;
 	border-radius: 4px;
@@ -311,6 +322,10 @@ ul.errorlist {
     text-align: center;
 }
 
+#deadlineInputs {
+	display: none;
+}
+
 .icon, .icon-big {
    display: inline-block;
    width: 20px;
@@ -357,8 +372,9 @@ ul.errorlist {
 .icon-arrow-down {
    background-image: url("icons/arrow-down.png");
 	display: none;
-	margin-right: 15px;
-	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	float: left;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -389,6 +405,10 @@ ul.errorlist {
 			 display: block;
 			 left: 5%;
 		}
+		#logo {
+			width: 143px;
+			height: 34px;
+		}
 }
 
 @media only screen and (max-width: 600px) {
@@ -407,4 +427,11 @@ ul.errorlist {
 	 #registration, #userActions {
 	    white-space: pre-line;
 	 }
+}
+
+@media only screen and (max-width: 390px) {
+	#logo {
+		width: 115px;
+		height: 27px;
+	}
 }

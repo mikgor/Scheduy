@@ -34,9 +34,9 @@ class TaskGroup(models.Model):
 
 class Task(models.Model):
     name = models.CharField(_('Name'), max_length=40)
-    details = models.CharField(_('Details'), max_length=80, blank=True)
+    details = models.CharField(_('Details'), max_length=150, blank=True)
     is_done = models.BooleanField(default=False)
-    deadline = models.DateTimeField(_('Deadline'))
+    deadline = models.DateTimeField(_('Deadline'), null=True, blank=True)
     priority = models.PositiveSmallIntegerField(_('Priority'), default=1)
     group = models.ForeignKey(TaskGroup, on_delete=models.CASCADE, verbose_name = _('Group'))
 

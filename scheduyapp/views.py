@@ -36,8 +36,9 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        convertedToPreferenced = pytz.timezone(self.request.user.timezonePreference).localize(self.object.deadline.replace(tzinfo=None))
-        self.object.deadline = convertedToPreferenced.astimezone(pytz.timezone('UCT'))
+        if self.object.deadline:
+            convertedToPreferenced = pytz.timezone(self.request.user.timezonePreference).localize(self.object.deadline.replace(tzinfo=None))
+            self.object.deadline = convertedToPreferenced.astimezone(pytz.timezone('UCT'))
         self.object.save()
         self.request.user.tasks.add(self.object)
         return HttpResponseRedirect(self.get_success_url())
@@ -83,7 +84,8 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
     def get_initial(self):
         initial = super(TaskUpdate, self).get_initial()
         task = self.get_object()
-        initial['deadline'] = task.deadline.astimezone(pytz.timezone(self.request.user.timezonePreference)).replace(tzinfo=pytz.timezone('UTC'))
+        if task.deadline:
+            initial['deadline'] = task.deadline.astimezone(pytz.timezone(self.request.user.timezonePreference)).replace(tzinfo=pytz.timezone('UTC'))
         return initial
 
     def get(self, request, *args, **kwargs):
@@ -101,8 +103,9 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        convertedToPreferenced = pytz.timezone(self.request.user.timezonePreference).localize(self.object.deadline.replace(tzinfo=None))
-        self.object.deadline = convertedToPreferenced.astimezone(pytz.timezone('UCT'))
+        if self.object.deadline:
+            convertedToPreferenced = pytz.timezone(self.request.user.timezonePreference).localize(self.object.deadline.replace(tzinfo=None))
+            self.object.deadline = convertedToPreferenced.astimezone(pytz.timezone('UCT'))
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
