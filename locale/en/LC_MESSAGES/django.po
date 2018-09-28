@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-27 21:46+0200\n"
+"POT-Creation-Date: 2018-09-28 17:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgid "English"
 msgstr "English"
 
 #: .\scheduyapp\models.py:9 .\scheduyapp\models.py:36
-#: .\scheduyapp\templates\scheduyapp\index.html:47
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:47
 msgid "Name"
 msgstr "Name"
 
@@ -41,13 +41,15 @@ msgstr "Color"
 msgid "Details"
 msgstr "Details"
 
-#: .\scheduyapp\models.py:39 .\scheduyapp\templates\scheduyapp\index.html:48
+#: .\scheduyapp\models.py:39
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:48
 #: .\scheduyapp\templates\scheduyapp\task_form.html:15
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:15
 msgid "Deadline"
 msgstr "Deadline"
 
-#: .\scheduyapp\models.py:40 .\scheduyapp\templates\scheduyapp\index.html:46
+#: .\scheduyapp\models.py:40
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:46
 msgid "Priority"
 msgstr "Priority"
 
@@ -57,7 +59,7 @@ msgstr "Category"
 
 #: .\scheduyapp\models.py:93
 #: .\scheduyapp\templates\registration\userupdate.html:25
-#: .\scheduyapp\templates\scheduyapp\base.html:27
+#: .\scheduyapp\templates\scheduyapp\base.html:30
 msgid "Timezone"
 msgstr "Timezone"
 
@@ -77,7 +79,7 @@ msgstr "Task order"
 
 #: .\scheduyapp\templates\registration\login.html:3
 #: .\scheduyapp\templates\registration\login.html:6
-#: .\scheduyapp\templates\scheduyapp\base.html:34
+#: .\scheduyapp\templates\scheduyapp\base.html:37
 msgid "Log in"
 msgstr "Log in"
 
@@ -89,7 +91,7 @@ msgstr "Submit"
 
 #: .\scheduyapp\templates\registration\signup.html:3
 #: .\scheduyapp\templates\registration\signup.html:23
-#: .\scheduyapp\templates\scheduyapp\base.html:35
+#: .\scheduyapp\templates\scheduyapp\base.html:38
 msgid "Sign up"
 msgstr "Sign up"
 
@@ -107,122 +109,141 @@ msgstr "I have already account"
 msgid "Edit account"
 msgstr "Edit account"
 
+#: .\scheduyapp\templates\scheduy\base.html:17
 #: .\scheduyapp\templates\scheduyapp\base.html:17
-#: .\scheduyapp\templates\scheduyapp\base.html:26
+#: .\scheduyapp\templates\scheduyapp\base.html:29
 msgid "Show or hide menu"
 msgstr "Show or hide menu"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:18
+#: .\scheduyapp\templates\scheduy\base.html:18
+#: .\scheduyapp\templates\scheduy\base.html:20
+#: .\scheduyapp\templates\scheduyapp\base.html:20
 msgid "Home"
 msgstr "Home"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:20
+#: .\scheduyapp\templates\scheduy\base.html:21
+#: .\scheduyapp\templates\scheduyapp\base.html:21
 msgid "News"
 msgstr "News"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:21
+#: .\scheduyapp\templates\scheduy\base.html:22
+#: .\scheduyapp\templates\scheduyapp\base.html:22
 msgid "Privacy policy"
 msgstr "Privacy policy"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:22
+#: .\scheduyapp\templates\scheduy\base.html:23
+#: .\scheduyapp\templates\scheduyapp\base.html:23
 msgid "Contribute"
 msgstr "Contribute"
 
-#: .\scheduyapp\templates\scheduyapp\base.html:29
-msgid "Preferences"
-msgstr "Preferences"
+#: .\scheduyapp\templates\scheduy\base.html:27
+msgid "Join now"
+msgstr ""
 
-#: .\scheduyapp\templates\scheduyapp\base.html:30
-msgid "Logout"
-msgstr "Logout"
-
-#: .\scheduyapp\templates\scheduyapp\index.html:5
+#: .\scheduyapp\templates\scheduy\index.html:5
 msgid "Index"
 msgstr "Index"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:11
+#: .\scheduyapp\templates\scheduyapp\base.html:18
+#: .\scheduyapp\templates\scheduyapp\base.html:28
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:5
+msgid "Tasks"
+msgstr "Tasks"
+
+msgid "Task list"
+msgstr "Task list"
+
+#: .\scheduyapp\templates\scheduyapp\base.html:32
+msgid "Preferences"
+msgstr "Preferences"
+
+#: .\scheduyapp\templates\scheduyapp\base.html:33
+msgid "Logout"
+msgstr "Logout"
+
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:11
 msgid "Undone"
 msgstr "Undone"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:17
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:17
 msgid "Done"
 msgstr "Done"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:24
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:24
 msgid "Hiding done"
 msgstr "Hiding done"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:28
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:28
 msgid "Showing done"
 msgstr "Showing done"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:34
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:34
 msgid "Creating"
 msgstr "Creating"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:35
-#: .\scheduyapp\templates\scheduyapp\index.html:165
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:35
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:165
 #: .\scheduyapp\templates\scheduyapp\task_form.html:5
 #: .\scheduyapp\templates\scheduyapp\task_form.html:12
 msgid "Add task"
 msgstr "Add task"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:36
-#: .\scheduyapp\templates\scheduyapp\index.html:160
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:36
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:160
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:5
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:12
 msgid "Add group"
 msgstr "Add category"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:39
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:39
 msgid "Visibility"
 msgstr "Visibility"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:44
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:44
 msgid "Sorting"
 msgstr "Sorting"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:51
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:51
 msgid "Ascending"
 msgstr "Ascending"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:52
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:52
 msgid "Descending"
 msgstr "Descending"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:54
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:54
 #: .\scheduyapp\templates\scheduyapp\task_form.html:17
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:15
 msgid "Save"
 msgstr "Save"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:73
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:73
 msgid "remaining"
 msgstr "remaining"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:77
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:77
 msgid "ago"
 msgstr "ago"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:117
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:117
 msgid "Move upper"
 msgstr "Move upper"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:119
-#: .\scheduyapp\templates\scheduyapp\index.html:148
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:119
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:148
 msgid "Edit"
 msgstr "Edit"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:120
-#: .\scheduyapp\templates\scheduyapp\index.html:148
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:120
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:148
 msgid "Delete"
 msgstr "Delete"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:159
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:159
 msgid "You have not added any group yet"
 msgstr "You have not added any category yet"
 
-#: .\scheduyapp\templates\scheduyapp\index.html:164
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:164
 msgid "You have added group, create task now"
 msgstr "You have added category, create task now"
 
@@ -269,9 +290,6 @@ msgstr "Are you sure you want to delete category"
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:12
 msgid "Edit group"
 msgstr "Edit category"
-
-#~ msgid "Tasks"
-#~ msgstr "Tasks"
 
 #~ msgid "Groups"
 #~ msgstr "Categories"

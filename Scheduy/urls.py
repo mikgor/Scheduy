@@ -5,7 +5,8 @@ from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    url('^$', views.IndexView.as_view(), name='index'),
+    url('^$', views.IndexView, name='index'),
+    url('^dashboard/$', views.DashboardView.as_view(), name='dashboard'),
     url(r'tcreate/$', views.TaskCreate.as_view(), name='TaskCreate'),
     url(r'tgcreate/$', views.TaskGroupCreate.as_view(), name='TaskGroupCreate'),
     url(r'^(?P<pk>[0-9]+)/tgupdate/$', views.TaskGroupUpdate.as_view(), name='TaskGroupUpdate'),

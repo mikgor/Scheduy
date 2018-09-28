@@ -13,13 +13,16 @@ from datetime import timezone, datetime
 from django.utils import translation
 from django.conf import settings
 
-class IndexView(LoginRequiredMixin, generic.ListView):
-    template_name = 'scheduyapp/index.html'
-    context_object_name = 'IndexList'
+def IndexView(request):
+    return render(request, 'scheduy/index.html')
+
+class DashboardView(LoginRequiredMixin, generic.ListView):
+    template_name = 'scheduyapp/dashboard.html'
+    context_object_name = 'dashboardList'
     queryset = ''
 
     def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
+        context = super(DashboardView, self).get_context_data(**kwargs)
         if self.request.user.is_authenticated:
             self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.user.languagePreference
             context['task_list'] = self.request.user.GetTasks()
@@ -32,7 +35,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 class TaskCreate(LoginRequiredMixin, CreateView):
     form_class = TaskCreateUpdateForm
     template_name = 'scheduyapp/task_form.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('dashboard')
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -51,11 +54,11 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 class TaskGroupCreate(LoginRequiredMixin, CreateView):
     form_class = TaskGroupCreateUpdateForm
     template_name = 'scheduyapp/taskgroup_form.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('dashboard')
 
     def form_valid(self, form):
         if self.request.user.taskGroups.count() >= settings.GROUPS_LIMIT_PERUSER:
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('dashboard'))
         self.object = form.save()
         self.object.initializeOrderIndex(self.request.user.taskGroups.all().order_by('orderIndex').last())
         self.request.user.taskGroups.add(self.object)
@@ -65,21 +68,21 @@ class TaskGroupUpdate(LoginRequiredMixin, UpdateView):
     model = TaskGroup
     form_class = TaskGroupCreateUpdateForm
     template_name_suffix = '_update_form'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('dashboard')
 
     def get(self, request, *args, **kwargs):
         group = ''
         try:
             group = self.request.user.taskGroups.get(pk=self.get_object().id)
         except:
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('dashboard'))
         return super(TaskGroupUpdate, self).get(request, *args, **kwargs)
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskCreateUpdateForm
     template_name = 'scheduyapp/task_update_form.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('dashboard')
 
     def get_initial(self):
         initial = super(TaskUpdate, self).get_initial()
@@ -93,7 +96,7 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
         try:
             task = self.request.user.tasks.get(pk=self.get_object().id)
         except:
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('dashboard'))
         return super(TaskUpdate, self).get(request, *args, **kwargs)
 
     def get_form_kwargs(self):
@@ -111,26 +114,26 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
 
 class TaskGroupDelete(LoginRequiredMixin, DeleteView):
     model = TaskGroup
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('dashboard')
 
     def get(self, request, *args, **kwargs):
         group = ''
         try:
             group = self.request.user.taskGroups.get(pk=self.get_object().id)
         except:
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('dashboard'))
         return super(TaskGroupDelete, self).get(request, *args, **kwargs)
 
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('dashboard')
 
     def get(self, request, *args, **kwargs):
         task = ''
         try:
             task = self.request.user.tasks.get(pk=self.get_object().id)
         except:
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('dashboard'))
         return super(TaskDelete, self).get(request, *args, **kwargs)
 
 def IsDoneUpdate(request, task_id):
@@ -140,9 +143,9 @@ def IsDoneUpdate(request, task_id):
     try:
         task = request.user.tasks.get(pk=task_id)
     except:
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('dashboard'))
     task.setIsDone()
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('dashboard'))
 
 def SetUserPreference(request):
     if request.user.is_anonymous:
@@ -167,7 +170,7 @@ def SetUserPreference(request):
     if moveup is not None:
         userGroups = request.user.GetTaskGroups()
         userGroups.get(id=moveup).setOrderIndex(userGroups)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('dashboard'))
 
 class SignUp(CreateView):
     form_class = AppUserCreationForm

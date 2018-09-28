@@ -1,0 +1,75 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Scheduy - {% block title %}{% endblock %}</title>
+        {% block scripts %}{% endblock %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     	  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'scheduyapp/styleMain.css' %}"/>
+    </head>
+    <body>
+      <div class="content">
+      <header>
+         <div id="logoMenu">
+            <span class="icon-big icon-arrow-down" title="{% trans "Show or hide menu" %}" onclick="SetMenuUrlsVisibility();"></span>
+            <a href="{% url 'index' %}" title="{% trans "Home" %}"><div id="logo"></div></a>
+         <ul id="menuUrls" class="menuUrls">
+            <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+            <li><a href="">{% trans "News" %}</a></li>
+            <li><a href="">{% trans "Privacy policy" %}</a></li>
+            <li><a href="">{% trans "Contribute" %}</a></li>
+         </ul>
+      </div>
+      <div id="userActions">
+         <a href="{% url 'dashboard' %}"><div id="userMenu">{% trans "Join now" %}</div></a>
+      </div>
+      </header>
+      {% block content %}{% endblock %}
+   </div>
+      <footer>
+           <p>Scheduy @ 2018</p>
+      </footer>
+      <script type="text/javascript">
+      function SetMenuUrlsVisibility() {
+        var x = document.getElementById("menuUrls");
+        if (x.className === "menuUrls")
+        {
+           x.className += " responsive";
+        }
+        else {
+           x.className = "menuUrls";
+        }
+      }
+
+      function HideMenuClickedOutside(e) {
+        if (e.target.id != "userMenuOptions" && e.target.id != "userMenu")
+           document.getElementById("userMenuOptions").style.visibility = "hidden";
+      }
+
+      function SetMenuVisibility() {
+        var menu = document.getElementById("userMenuOptions");
+        if (menu.style.visibility=="hidden")
+        {
+           var element = document.getElementById("userMenu");
+           menu.style.top = element.getBoundingClientRect().bottom + "px";
+           menu.style.left = element.getBoundingClientRect().left + (element.getBoundingClientRect().width - menu.offsetWidth)/2 + "px";
+           menu.style.visibility = "visible";
+           if (document.addEventListener) {
+               document.removeEventListener("click", HideMenuClickedOutside);
+             document.addEventListener("click", HideMenuClickedOutside);
+           }
+           else if (document.attachEvent) {
+             document.detachEvent("click", HideMenuClickedOutside);
+             document.attachEvent("click", HideMenuClickedOutside);
+           }
+        }
+        else {
+           menu.style.visibility = "hidden";
+        }
+      }
+      </script>
+   </body>
+</html>

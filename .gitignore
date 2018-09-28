@@ -49,6 +49,7 @@ coverage.xml
 .pytest_cache/
 
 # Translations
+LC_MESSAGES/
 *.mo
 *.pot
 

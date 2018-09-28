@@ -15,20 +15,23 @@
       <header>
          <div id="logoMenu">
             <span class="icon-big icon-arrow-down" title="{% trans "Show or hide menu" %}" onclick="SetMenuUrlsVisibility();"></span>
-            <a href="{% url 'index' %}" title="{% trans "Home" %}"><div id="logo"></div></a>
+            <a href="{% url 'dashboard' %}" title="{% trans "Task list" %}"><div id="logo"></div></a>
          <ul id="menuUrls" class="menuUrls">
+            <li><a href="{% url 'index' %}" >{% trans "Home" %}</a></li>
             <li><a href="">{% trans "News" %}</a></li>
             <li><a href="">{% trans "Privacy policy" %}</a></li>
             <li><a href="">{% trans "Contribute" %}</a></li>
          </ul>
       </div>
          {% if user.is_authenticated %}
-            <div id="userActions"><div id="userMenu" title="{% trans "Show or hide menu" %}" onclick="SetMenuVisibility();">{{ user.username|capfirst }}</div>
-            <div id="userTimezone" title="{% trans "Timezone" %}">{{ user.timezonePreference }}</div></div>
-               <ul id="userMenuOptions" style="visibility: hidden;">
-                  <a href="{% url 'UserUpdate' %}"><li>{% trans "Preferences" %}</li></a>
-                  <a href="{% url 'logout' %}"><li>{% trans "Logout" %}</li></a>
-               </ul>
+            <div id="userActions">
+               <a href="{% url 'dashboard' %}" style="font-size: 16px; color: #0095ff;"><li>{% trans "Task list" %}</li></a>
+               <div id="userMenu" title="{% trans "Show or hide menu" %}" onclick="SetMenuVisibility();">{{ user.username|capfirst }}</div>
+               <div id="userTimezone" title="{% trans "Timezone" %}">{{ user.timezonePreference }}</div></div>
+                  <ul id="userMenuOptions" style="visibility: hidden;">
+                     <a href="{% url 'UserUpdate' %}"><li>{% trans "Preferences" %}</li></a>
+                     <a href="{% url 'logout' %}"><li>{% trans "Logout" %}</li></a>
+                  </ul>
 
          {% else %}
          <div id="registration"><a href="{% url 'login' %}"><div id="userMenu">{% trans "Log in" %}</div></a>
