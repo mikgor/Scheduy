@@ -48,6 +48,9 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
+icons/
+img/
+
 # Translations
 LC_MESSAGES/
 *.mo
