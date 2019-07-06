@@ -6,8 +6,8 @@ class TaskCreateUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ('name', 'details', 'priority', 'deadline', 'priority', 'group')
-        widgets = {'deadline': forms.HiddenInput()}
+        fields = ('name', 'details', 'priority', 'deadline', 'priority', 'group', 'notification_time')
+        widgets = {'deadline': forms.HiddenInput(), 'notification_time': forms.HiddenInput()}
 
     def __init__(self, user, *args, **kwargs):
         super(TaskCreateUpdateForm, self).__init__(*args, **kwargs)

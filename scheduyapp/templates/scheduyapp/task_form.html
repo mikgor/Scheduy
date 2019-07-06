@@ -11,9 +11,12 @@
 <form method="post">{% csrf_token %}
    <h2>{% trans "Add task" %}</h2>
    {{ form.as_p }}
-   <div class="userMenu" id="addDeadlineBtn" onclick="displayDeadlineInputs();">{% trans "Add date and time" %}</div>
-   <div id="deadlineInputs">{% trans "Deadline" %}: <input type="date" id="deadlineDate" onchange="DatetimepickedEvent()"></input>
-   <input type="time" id="deadlineTime" onchange="DatetimepickedEvent()"></input></div>
+   <div class="userMenu" id="adddeadlineBtn" onclick="displayTimeInputs('deadline');">{% trans "Add date and time" %}</div>
+   <div id="deadlineInputs">{% trans "Deadline" %}: <input type="date" id="deadlineDate" onchange="DatetimepickedEvent('deadline')"></input>
+   <input type="time" id="deadlineTime" onchange="DatetimepickedEvent('deadline')"></input></div>
+   </br></br><div class="userMenu" id="addnotification_timeBtn" onclick="displayTimeInputs('notification_time');">{% trans "Add Notification time" %}</div>
+   <div id="notification_timeInputs">{% trans "Notification time" %}: <input type="date" id="notification_timeDate" onchange="DatetimepickedEvent('notification_time')"></input>
+   <input type="time" id="notification_timeTime" onchange="DatetimepickedEvent('notification_time')"></input></div>
    </br></br><input type="submit" value="{% trans "Save" %}" />
 </form>
 {% endblock content %}

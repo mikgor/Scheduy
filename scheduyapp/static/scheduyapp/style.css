@@ -321,7 +321,7 @@ ul.errorlist {
     text-align: center;
 }
 
-#deadlineInputs {
+#deadlineInputs, #notification_timeInputs {
 	display: none;
 }
 
@@ -350,6 +350,10 @@ ul.errorlist {
 
 .icon-delete {
    background-image: url("icons/delete.png");
+}
+
+.icon-deleteLight {
+   background-image: url("icons/deleteLight.png");
 }
 
 .icon-arrow-up {

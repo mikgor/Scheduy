@@ -7,11 +7,10 @@
 {% block content %}
 <section class="mainSection">
    <div class="sectionContainer">
-      <div class="sectionHeader" style="animation: fadeIn 2s ease-out; opacity:1;"><h1>{% trans "Manage your tasks easier" %}</h1></div>
-      <div class="sectionSmallAdnotation" style="animation: fadeIn 2s; animation-delay: 0.5s; animation-fill-mode: forwards; display: block;">{% trans "Just add new one..." %}</div>
       <div class="sectionLogo"><div class="sectionLogoImg"></div></div>
-      <div class="sectionMidSizeText" style="animation: fadeIn 2s; animation-delay: 3s; animation-fill-mode: forwards; display: block;">{% trans "...and" %} <span class="doneText">{% trans "done" %}</span></div>
-   </div>
+      <div class="sectionHeader" style="animation: fadeIn 2s ease-out; opacity:1;"><h1>{% trans "Manage your tasks easier" %}</h1></div>
+
+      </div>
 </section>
 <section class="customizeOptionsSection">
    <div class="sectionContainer">
@@ -31,78 +30,58 @@
          </div>
          <div class="customizeOptionContainer" id="customizeOptionsSettings">
             <div class="customizeOptionIcon customizeOptionIconSettings"></div>
-            <div class="customizeOptionTitle"><span id="rainbowText">{% trans "change color" %}</span></div>
+            <div class="customizeOptionTitle">{% trans "change color" %}</div>
          </div>
       </div>
-      <div class="sectionMidSizeText" id="customizeOptionsMidSizeText">{% trans "It's simple" %}</div>
+      <div class="sectionSmallAdnotation" id="customizeOptionsSmallAdnotation">{% trans "You can manage your tasks simply with just one click." %}</div>
    </div>
 </section>
 <section class="notificationsSection">
    <div class="sectionContainer">
       <div class="sectionHeader" id="notificationsSectionHeader"><h1>{% trans "You won't forget" %}</h1></div>
-      <div class="sectionSmallAdnotation" id="notificationsSectionSmallAdnotation">{% trans "Enable notifictions to be up-to-date" %}</div>
       <div class="notifictionsIconNotification" id="notifictionsIconNotification"></div>
-      <div class="sectionSmallSmallAdnotation" id="notificationsSectionNewNotificationSmallSmallAdnotation">{% trans "New notification: task <b>Sign up for Scheduy</b> had been planned for today" %}</div>
+      <div class="sectionSmallAdnotation" id="notificationsSectionSmallAdnotation">{% trans "Enable notifictions to be up-to-date." %}</div>
    </div>
 </section>
 <script type="text/javascript">
 var list = [
    {
       "id": "customizeOptionsSectionHeader",
-      "duration": 3000,
-      "delay": 0
+      "duration": 1500
    },
    {
       "id": "customizeOptionsMove",
-      "duration": 1000,
-      "delay": 2000
+      "duration": 1500
    },
    {
       "id": "customizeOptionsEdit",
-      "duration": 1000,
-      "delay": 2500
+      "duration": 1750
    },
    {
       "id": "customizeOptionsSort",
-      "duration": 1000,
-      "delay": 3000
+      "duration": 2250
    },
    {
       "id": "customizeOptionsSettings",
-      "duration": 1000,
-      "delay": 3500
+      "duration": 2500
    },
    {
-      "id": "rainbowText",
-      "classAnimation": "rainbowText"
-   },
-   {
-      "id": "customizeOptionsMidSizeText",
-      "duration": 3000,
-      "delay": 5500
+      "id": "customizeOptionsSmallAdnotation",
+      "duration": 2000
    },
    {
       "id": "notificationsSectionHeader",
-      "duration": 2000,
-      "delay": 0
+      "duration": 2000
    },
    {
       "id": "notificationsSectionSmallAdnotation",
-      "duration": 2000,
-      "delay": 500
+      "duration": 2000
    },
    {
       "id": "notifictionsIconNotification",
       "duration": 3000,
-      "delay": 1500,
       "classAnimation": "notifictionsIconNotificationGreen"
    },
-   {
-      "id": "notificationsSectionNewNotificationSmallSmallAdnotation",
-      "duration": 2000,
-      "delay":  4000
-   },
-
 ];
 $(window).scroll(function() {
    for (var i=0; i< list.length; i++) {
@@ -110,7 +89,7 @@ $(window).scroll(function() {
       var elBottom = el.offset().top + el.outerHeight();
       var windowBottom = $(window).scrollTop() + $(window).height();
       if (windowBottom > elBottom){
-         el.delay(list[i].delay).fadeTo( list[i].duration, 1 ).addClass(list[i].classAnimation);
+         el.fadeTo( list[i].duration, 1 ).addClass(list[i].classAnimation);
       }
 }
 });

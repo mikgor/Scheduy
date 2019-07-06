@@ -32,6 +32,19 @@ class TaskGroup(models.Model):
                 break
             previouGroup = group
 
+class Notification(models.Model):
+    recipient_user_id = models.IntegerField()
+    details = models.CharField(_('Details'), max_length=150, blank=True)
+    notification_time = models.DateTimeField(_('Notification time'), null=False)
+    sent = models.BooleanField(default=False)
+
+    def Send(self):
+        AppUser.objects.get(id=self.recipient_user_id).NewNotificaton(self)
+
+    def timeLeft(self):
+        now = datetime.now(timezone.utc)
+        return now >= self.notification_time
+
 class Task(models.Model):
     name = models.CharField(_('Name'), max_length=40)
     details = models.CharField(_('Details'), max_length=150, blank=True)
@@ -39,6 +52,8 @@ class Task(models.Model):
     deadline = models.DateTimeField(_('Deadline'), null=True, blank=True)
     priority = models.PositiveSmallIntegerField(_('Priority'), default=1)
     group = models.ForeignKey(TaskGroup, on_delete=models.CASCADE, verbose_name = _('Group'))
+    notification_time = models.DateTimeField(_('Notification time'), null=True, blank=True)
+    notification = models.ForeignKey(Notification, on_delete=models.SET_NULL, verbose_name = _('Notification'), null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -94,6 +109,7 @@ class AppUser(AbstractUser):
     datetimeFormatPreference  = models.CharField(_('Datetime format'), max_length=12, choices=tuple(zip(settings.DATETIME_FORMAT_PREFERENCES, settings.DATETIME_FORMAT_PREFERENCES)), default='Y-m-d H:i a')
     languagePreference = models.CharField(_('Language'), max_length=32, choices=settings.LANGUAGES, default='en')
     taskOrderPreference = models.CharField(_('Task order'), max_length=20, default='-priority')
+    notifications = models.ManyToManyField(Notification)
 
     def __str__(self):
         return self.email
@@ -136,3 +152,6 @@ class AppUser(AbstractUser):
     def SetTaskOrderPreference(self, order):
         self.taskOrderPreference = order
         self.save()
+
+    def NewNotificaton(self, notification):
+        self.notifications.add(Notification.objects.create(recipient_user_id=notification.recipient_user_id, details=notification.details, notification_time=notification.notification_time, sent=True))

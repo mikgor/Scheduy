@@ -184,8 +184,7 @@ section {
 	width: 100%;
 	height: 100vh;
 	display: flex;
-	background-color: #292929;
-	color: white;
+	color: black;
 }
 
 .sectionContainer {
@@ -209,15 +208,15 @@ section {
 }
 
 .sectionSmallAdnotation {
-	color: gray;
-	font-size: 40px;
+	color: #828487;
+	font-size: 24px;
 	height: 10%;
 	opacity: 0;
 }
 
 .sectionSmallSmallAdnotation {
-	color: gray;
-	font-size: 25px;
+	color: #828487;
+	font-size: 24px;
 	height: 10%;
 	opacity: 0;
 }
@@ -227,24 +226,19 @@ h1 {
     margin: 0 auto;
 }
 
-.rainbowText {
-	animation: rainbowTextAnimation 1.5s;
-	animation-delay: 4.5s;
-}
 
 .sectionLogo {
 	height: 149px;
 	width: 90%;
 	opacity: 0;
-	animation: fadeIn 2s;
+	animation: fadeIn 1.5s;
 	margin: 70px auto;
-	animation-delay: 2s;
 	animation-fill-mode: forwards;
 }
 
 .sectionLogoImg {
 	margin: auto auto;
-	background-image: url("img/logoLight.png");
+	background-image: url("img/logo.png");
 	width: 100%;
    height: 100%;
 	background-size: 100%;
@@ -261,15 +255,8 @@ h1 {
 	opacity: 0;
 }
 
-.doneText {
-	animation: doneTextAnimation 2.5s;
-	animation-delay: 4s;
-	font-weight: bold;
-	border: 2px solid #292929;
-	animation-fill-mode: forwards;
-	padding: 2px 3px;
-   margin-left: 5px;
-	border-radius: 4px;
+.customizeOptionsSection {
+	background: #f7f7f7;
 }
 
 .customizeOptionContainerList {
@@ -290,6 +277,7 @@ h1 {
 	background-size: 100%;
 	margin: 10px 30px;
 }
+
 .customizeOptionIconMove {
 	background-image: url("icons/arrow-upLight.png");
 }
@@ -307,8 +295,8 @@ h1 {
 }
 
 .customizeOptionTitle {
-	font-size: 30px;
-	color: gray;
+	font-size: 24px;
+	color: #828487;
 }
 
 .notifictionsIconNotification {
@@ -323,7 +311,7 @@ h1 {
 
 .notifictionsIconNotificationGreen {
 	animation: makeNotificationGreen 0.5s ease-in-out;
-	animation-delay: 3.5s;
+	animation-delay: 1.5s;
 	animation-fill-mode: forwards;
 }
 
@@ -335,16 +323,6 @@ h1 {
 	100% { background-image: url("icons/notificationGreen.png"); }
 }
 
-@keyframes rainbowTextAnimation {
-	10% { color: red; }
-	20% { color: coral; }
-	30% { color: cadetblue; }
-	40% { color: hotpink; }
-	50% { color: cornsilk; }
-	60% { color: darkkhaki; }
-	70% { color: deepskyblue; }
-	80% { color: gray; }
-}
 
 @keyframes fadeIn {
 	from { opacity:0;}

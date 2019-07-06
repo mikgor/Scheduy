@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
-from .models import Task, TaskGroup
+from .models import Task, TaskGroup, Notification
 from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 import pytz
@@ -12,6 +12,8 @@ from django.utils import timezone
 from datetime import timezone, datetime
 from django.utils import translation
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
+from Scheduy.local_settings import *
 
 def IndexView(request):
     return render(request, 'scheduy/index.html')
@@ -27,8 +29,10 @@ class DashboardView(LoginRequiredMixin, generic.ListView):
             self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.user.languagePreference
             context['task_list'] = self.request.user.GetTasks()
             context['taskgroup_list'] = self.request.user.GetTaskGroups()
+            context['notification_list'] = self.request.user.notifications.all()
             context['total_task_count'] = self.request.user.tasks.all().count()
             context['total_taskgroup_count'] = self.request.user.taskGroups.all().count()
+            context['total_notification_count'] = self.request.user.notifications.all().count()
             context['groups_limit'] = settings.GROUPS_LIMIT_PERUSER
         return context
 
@@ -39,9 +43,21 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
+        convertedToPreferencedDeadline = ''
         if self.object.deadline:
-            convertedToPreferenced = pytz.timezone(self.request.user.timezonePreference).localize(self.object.deadline.replace(tzinfo=None))
-            self.object.deadline = convertedToPreferenced.astimezone(pytz.timezone('UCT'))
+            convertedToPreferencedDeadline = pytz.timezone(self.request.user.timezonePreference).localize(self.object.deadline.replace(tzinfo=None))
+            self.object.deadline = convertedToPreferencedDeadline.astimezone(pytz.timezone('UCT'))
+        if self.object.notification_time:
+            convertedToPreferencedNotification = pytz.timezone(self.request.user.timezonePreference).localize(self.object.notification_time.replace(tzinfo=None))
+            notificationTime = convertedToPreferencedNotification.astimezone(pytz.timezone('UCT'))
+            if datetime.now(timezone.utc) < notificationTime:
+                detailsText = self.object.name
+                if convertedToPreferencedDeadline:
+                     detailsText += " " + convertedToPreferencedDeadline.strftime(self.request.user.datetimeFormatPreference.replace('H:i a', '%I:%M').replace('m', '%m').replace('d', '%d').replace('Y', '%Y').replace('H', '%H').replace('i', '%M'))
+                notification = Notification.objects.create(recipient_user_id=self.request.user.id, details=detailsText, notification_time=notificationTime)
+                print(notification.details)
+                self.object.notification = notification
+                self.object.notification_time = notificationTime
         self.object.save()
         self.request.user.tasks.add(self.object)
         return HttpResponseRedirect(self.get_success_url())
@@ -89,6 +105,8 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
         task = self.get_object()
         if task.deadline:
             initial['deadline'] = task.deadline.astimezone(pytz.timezone(self.request.user.timezonePreference)).replace(tzinfo=pytz.timezone('UTC'))
+        if task.notification_time:
+            initial['notification_time'] = task.notification_time.astimezone(pytz.timezone(self.request.user.timezonePreference)).replace(tzinfo=pytz.timezone('UTC'))
         return initial
 
     def get(self, request, *args, **kwargs):
@@ -106,9 +124,33 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
+        convertedToPreferencedDeadline = ""
         if self.object.deadline:
-            convertedToPreferenced = pytz.timezone(self.request.user.timezonePreference).localize(self.object.deadline.replace(tzinfo=None))
-            self.object.deadline = convertedToPreferenced.astimezone(pytz.timezone('UCT'))
+            convertedToPreferencedDeadline = pytz.timezone(self.request.user.timezonePreference).localize(self.object.deadline.replace(tzinfo=None))
+            self.object.deadline = convertedToPreferencedDeadline.astimezone(pytz.timezone('UCT'))
+        if self.object.notification_time:
+            convertedToPreferencedNotification = pytz.timezone(self.request.user.timezonePreference).localize(self.object.notification_time.replace(tzinfo=None))
+            notificationTime = convertedToPreferencedNotification.astimezone(pytz.timezone('UCT'))
+            if datetime.now(timezone.utc) < notificationTime:
+                detailsText = self.object.name
+                if convertedToPreferencedDeadline:
+                    detailsText+ " " + convertedToPreferencedNotification.strftime(self.request.user.datetimeFormatPreference.replace('H:i a', '%I:%M').replace('m', '%m').replace('d', '%d').replace('Y', '%Y').replace('H', '%H').replace('i', '%M'))
+                notification = None
+                if self.object.notification:
+                    notification = Notification.objects.all().filter(id=self.object.notification.id).first()
+                    notification.details = detailsText
+                    notification.notification_time = notificationTime
+                else:
+                    notification = Notification.objects.create(recipient_user_id=self.request.user.id, details=detailsText, notification_time=notificationTime)
+                notification.save()
+                self.object.notification_time = notificationTime
+                self.object.notification = notification
+        else:
+            if self.object.notification:
+                if self.request.user.GetTasks().filter(notification_id=self.object.notification.id).exists():
+                    Notification.objects.filter(id=self.object.notification.id).delete()
+                    self.object.notification = None
+                    self.object.notification_time = None
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
@@ -187,3 +229,32 @@ def UserUpdate(request):
     if request.user.is_anonymous:
         return HttpResponseRedirect(reverse('signup'))
     return render(request, 'registration/userupdate.html', context)
+
+def NotificationRead(request, notification_id):
+    if request.user.is_anonymous:
+        return HttpResponseRedirect(reverse('signup'))
+    notification = ''
+    try:
+        notification = request.user.notifications.get(pk=notification_id)
+    except:
+        return HttpResponseRedirect(reverse('dashboard'))
+    request.user.notifications.remove(notification)
+    return HttpResponseRedirect(reverse('dashboard'))
+
+def SendNotifications(request):
+    ip = ''
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    if ip not in ALLOWED_API_REQUEST_IP:
+        return HttpResponse("Access denied")
+
+    for notification in Notification.objects.filter(sent=False):
+        print(notification.id)
+        print(notification.notification_time)
+        if notification.timeLeft():
+            notification.Send()
+            Notification.objects.get(pk=notification.id).delete()
+    return HttpResponse("OK")

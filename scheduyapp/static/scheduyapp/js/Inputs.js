@@ -1,16 +1,16 @@
-function DatetimepickedEvent() {
-   var deadlineDate = document.getElementById("deadlineDate").value;
-   var deadlineTime = document.getElementById("deadlineTime").value;
-   if (deadlineDate!='')
-      document.getElementById("id_deadline").value = deadlineDate + " " + deadlineTime;
+function DatetimepickedEvent(e) {
+   var date = document.getElementById(e+"Date").value;
+   var time = document.getElementById(e+"Time").value;
+   if (date!='')
+      document.getElementById("id_"+e).value = date + " " + time;
 }
 
-function Updatedatetimepicker() {
-   var elvalue = document.getElementById("id_deadline").value;
-   document.getElementById("deadlineDate").value = elvalue.split(" ")[0];
-   document.getElementById("deadlineTime").value = elvalue.split(" ")[1];
+function Updatedatetimepicker(e) {
+   var elvalue = document.getElementById("id_"+e).value;
+   document.getElementById(e+"Date").value = elvalue.split(" ")[0];
+   document.getElementById(e+"Time").value = elvalue.split(" ")[1];
    if (elvalue!='')
-      displayDeadlineInputs();
+      displayTimeInputs(e);
 }
 
 function ColorpickedEvent() {
@@ -61,13 +61,13 @@ function AddColorOptions() {
    }
 }
 
-function displayDeadlineInputs() {
-   document.getElementById("deadlineInputs").style.display = "block";
-   document.getElementById("addDeadlineBtn").style.display = "none";
+function displayTimeInputs(e) {
+   document.getElementById(e+"Inputs").style.display = "block";
+   document.getElementById("add"+e+"Btn").style.display = "none";
 }
 
-function hideDeadlineInputsAndClear() {
-   document.getElementById("deadlineInputs").style.display = "none";
-   document.getElementById("addDeadlineBtn").style.display = "inline-block";
-   document.getElementById("id_deadline").value = "";
+function hideTimeInputsAndClear(e) {
+   document.getElementById(e+"Inputs").style.display = "none";
+   document.getElementById("add"+e+"Btn").style.display = "inline-block";
+   document.getElementById("id_"+e).value = "";
 }

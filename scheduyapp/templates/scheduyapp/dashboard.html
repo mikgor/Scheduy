@@ -27,8 +27,33 @@ input#showDone + label:before {
  input#showDone:checked + label:before {
       content: "{% trans 'Showing done' %}";
   }
+
+  .notification {
+   z-index: 99;
+	position: fixed;
+	border-radius: 6px;
+	color: white;
+	padding: 4px;
+	background-color: rgba(5, 151, 255, 0.90);
+	border: 1px solid #9a9a9a;
+	width: 280px;
+	min-height: 58px;
+	bottom: 10px;
+	font-size: 15px;
+	right: -10%;
+}
+
+.notificationTitle {
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.notificationTitle .icon-checkWhite {
+	float: right;
+}
 </style>
 {% if user.is_authenticated %}
+
    <div class="taskActions">
       <div class="taskManagment">
          <h4><span class="icon-big icon-create"></span>{% trans "Creating" %}</h4>
@@ -106,6 +131,19 @@ input#showDone + label:before {
      UpdateTimer(el, secondsRemaining, initialDate);
      setInterval(UpdateTimer, 10000, el, secondsRemaining, initialDate);
    }
+
+   $currentNotificationCount = 1;
+   function displayNotification($nId, $nText) {
+   $("<div>").attr({
+      id: "nt" + $nId,
+      class: "notification"
+   }).appendTo("body");
+   $("#nt" + $nId).append("<div id='ntTitle" + $nId + "' class='notificationTitle'>{% trans "Notification" %}</div><div class='notificationText'>" + $nText + "</div>");
+   $("#ntTitle" + $nId).append("<a href='/"+$nId +"/NotificationRead/'><span class='icon icon-deleteLight' title='{% trans 'Delete' %}'></span></a>");
+   $("#nt" + $nId).css("bottom", parseInt($currentNotificationCount-1)*78+10 + "px");
+   $("#nt" + $nId).animate({"right": '+=15%'});
+   $currentNotificationCount++;
+}
    </script>
     {% for group in taskgroup_list %}
 	 <div class="group" style="border-left: 2px solid {{group.color}}; border-right: 2px solid {{group.color}};">
@@ -125,7 +163,7 @@ input#showDone + label:before {
 	 	{% if task.group.id == group.id %}
 		<div class="task" style="border-bottom: 2px solid {{group.color}};">
 			<div class="taskColumnFirst">
-				<div class="taskTitle">{{ task.name }}</div>
+				<div class="taskTitle">{{ task.name }} {% if task.notification %}N{% endif %}</div>
             {% if task.deadline %}
 				<div class="taskDeadline">{{ task.deadline|timezone:user.timezonePreference|date:user.datetimeFormatPreference}}
 					{% if task.isExpired %}
@@ -153,6 +191,12 @@ input#showDone + label:before {
  </div>
 	 {% endfor %}
  </div>
+
+ {% for notification in notification_list %}
+ <script>
+    displayNotification('{{ notification.id }}', '{{ notification.details }}');
+ </script>
+ {% endfor %}
 
 {% else %}
     {% if total_taskgroup_count < 1 %}
