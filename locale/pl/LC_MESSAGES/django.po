@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-06 15:45+0200\n"
+"POT-Creation-Date: 2019-07-07 22:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,65 +28,66 @@ msgstr "Polski"
 msgid "English"
 msgstr "Angielski"
 
-#: .\scheduyapp\models.py:9 .\scheduyapp\models.py:49
+#: .\scheduyapp\models.py:10 .\scheduyapp\models.py:50
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:72
 msgid "Name"
 msgstr "Nazwa"
 
-#: .\scheduyapp\models.py:10
+#: .\scheduyapp\models.py:11
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:14
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:14
 msgid "Color"
 msgstr "Kolor"
 
-#: .\scheduyapp\models.py:37 .\scheduyapp\models.py:50
+#: .\scheduyapp\models.py:38 .\scheduyapp\models.py:51
 msgid "Details"
 msgstr "Szczegóły"
 
-#: .\scheduyapp\models.py:38 .\scheduyapp\models.py:55
+#: .\scheduyapp\models.py:39 .\scheduyapp\models.py:56
 #: .\scheduyapp\templates\scheduyapp\task_form.html:18
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:19
 msgid "Notification time"
 msgstr "Data powiadomienia"
 
-#: .\scheduyapp\models.py:52
+#: .\scheduyapp\models.py:53
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:73
 #: .\scheduyapp\templates\scheduyapp\task_form.html:15
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:15
 msgid "Deadline"
 msgstr "Termin"
 
-#: .\scheduyapp\models.py:53
+#: .\scheduyapp\models.py:54
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:71
 msgid "Priority"
 msgstr "Priorytet"
 
-#: .\scheduyapp\models.py:54
+#: .\scheduyapp\models.py:55
 msgid "Group"
 msgstr "Kategoria"
 
-#: .\scheduyapp\models.py:56
+#: .\scheduyapp\models.py:57
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:141
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:166
 msgid "Notification"
 msgstr "Powiadomienie"
 
-#: .\scheduyapp\models.py:108
+#: .\scheduyapp\models.py:109
 #: .\scheduyapp\templates\registration\userupdate.html:25
 #: .\scheduyapp\templates\scheduyapp\base.html:31
 msgid "Timezone"
 msgstr "Strefa czasowa"
 
-#: .\scheduyapp\models.py:109
+#: .\scheduyapp\models.py:110
 #: .\scheduyapp\templates\registration\userupdate.html:41
 msgid "Datetime format"
 msgstr "Format daty i czasu"
 
-#: .\scheduyapp\models.py:110
+#: .\scheduyapp\models.py:111
 #: .\scheduyapp\templates\registration\userupdate.html:35
 msgid "Language"
 msgstr "Język"
 
-#: .\scheduyapp\models.py:111
+#: .\scheduyapp\models.py:112
 msgid "Task order"
 msgstr "Kolejność zadań"
 
@@ -98,7 +99,7 @@ msgstr "Logowanie"
 
 #: .\scheduyapp\templates\registration\login.html:10
 #: .\scheduyapp\templates\registration\signup.html:28
-#: .\scheduyapp\templates\registration\userupdate.html:47
+#: .\scheduyapp\templates\registration\userupdate.html:52
 msgid "Submit"
 msgstr "Wyślij"
 
@@ -121,6 +122,23 @@ msgstr "Mam już konto"
 #: .\scheduyapp\templates\registration\userupdate.html:23
 msgid "Edit account"
 msgstr "Zmień ustawienia"
+
+#: .\scheduyapp\templates\registration\userupdate.html:47
+#, fuzzy
+#| msgid "Notification"
+msgid "Notifications"
+msgstr "Powiadomienie"
+
+#: .\scheduyapp\templates\registration\userupdate.html:48
+msgid "Page"
+msgstr "Strona"
+
+#: .\scheduyapp\templates\registration\userupdate.html:48
+#: .\scheduyapp\templates\scheduyapp\base.html:19
+#: .\scheduyapp\templates\scheduyapp\base.html:29
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:5
+msgid "Task list"
+msgstr "Lista zadań"
 
 #: .\scheduyapp\templates\scheduy\base.html:18
 #: .\scheduyapp\templates\scheduyapp\base.html:18
@@ -192,12 +210,6 @@ msgstr ""
 #: .\scheduyapp\templates\scheduy\index.html:43
 msgid "Enable notifictions to be up-to-date."
 msgstr ""
-
-#: .\scheduyapp\templates\scheduyapp\base.html:19
-#: .\scheduyapp\templates\scheduyapp\base.html:29
-#: .\scheduyapp\templates\scheduyapp\dashboard.html:5
-msgid "Task list"
-msgstr "Lista zadań"
 
 #: .\scheduyapp\templates\scheduyapp\base.html:33
 msgid "Preferences"
@@ -271,6 +283,12 @@ msgstr "pozostało"
 msgid "ago"
 msgstr "temu"
 
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:142
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:158
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:186
+msgid "Delete"
+msgstr "Usuń"
+
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:155
 msgid "Move upper"
 msgstr "Przesuń w górę"
@@ -280,11 +298,6 @@ msgstr "Przesuń w górę"
 msgid "Edit"
 msgstr "Edytuj"
 
-#: .\scheduyapp\templates\scheduyapp\dashboard.html:158
-#: .\scheduyapp\templates\scheduyapp\dashboard.html:186
-msgid "Delete"
-msgstr "Usuń"
-
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:203
 msgid "You have not added any group yet"
 msgstr "Nie dodano jeszcze żadnej kategorii"
@@ -292,6 +305,71 @@ msgstr "Nie dodano jeszcze żadnej kategorii"
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:208
 msgid "You have added group, create task now"
 msgstr "Utworzono kategorię, teraz dodaj zadanie"
+
+#: .\scheduyapp\templates\scheduyapp\error_page.html:5
+msgid "Error page"
+msgstr "Strona błędu"
+
+#: .\scheduyapp\templates\scheduyapp\error_page.html:8
+msgid "Something gone wrong"
+msgstr "Coś poszło nie tak"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:5
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:13
+msgid "Enabling and disabling Messenger notifications"
+msgstr "Włączanie i wyłączanie powiadomień Messenger"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:14
+msgid ""
+"Messenger notifications are optional. It allows you to receive automatic "
+"notifications via Messenger."
+msgstr ""
+"Powiadomienia z Messengera są opcjonalne i umożliwiają otrzymywanie "
+"automatycznych powiadomień przez Messengera."
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:15
+msgid "How to enable "
+msgstr "Jak włączyć"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:16
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:22
+msgid "Go to"
+msgstr "Przejdź na"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:16
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:22
+msgid "Scheduy Messenger"
+msgstr "Scheduy na Messenger"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:17
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:23
+msgid "Click on <b>Get started</b> button or send any message"
+msgstr "Kliknij przycisk <b>Rozpocznij</b> lub wyślij wiadomość"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:18
+msgid "Click on <b>Enable notifications</b> button"
+msgstr "Kliknij przycisk <b>Włącz powiadomienia</b>"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:19
+msgid "When you receive reply with activation link, click on it"
+msgstr "Kiedy otrzymasz odpowiedź z linkiem aktywacyjnym, kliknij na nią"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:19
+msgid "Make sure you are logged in on Scheduy"
+msgstr "Upewnij się, że jesteś zalogowany w Scheduy"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:19
+msgid "Otherwise you have to log in and click activation link again"
+msgstr ""
+"W przeciwnym razie musisz się zalogować i ponownie kliknąć link aktywacyjny"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:21
+msgid "How to disable"
+msgstr "Jak wyłączyć"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:24
+msgid "In order to disable click on <b>Disable notifications</b> button"
+msgstr "Aby wyłączyć, kliknij przycisk <b>Wyłącz powiadomienia</b>"
 
 #: .\scheduyapp\templates\scheduyapp\task_confirm_delete.html:5
 #: .\scheduyapp\templates\scheduyapp\task_confirm_delete.html:9
@@ -314,6 +392,8 @@ msgstr "Potwierdź"
 msgid "Add date and time"
 msgstr "Dodaj datę i czas"
 
+#: .\scheduyapp\templates\scheduyapp\task_form.html:17
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:18
 msgid "Add Notification time"
 msgstr "Dodaj datę powiadomienia"
 
@@ -326,6 +406,7 @@ msgstr "Edytuj zadanie"
 msgid "Remove date and time"
 msgstr "Usuń datę i czas"
 
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:21
 msgid "Remove Notification time"
 msgstr "Usuń datę powiadomienia"
 
@@ -342,6 +423,18 @@ msgstr "Czy na pewno chcesz usunąć kategorię"
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:12
 msgid "Edit group"
 msgstr "Edytuj kategorię"
+
+#: .\scheduyapp\views.py:68 .\scheduyapp\views.py:161
+msgid "Notification time field must be later than now"
+msgstr "Pole czasu powiadomienia musi być późniejsze niż aktaulny czas"
+
+#: .\scheduyapp\views.py:356
+msgid ""
+"Authorization token has expired. You can generate new one using Enable "
+"notifictions button."
+msgstr ""
+"Token autoryzacyjny stracił ważność. Możesz wygenerować nowy za pomocą "
+"przycisku Włącz powiadomienia."
 
 #~ msgid "Tasks"
 #~ msgstr "Zadania"

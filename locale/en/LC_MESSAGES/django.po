@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-06 15:49+0200\n"
+"POT-Creation-Date: 2019-07-07 22:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,65 +26,66 @@ msgstr "Polish"
 msgid "English"
 msgstr "English"
 
-#: .\scheduyapp\models.py:9 .\scheduyapp\models.py:49
+#: .\scheduyapp\models.py:10 .\scheduyapp\models.py:50
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:72
 msgid "Name"
 msgstr "Name"
 
-#: .\scheduyapp\models.py:10
+#: .\scheduyapp\models.py:11
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:14
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:14
 msgid "Color"
 msgstr "Color"
 
-#: .\scheduyapp\models.py:37 .\scheduyapp\models.py:50
+#: .\scheduyapp\models.py:38 .\scheduyapp\models.py:51
 msgid "Details"
 msgstr "Details"
 
-#: .\scheduyapp\models.py:38 .\scheduyapp\models.py:55
+#: .\scheduyapp\models.py:39 .\scheduyapp\models.py:56
 #: .\scheduyapp\templates\scheduyapp\task_form.html:18
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:19
 msgid "Notification time"
 msgstr "Notification time"
 
-#: .\scheduyapp\models.py:52
+#: .\scheduyapp\models.py:53
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:73
 #: .\scheduyapp\templates\scheduyapp\task_form.html:15
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:15
 msgid "Deadline"
 msgstr "Deadline"
 
-#: .\scheduyapp\models.py:53
+#: .\scheduyapp\models.py:54
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:71
 msgid "Priority"
 msgstr "Priority"
 
-#: .\scheduyapp\models.py:54
+#: .\scheduyapp\models.py:55
 msgid "Group"
 msgstr "Category"
 
-#: .\scheduyapp\models.py:56
+#: .\scheduyapp\models.py:57
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:141
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:166
 msgid "Notification"
 msgstr "Notification"
 
-#: .\scheduyapp\models.py:108
+#: .\scheduyapp\models.py:109
 #: .\scheduyapp\templates\registration\userupdate.html:25
 #: .\scheduyapp\templates\scheduyapp\base.html:31
 msgid "Timezone"
 msgstr "Timezone"
 
-#: .\scheduyapp\models.py:109
+#: .\scheduyapp\models.py:110
 #: .\scheduyapp\templates\registration\userupdate.html:41
 msgid "Datetime format"
 msgstr "Date and time format"
 
-#: .\scheduyapp\models.py:110
+#: .\scheduyapp\models.py:111
 #: .\scheduyapp\templates\registration\userupdate.html:35
 msgid "Language"
 msgstr "Language"
 
-#: .\scheduyapp\models.py:111
+#: .\scheduyapp\models.py:112
 msgid "Task order"
 msgstr "Task order"
 
@@ -96,7 +97,7 @@ msgstr "Log in"
 
 #: .\scheduyapp\templates\registration\login.html:10
 #: .\scheduyapp\templates\registration\signup.html:28
-#: .\scheduyapp\templates\registration\userupdate.html:47
+#: .\scheduyapp\templates\registration\userupdate.html:52
 msgid "Submit"
 msgstr "Submit"
 
@@ -119,6 +120,23 @@ msgstr "I have already account"
 #: .\scheduyapp\templates\registration\userupdate.html:23
 msgid "Edit account"
 msgstr "Edit account"
+
+#: .\scheduyapp\templates\registration\userupdate.html:47
+#, fuzzy
+#| msgid "Notification"
+msgid "Notifications"
+msgstr "Notification"
+
+#: .\scheduyapp\templates\registration\userupdate.html:48
+msgid "Page"
+msgstr ""
+
+#: .\scheduyapp\templates\registration\userupdate.html:48
+#: .\scheduyapp\templates\scheduyapp\base.html:19
+#: .\scheduyapp\templates\scheduyapp\base.html:29
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:5
+msgid "Task list"
+msgstr "Task list"
 
 #: .\scheduyapp\templates\scheduy\base.html:18
 #: .\scheduyapp\templates\scheduyapp\base.html:18
@@ -190,12 +208,6 @@ msgstr ""
 #: .\scheduyapp\templates\scheduy\index.html:43
 msgid "Enable notifictions to be up-to-date."
 msgstr ""
-
-#: .\scheduyapp\templates\scheduyapp\base.html:19
-#: .\scheduyapp\templates\scheduyapp\base.html:29
-#: .\scheduyapp\templates\scheduyapp\dashboard.html:5
-msgid "Task list"
-msgstr "Task list"
 
 #: .\scheduyapp\templates\scheduyapp\base.html:33
 msgid "Preferences"
@@ -269,6 +281,12 @@ msgstr "remaining"
 msgid "ago"
 msgstr "ago"
 
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:142
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:158
+#: .\scheduyapp\templates\scheduyapp\dashboard.html:186
+msgid "Delete"
+msgstr "Delete"
+
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:155
 msgid "Move upper"
 msgstr "Move upper"
@@ -278,11 +296,6 @@ msgstr "Move upper"
 msgid "Edit"
 msgstr "Edit"
 
-#: .\scheduyapp\templates\scheduyapp\dashboard.html:158
-#: .\scheduyapp\templates\scheduyapp\dashboard.html:186
-msgid "Delete"
-msgstr "Delete"
-
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:203
 msgid "You have not added any group yet"
 msgstr "You have not added any category yet"
@@ -290,6 +303,70 @@ msgstr "You have not added any category yet"
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:208
 msgid "You have added group, create task now"
 msgstr "You have added category, create task now"
+
+#: .\scheduyapp\templates\scheduyapp\error_page.html:5
+msgid "Error page"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\error_page.html:8
+msgid "Something gone wrong"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:5
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:13
+#, fuzzy
+#| msgid "Notification"
+msgid "Enabling and disabling Messenger notifications"
+msgstr "Notification"
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:14
+msgid ""
+"Messenger notifications are optional. It allows you to receive automatic "
+"notifications via Messenger."
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:15
+msgid "How to enable "
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:16
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:22
+msgid "Go to"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:16
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:22
+msgid "Scheduy Messenger"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:17
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:23
+msgid "Click on <b>Get started</b> button or send any message"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:18
+msgid "Click on <b>Enable notifications</b> button"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:19
+msgid "When you receive reply with activation link, click on it"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:19
+msgid "Make sure you are logged in on Scheduy"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:19
+msgid "Otherwise you have to log in and click activation link again"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:21
+msgid "How to disable"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:24
+msgid "In order to disable click on <b>Disable notifications</b> button"
+msgstr ""
 
 #: .\scheduyapp\templates\scheduyapp\task_confirm_delete.html:5
 #: .\scheduyapp\templates\scheduyapp\task_confirm_delete.html:9
@@ -312,7 +389,8 @@ msgstr "Confirm"
 msgid "Add date and time"
 msgstr "Add date and time"
 
-
+#: .\scheduyapp\templates\scheduyapp\task_form.html:17
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:18
 msgid "Add Notification time"
 msgstr "Add notification time"
 
@@ -325,6 +403,7 @@ msgstr "Edit task"
 msgid "Remove date and time"
 msgstr "Remove date and time"
 
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:21
 msgid "Remove Notification time"
 msgstr "Remove notification time"
 
@@ -341,6 +420,16 @@ msgstr "Are you sure you want to delete category"
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:12
 msgid "Edit group"
 msgstr "Edit category"
+
+#: .\scheduyapp\views.py:68 .\scheduyapp\views.py:161
+msgid "Notification time field must be later than now"
+msgstr ""
+
+#: .\scheduyapp\views.py:356
+msgid ""
+"Authorization token has expired. You can generate new one using Enable "
+"notifictions button."
+msgstr ""
 
 #~ msgid "Tasks"
 #~ msgstr "Tasks"

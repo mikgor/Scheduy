@@ -372,6 +372,10 @@ ul.errorlist {
    background-image: url("icons/sort.png");
 }
 
+.icon-bell {
+   background-image: url("icons/bell.png");
+}
+
 .icon-arrow-down {
    background-image: url("icons/arrow-down.png");
 	display: none;

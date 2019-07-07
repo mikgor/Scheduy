@@ -1,0 +1,25 @@
+{% extends "scheduyapp/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+{% trans "Enabling and disabling Messenger notifications" %}
+{% endblock title %}
+{% block content %}
+<style>
+a {
+   color: #0095ff;
+}
+</style>
+<h1>{% trans "Enabling and disabling Messenger notifications" %}</h1>
+{% trans "Messenger notifications are optional. It allows you to receive automatic notifications via Messenger." %}
+<h3>{% trans "How to enable " %}</h3>
+<p>1. {% trans "Go to" %} <a href="https://m.me/scheduy" rel="noopener noreferrer" target="_blank"> {% trans "Scheduy Messenger" %}</a> (<a href="https://m.me/scheduy" rel="noopener noreferrer" target="_blank">m.me/scheduy</a>).</p>
+<p>2. {% trans "Click on <b>Get started</b> button or send any message" %}.</p>
+<p>3. {% trans "Click on <b>Enable notifications</b> button" %}.</p>
+<p>4. {% trans "When you receive reply with activation link, click on it" %}. <br>{% trans "Make sure you are logged in on Scheduy" %}. {% trans "Otherwise you have to log in and click activation link again" %}.</p>
+
+<h3>{% trans "How to disable" %}</h3>
+<p>1. {% trans "Go to" %} <a href="https://m.me/scheduy" rel="noopener noreferrer" target="_blank"> {% trans "Scheduy Messenger" %}</a> (<a href="https://m.me/scheduy" rel="noopener noreferrer" target="_blank">m.me/scheduy</a>).</p>
+<p>2. {% trans "Click on <b>Get started</b> button or send any message" %}.</p>
+<p>3. {% trans "In order to disable click on <b>Disable notifications</b> button" %}.</p>
+{% endblock content %}

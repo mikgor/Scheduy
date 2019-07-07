@@ -1,9 +1,10 @@
 from django.db import models
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 import pytz
 from django.utils.translation import ugettext_lazy as _
+from .classes.messengerApiHandler import MessengerApiHandler
 
 class TaskGroup(models.Model):
     name = models.CharField(_('Name'),max_length=40)
@@ -110,6 +111,9 @@ class AppUser(AbstractUser):
     languagePreference = models.CharField(_('Language'), max_length=32, choices=settings.LANGUAGES, default='en')
     taskOrderPreference = models.CharField(_('Task order'), max_length=20, default='-priority')
     notifications = models.ManyToManyField(Notification)
+    pageNotifications = models.BooleanField(default=True)
+    messengerId = models.IntegerField(null=True)
+    messengerNotifications = models.BooleanField(default=False)
 
     def __str__(self):
         return self.email
@@ -153,5 +157,36 @@ class AppUser(AbstractUser):
         self.taskOrderPreference = order
         self.save()
 
+    def SetPageNotifications(self, value):
+        self.pageNotifications = value
+        self.save()
+
+    def SetMessengerNotifications(self, value):
+        self.messengerNotifications = value
+        if value:
+            r = MessengerApiHandler().SendResponseMessage(self.messengerId, "Notifications enabled.")
+        else:
+            r = MessengerApiHandler().SendResponseMessage(self.messengerId, "Notifications disabled.")
+        self.save()
+
+    def SetMessengerId(self, value):
+        self.messengerId = value
+        self.save()
+
     def NewNotificaton(self, notification):
-        self.notifications.add(Notification.objects.create(recipient_user_id=notification.recipient_user_id, details=notification.details, notification_time=notification.notification_time, sent=True))
+        if self.pageNotifications:
+            self.notifications.add(Notification.objects.create(recipient_user_id=notification.recipient_user_id, details=notification.details, notification_time=notification.notification_time, sent=True))
+        if self.messengerNotifications and self.messengerId:
+            r = MessengerApiHandler().SendNotificationMessage(self.messengerId, notification.details)
+
+def get_default_token_expirationDate():
+    return datetime.now(timezone.utc)+timedelta(minutes=10)
+
+class MessengerToken(models.Model):
+    token = models.CharField(max_length=60)
+    expirationDate = models.DateTimeField(default=get_default_token_expirationDate)
+    messengerId = models.IntegerField()
+
+    def isExpired(self):
+        now = datetime.now(timezone.utc)
+        return now > self.expirationDate

@@ -1,0 +1,10 @@
+{% extends "scheduyapp/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+{% trans "Error page" %}
+{% endblock title %}
+{% block content %}
+<h1>{% trans "Something gone wrong" %}</h1>
+<br><br>{{error}}
+{% endblock content %}

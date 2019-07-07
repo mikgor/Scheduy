@@ -5,7 +5,7 @@
 {% block scripts %}
 <script type="text/javascript">
 function onSubmit() {
-   location.href = '{% url 'SetUserPreference' %}?timezone=' + document.getElementById("timezonePreference").value + '&language=' + document.getElementById("languagePreference").value + '&datetimeFormatPreference=' + document.getElementById("datetimeFormatPreference").value;
+   location.href = '{% url 'SetUserPreference' %}?timezone=' + document.getElementById("timezonePreference").value + '&language=' + document.getElementById("languagePreference").value + '&datetimeFormatPreference=' + document.getElementById("datetimeFormatPreference").value + '&pageNotifications=' + document.getElementById("pageNotifications").checked + '&messengerNotifications=' + document.getElementById("messengerNotifications").checked;
 }
 
 function getLocalTimezone() {
@@ -44,6 +44,11 @@ getLocalTimezone();
     <option value="{{ datetime }}" {% if user.datetimeFormatPreference == datetime %} selected {% endif %}>{{ datetimeNow|timezone:user.timezonePreference|date:datetime }}</option>
 {% endfor %}
 </select></p>
+<p><label for="datetimeFormatPreference">{% trans "Notifications" %}:</label>
+<input id="pageNotifications" type="checkbox" {% if user.pageNotifications %}checked{% endif %}/>{% trans "Page" %} {% trans "Task list" %}
+{% if not user.messengerNotifications %}<a href='{% url 'HelpMessengerConnection' %}' style="color: #0095ff;">{% endif %}
+   <input id="messengerNotifications" type="checkbox" {% if user.messengerNotifications %}checked {% else %}disabled{% endif %}/>Messenger</p>
+{% if not user.messengerNotifications %}</a>{% endif %}
 <input type="submit" onclick="onSubmit();" value="{% trans "Submit" %}"></input>
 {% endif %}
 </div>

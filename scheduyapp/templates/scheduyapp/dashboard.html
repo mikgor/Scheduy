@@ -163,7 +163,7 @@ input#showDone + label:before {
 	 	{% if task.group.id == group.id %}
 		<div class="task" style="border-bottom: 2px solid {{group.color}};">
 			<div class="taskColumnFirst">
-				<div class="taskTitle">{{ task.name }} {% if task.notification %}N{% endif %}</div>
+				<div class="taskTitle">{% if task.notification %}<span class="icon icon-bell" title="{% trans "Notification" %}" style="cursor:default;"></span>{% endif %} {{ task.name }}</div>
             {% if task.deadline %}
 				<div class="taskDeadline">{{ task.deadline|timezone:user.timezonePreference|date:user.datetimeFormatPreference}}
 					{% if task.isExpired %}
