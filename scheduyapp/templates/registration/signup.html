@@ -21,7 +21,7 @@ function getLocalTimezone() {
 }
 </script>
 <h2>{% trans "Sign up" %}</h2>
-<a href="{% url 'login' %}"><div id="userMenu">{% trans "I have already account" %}</div></a>
+<a href="{% url 'login' %}"><div id="userMenu">{% trans "I already have an account" %}</div></a>
 <form method="post">
 {% csrf_token %}
 {{ form.as_p }}

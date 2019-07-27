@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-07 22:34+0200\n"
+"POT-Creation-Date: 2019-07-27 22:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,8 +44,8 @@ msgid "Details"
 msgstr "Szczegóły"
 
 #: .\scheduyapp\models.py:39 .\scheduyapp\models.py:56
-#: .\scheduyapp\templates\scheduyapp\task_form.html:18
-#: .\scheduyapp\templates\scheduyapp\task_update_form.html:19
+#: .\scheduyapp\templates\scheduyapp\task_form.html:22
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:22
 msgid "Notification time"
 msgstr "Data powiadomienia"
 
@@ -115,7 +115,7 @@ msgid "Detected timezone"
 msgstr "Wykryta strefa czasowa"
 
 #: .\scheduyapp\templates\registration\signup.html:24
-msgid "I have already account"
+msgid "I already have an account"
 msgstr "Mam już konto"
 
 #: .\scheduyapp\templates\registration\userupdate.html:4
@@ -270,7 +270,7 @@ msgid "Descending"
 msgstr "Malejąco"
 
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:79
-#: .\scheduyapp\templates\scheduyapp\task_form.html:20
+#: .\scheduyapp\templates\scheduyapp\task_form.html:28
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:15
 msgid "Save"
 msgstr "Zapisz"
@@ -381,7 +381,7 @@ msgid "Are you sure you want to delete task"
 msgstr "Czy na pewno chcesz usunąć zadanie"
 
 #: .\scheduyapp\templates\scheduyapp\task_confirm_delete.html:11
-#: .\scheduyapp\templates\scheduyapp\task_update_form.html:22
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:28
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:11
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:15
 msgid "Confirm"
@@ -393,22 +393,45 @@ msgid "Add date and time"
 msgstr "Dodaj datę i czas"
 
 #: .\scheduyapp\templates\scheduyapp\task_form.html:17
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:17
+msgid "Remove date and time"
+msgstr "Usuń datę i czas"
+
+#: .\scheduyapp\templates\scheduyapp\task_form.html:18
+#: .\scheduyapp\templates\scheduyapp\task_form.html:25
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:18
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:25
+msgid "Today"
+msgstr "Dzisiaj"
+
+#: .\scheduyapp\templates\scheduyapp\task_form.html:19
+#: .\scheduyapp\templates\scheduyapp\task_form.html:26
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:19
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:26
+msgid "Tomorrow"
+msgstr "Jutro"
+
+#: .\scheduyapp\templates\scheduyapp\task_form.html:20
+#: .\scheduyapp\templates\scheduyapp\task_form.html:27
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:20
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:27
+msgid "After tomorrow"
+msgstr "Pojutrze"
+
+#: .\scheduyapp\templates\scheduyapp\task_form.html:21
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:21
 msgid "Add Notification time"
 msgstr "Dodaj datę powiadomienia"
+
+#: .\scheduyapp\templates\scheduyapp\task_form.html:24
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:24
+msgid "Remove Notification time"
+msgstr "Usuń datę powiadomienia"
 
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:5
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:12
 msgid "Edit task"
 msgstr "Edytuj zadanie"
-
-#: .\scheduyapp\templates\scheduyapp\task_update_form.html:17
-msgid "Remove date and time"
-msgstr "Usuń datę i czas"
-
-#: .\scheduyapp\templates\scheduyapp\task_update_form.html:21
-msgid "Remove Notification time"
-msgstr "Usuń datę powiadomienia"
 
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:5
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:9

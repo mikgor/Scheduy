@@ -325,6 +325,13 @@ ul.errorlist {
 	display: none;
 }
 
+.taskReplaceDate {
+    display: inline;
+    padding: 6px;
+    color: #0095ff;
+	 cursor: pointer;
+}
+
 .icon, .icon-big {
    display: inline-block;
    width: 20px;

@@ -14,11 +14,17 @@
    <div class="userMenu" id="adddeadlineBtn" onclick="displayTimeInputs('deadline');">{% trans "Add date and time" %}</div>
    <div id="deadlineInputs">{% trans "Deadline" %}: <input type="date" id="deadlineDate" onchange="DatetimepickedEvent('deadline')"></input>
    <input type="time" id="deadlineTime" onchange="DatetimepickedEvent('deadline')"></input>
-   <div class="userMenu" id="removeDeadlineBtn"  onclick="hideTimeInputsAndClear('deadline');">{% trans "Remove date and time" %}</div></div>
+   <div class="userMenu" id="removeDeadlineBtn"  onclick="hideTimeInputsAndClear('deadline');">{% trans "Remove date and time" %}</div>
+   <br><div class="taskReplaceDate" onclick="replaceDate(0, 'deadlineDate');">{% trans "Today" %}</div>
+   <div class="taskReplaceDate" onclick="replaceDate(1, 'deadlineDate');">{% trans "Tomorrow" %}</div>
+   <div class="taskReplaceDate" onclick="replaceDate(2, 'deadlineDate');">{% trans "After tomorrow" %}</div></div>
    </br></br><div class="userMenu" id="addnotification_timeBtn" onclick="displayTimeInputs('notification_time');">{% trans "Add Notification time" %}</div>
    <div id="notification_timeInputs">{% trans "Notification time" %}: <input type="date" id="notification_timeDate" onchange="DatetimepickedEvent('notification_time')"></input>
    <input type="time" id="notification_timeTime" onchange="DatetimepickedEvent('notification_time')"></input>
-   <div class="userMenu" id="removenotification_timeBtn"  onclick="hideTimeInputsAndClear('notification_time');">{% trans "Remove Notification time" %}</div></div>
+   <div class="userMenu" id="removenotification_timeBtn"  onclick="hideTimeInputsAndClear('notification_time');">{% trans "Remove Notification time" %}</div>
+   <br><div class="taskReplaceDate" onclick="replaceDate(0, 'notification_timeDate');">{% trans "Today" %}</div>
+   <div class="taskReplaceDate" onclick="replaceDate(1, 'notification_timeDate');">{% trans "Tomorrow" %}</div>
+   <div class="taskReplaceDate" onclick="replaceDate(2, 'notification_timeDate');">{% trans "After tomorrow" %}</div></div>
    </br></br><input type="submit" value="{% trans "Confirm" %}"/>
 </form>
 <script type="text/javascript">Updatedatetimepicker('deadline');Updatedatetimepicker('notification_time');</script>

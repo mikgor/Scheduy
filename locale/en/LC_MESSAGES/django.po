@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-07 22:34+0200\n"
+"POT-Creation-Date: 2019-07-27 22:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,8 +42,8 @@ msgid "Details"
 msgstr "Details"
 
 #: .\scheduyapp\models.py:39 .\scheduyapp\models.py:56
-#: .\scheduyapp\templates\scheduyapp\task_form.html:18
-#: .\scheduyapp\templates\scheduyapp\task_update_form.html:19
+#: .\scheduyapp\templates\scheduyapp\task_form.html:22
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:22
 msgid "Notification time"
 msgstr "Notification time"
 
@@ -113,8 +113,8 @@ msgid "Detected timezone"
 msgstr "Detected timezone"
 
 #: .\scheduyapp\templates\registration\signup.html:24
-msgid "I have already account"
-msgstr "I have already account"
+msgid "I already have an account"
+msgstr "I already have an account"
 
 #: .\scheduyapp\templates\registration\userupdate.html:4
 #: .\scheduyapp\templates\registration\userupdate.html:23
@@ -268,7 +268,7 @@ msgid "Descending"
 msgstr "Descending"
 
 #: .\scheduyapp\templates\scheduyapp\dashboard.html:79
-#: .\scheduyapp\templates\scheduyapp\task_form.html:20
+#: .\scheduyapp\templates\scheduyapp\task_form.html:28
 #: .\scheduyapp\templates\scheduyapp\taskgroup_form.html:15
 msgid "Save"
 msgstr "Save"
@@ -378,7 +378,7 @@ msgid "Are you sure you want to delete task"
 msgstr "Are you sure you want to delete task"
 
 #: .\scheduyapp\templates\scheduyapp\task_confirm_delete.html:11
-#: .\scheduyapp\templates\scheduyapp\task_update_form.html:22
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:28
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:11
 #: .\scheduyapp\templates\scheduyapp\taskgroup_update_form.html:15
 msgid "Confirm"
@@ -390,22 +390,45 @@ msgid "Add date and time"
 msgstr "Add date and time"
 
 #: .\scheduyapp\templates\scheduyapp\task_form.html:17
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:17
+msgid "Remove date and time"
+msgstr "Remove date and time"
+
+#: .\scheduyapp\templates\scheduyapp\task_form.html:18
+#: .\scheduyapp\templates\scheduyapp\task_form.html:25
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:18
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:25
+msgid "Today"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\task_form.html:19
+#: .\scheduyapp\templates\scheduyapp\task_form.html:26
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:19
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:26
+msgid "Tomorrow"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\task_form.html:20
+#: .\scheduyapp\templates\scheduyapp\task_form.html:27
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:20
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:27
+msgid "After tomorrow"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\task_form.html:21
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:21
 msgid "Add Notification time"
 msgstr "Add notification time"
+
+#: .\scheduyapp\templates\scheduyapp\task_form.html:24
+#: .\scheduyapp\templates\scheduyapp\task_update_form.html:24
+msgid "Remove Notification time"
+msgstr "Remove notification time"
 
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:5
 #: .\scheduyapp\templates\scheduyapp\task_update_form.html:12
 msgid "Edit task"
 msgstr "Edit task"
-
-#: .\scheduyapp\templates\scheduyapp\task_update_form.html:17
-msgid "Remove date and time"
-msgstr "Remove date and time"
-
-#: .\scheduyapp\templates\scheduyapp\task_update_form.html:21
-msgid "Remove Notification time"
-msgstr "Remove notification time"
 
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:5
 #: .\scheduyapp\templates\scheduyapp\taskgroup_confirm_delete.html:9
