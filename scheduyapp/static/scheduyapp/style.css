@@ -6,7 +6,7 @@ body {
 	font-family: 'Roboto', sans-serif;
 	text-align: center;
 	margin: 0;
-	color: #3c4759;
+	color: #313131;
 	min-height: 100%;
 }
 
@@ -124,7 +124,7 @@ ul {
     list-style-type: none;
     margin: 0;
 	 margin-left: 10px;
-	 display: inline;
+	 display: inline-block;
     padding: 0;
     overflow: hidden;
 	 font-weight: normal;
@@ -234,7 +234,8 @@ a {
 	background-color: whitesmoke;
 	font-size: 25px;
 	font-weight: bold;
-	padding: 9px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -248,18 +249,24 @@ a {
 	margin-bottom: 10px;
 }
 
-.taskColumn, .taskColumnFirst, .taskGroupColumn, .taskGroupColumnFirst {
+.taskColumn, .taskColumnFirst, .taskGroupColumn, .taskGroupColumnFirst, .taskColumnBtns {
    float: left;
-   width: 15%;
+   width: 25%;
 	padding: 12px;
 }
 
+.taskColumnBtns {
+	text-align: right;
+}
+
 .taskColumnFirst {
-   width: 70%;
+   width: 50%;
+	text-align: left;
 }
 
 .taskGroupColumnFirst {
-   width: 85%;
+   width: 75%;
+	text-align: left;
 }
 
 .taskTitle {
@@ -269,7 +276,6 @@ a {
 .taskDeadline {
 	font-size: 14px;
 	color: #989898;
-	margin: 5px;
 }
 
 .taskTimeRemainingR, .taskTimeRemainingG {
@@ -277,6 +283,8 @@ a {
 	white-space: pre;
 	border-radius: 4px;
 	padding: 2px;
+	margin-top: 3px;
+	font-size: 13px;
 }
 
 .taskTimeRemainingR {
@@ -401,7 +409,7 @@ ul.errorlist {
 	 }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
 	  	.icon-arrow-down {
 		   display: inline-block;
 	 	}
@@ -428,15 +436,18 @@ ul.errorlist {
 @media only screen and (max-width: 600px) {
 	 .taskColumn, .taskColumnFirst {
     	width: auto;
+		text-align: center;
 	 }
+
 	 .taskGroupColumnFirst, .taskGroupColumn {
     	width: 50%;
  	 }
     .task {
 	    display: inline-grid;
 	 }
-	 .groupBtns {
-		 display: inline-flex;
+	 .taskColumnBtns {
+	 	text-align: center;
+		width: auto;
 	 }
 }
 

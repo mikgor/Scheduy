@@ -24,7 +24,7 @@ class MessengerApiHandler:
         return self.SendResponseMessage(recipient, answer)
 
     def SendConnectMessage(self, recipient, token):
-        return self.SendResponseMessage(recipient, "Click the link below to connect your Scheduy account with Messenger in order to enable notifications. You can disable it at any time. This link expires in 10 minutes. After expired you can generate new one using Connect button. http://185.238.75.128/connectmessenger/?token="+str(token))
+        return self.SendResponseMessage(recipient, "Click the link below to connect your Scheduy account with Messenger in order to enable notifications. You can disable it at any time. This link expires in 10 minutes. After expired you can generate new one using 'Enable notifications' button below. http://185.238.75.128/connectmessenger/?token="+str(token))
 
     def SendNotificationMessage(self, recipient, message):
         payload = {'messaging_type': 'MESSAGE_TAG', 'tag': 'CONFIRMED_EVENT_REMINDER', 'recipient': {'id': str(recipient)}, 'message': {'text': str(message), 'quick_replies': [

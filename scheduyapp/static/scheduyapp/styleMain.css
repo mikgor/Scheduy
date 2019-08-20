@@ -112,7 +112,7 @@ ul {
     list-style-type: none;
     margin: 0;
 	 margin-left: 10px;
-	 display: inline;
+	 display: inline-block;
     padding: 0;
     overflow: hidden;
 	 font-weight: normal;
@@ -245,7 +245,7 @@ h1 {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	max-height: 149px;
-	max-width: 644px;
+	max-width: 604px;
 }
 
 .sectionMidSizeText {
