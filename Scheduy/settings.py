@@ -15,7 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
-    'scheduyapp'
+    'scheduyapp',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +121,10 @@ AUTH_USER_MODEL = 'scheduyapp.AppUser'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL= 'signup'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = LS_EMAIL_HOST
+EMAIL_USE_TLS = LS_EMAIL_USE_TLS
+EMAIL_PORT = LS_EMAIL_PORT
+EMAIL_HOST_USER = LS_EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = LS_EMAIL_HOST_PASSWORD

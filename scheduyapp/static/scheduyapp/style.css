@@ -449,6 +449,10 @@ ul.errorlist {
 	 	text-align: center;
 		width: auto;
 	 }
+
+	 .userMenu {
+		 display: inline-block;
+	 }
 }
 
 @media only screen and (max-width: 390px) {

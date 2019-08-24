@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
-from .models import Task, TaskGroup, Notification, MessengerToken
+from .models import Task, TaskGroup, Notification, MessengerToken, EmailConfirmationToken, EmailTemplate
 from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 import pytz
@@ -18,11 +18,46 @@ from django.views.decorators.csrf import csrf_exempt
 from .classes.messengerApiHandler import MessengerApiHandler
 import json
 import secrets
+from django.core import mail
+from django.core.mail.message import EmailMultiAlternatives
+from django.template import loader
+
+class LoginRequiredAndEmailConfirmedMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_anonymous:
+            return HttpResponseRedirect(reverse_lazy(settings.LOGIN_URL))
+        if request.user.emailConfirmed:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse_lazy('AccountCreated'))
+
+def login_required_and_email_confirmed(func):
+    def wrapper(request, *args, **kwargs):
+        if request.user.is_anonymous:
+            return HttpResponseRedirect(reverse_lazy(settings.LOGIN_URL))
+        if request.user.emailConfirmed:
+            return func(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse_lazy('AccountCreated'))
+    return wrapper
+
+def allowed_ip_only(func):
+    def wrapper(request, *args, **kwargs):
+        ip = ''
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        if ip not in ALLOWED_API_REQUEST_IP:
+            return HttpResponse("Access denied")
+        return func(request, *args, **kwargs)
+    return wrapper
 
 def IndexView(request):
     return render(request, 'scheduy/index.html')
 
-class DashboardView(LoginRequiredMixin, generic.ListView):
+class DashboardView(LoginRequiredAndEmailConfirmedMixin, generic.ListView):
     template_name = 'scheduyapp/dashboard.html'
     context_object_name = 'dashboardList'
     queryset = ''
@@ -40,7 +75,7 @@ class DashboardView(LoginRequiredMixin, generic.ListView):
             context['groups_limit'] = settings.GROUPS_LIMIT_PERUSER
         return context
 
-class TaskCreate(LoginRequiredMixin, CreateView):
+class TaskCreate(LoginRequiredAndEmailConfirmedMixin, CreateView):
     form_class = TaskCreateUpdateForm
     template_name = 'scheduyapp/task_form.html'
     success_url = reverse_lazy('dashboard')
@@ -76,7 +111,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
         kwargs.update({'user': self.request.user})
         return kwargs
 
-class TaskGroupCreate(LoginRequiredMixin, CreateView):
+class TaskGroupCreate(LoginRequiredAndEmailConfirmedMixin, CreateView):
     form_class = TaskGroupCreateUpdateForm
     template_name = 'scheduyapp/taskgroup_form.html'
     success_url = reverse_lazy('dashboard')
@@ -89,7 +124,7 @@ class TaskGroupCreate(LoginRequiredMixin, CreateView):
         self.request.user.taskGroups.add(self.object)
         return HttpResponseRedirect(self.get_success_url())
 
-class TaskGroupUpdate(LoginRequiredMixin, UpdateView):
+class TaskGroupUpdate(LoginRequiredAndEmailConfirmedMixin, UpdateView):
     model = TaskGroup
     form_class = TaskGroupCreateUpdateForm
     template_name_suffix = '_update_form'
@@ -103,7 +138,7 @@ class TaskGroupUpdate(LoginRequiredMixin, UpdateView):
             return HttpResponseRedirect(reverse('dashboard'))
         return super(TaskGroupUpdate, self).get(request, *args, **kwargs)
 
-class TaskUpdate(LoginRequiredMixin, UpdateView):
+class TaskUpdate(LoginRequiredAndEmailConfirmedMixin, UpdateView):
     model = Task
     form_class = TaskCreateUpdateForm
     template_name = 'scheduyapp/task_update_form.html'
@@ -169,7 +204,7 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
-class TaskGroupDelete(LoginRequiredMixin, DeleteView):
+class TaskGroupDelete(LoginRequiredAndEmailConfirmedMixin, DeleteView):
     model = TaskGroup
     success_url = reverse_lazy('dashboard')
 
@@ -181,7 +216,7 @@ class TaskGroupDelete(LoginRequiredMixin, DeleteView):
             return HttpResponseRedirect(reverse('dashboard'))
         return super(TaskGroupDelete, self).get(request, *args, **kwargs)
 
-class TaskDelete(LoginRequiredMixin, DeleteView):
+class TaskDelete(LoginRequiredAndEmailConfirmedMixin, DeleteView):
     model = Task
     success_url = reverse_lazy('dashboard')
 
@@ -193,9 +228,8 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
             return HttpResponseRedirect(reverse('dashboard'))
         return super(TaskDelete, self).get(request, *args, **kwargs)
 
+@login_required_and_email_confirmed
 def IsDoneUpdate(request, task_id):
-    if request.user.is_anonymous:
-        return HttpResponseRedirect(reverse('signup'))
     task = ''
     try:
         task = request.user.tasks.get(pk=task_id)
@@ -204,9 +238,8 @@ def IsDoneUpdate(request, task_id):
     task.setIsDone()
     return HttpResponseRedirect(reverse('dashboard'))
 
+@login_required_and_email_confirmed
 def SetUserPreference(request):
-    if request.user.is_anonymous:
-        return HttpResponseRedirect(reverse('signup'))
     showdone = request.GET.get('showdone', None)
     timezone = request.GET.get('timezone', None)
     datetimeFormatPreference = request.GET.get('datetimeFormatPreference', None)
@@ -241,20 +274,22 @@ class SignUp(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
+    def get_success_url(self):
+        token = EmailConfirmationToken.objects.create(userId=self.object.pk, token=secrets.token_hex(25))
+        EmailTemplate.objects.create(subject='Welcome on Scheduy', to=self.object.email, template="welcome", toLang=self.object.languagePreference, variables="{'user_name':'%s', 'url': '%s'}" %(self.object.username, "http://127.0.0.1:8000/confirmemail?token=%s&id=%s" %(token.token, self.object.pk)))
+        return self.success_url
+
+@login_required_and_email_confirmed
 def UserUpdate(request):
     context = {}
     context['timezone_list'] = pytz.all_timezones
     context['language_list'] = tuple(settings.LANGUAGES)
     context['datetimeformat_list'] = settings.DATETIME_FORMAT_PREFERENCES
     context['datetimeNow'] = pytz.timezone(request.user.timezonePreference).localize(datetime.now().replace(tzinfo=None)).astimezone(pytz.timezone('UCT'))
-
-    if request.user.is_anonymous:
-        return HttpResponseRedirect(reverse('signup'))
     return render(request, 'registration/userupdate.html', context)
 
+@login_required_and_email_confirmed
 def NotificationRead(request, notification_id):
-    if request.user.is_anonymous:
-        return HttpResponseRedirect(reverse('signup'))
     notification = ''
     try:
         notification = request.user.notifications.get(pk=notification_id)
@@ -263,16 +298,8 @@ def NotificationRead(request, notification_id):
     request.user.notifications.remove(notification)
     return HttpResponseRedirect(reverse('dashboard'))
 
+@allowed_ip_only
 def SendNotifications(request):
-    ip = ''
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    if ip not in ALLOWED_API_REQUEST_IP:
-        return HttpResponse("Access denied")
-
     for notification in Notification.objects.filter(sent=False):
         if notification.timeLeft():
             notification.Send()
@@ -281,14 +308,6 @@ def SendNotifications(request):
 
 @csrf_exempt
 def MessengerRequest(request):
-    ip = ''
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    if ip not in ALLOWED_API_REQUEST_IP:
-        return HttpResponse("Access denied")
     data = json.loads(request.body.decode("utf-8"))
     messaging = data['entry'][0]['messaging'][0]
     print(data)
@@ -343,9 +362,8 @@ def MessengerRequest(request):
         r = MessengerApiHandler().SendAutoResponseMessage(messengerId, text.lower())
     return HttpResponse("OK")
 
+@login_required_and_email_confirmed
 def ConnectMessenger(request):
-    if request.user.is_anonymous:
-        return HttpResponseRedirect(reverse('signup'))
     token = request.GET.get('token', None)
     if token and MessengerToken.objects.filter(token=token).exists():
         mToken = MessengerToken.objects.get(token=token)
@@ -353,18 +371,11 @@ def ConnectMessenger(request):
         request.user.SetMessengerNotifications(True)
         mToken.delete()
     else:
-        return render(request, "scheduyapp/error_page.html", {'error': _("Authorization token has expired. You can generate new one using Enable notifictions button.")})
+        return render(request, "scheduyapp/info_page.html", {'title': _("Your token has expired"), 'message': _("Authorization token has expired. You can generate new one using Enable notifictions button.")})
     return HttpResponseRedirect(reverse('UserUpdate'))
 
+@allowed_ip_only
 def ExpireMessengerTokens(request):
-    ip = ''
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    if ip not in ALLOWED_API_REQUEST_IP:
-        return HttpResponse("Access denied")
     for token in MessengerToken.objects.all():
         if token.isExpired():
             token.delete()
@@ -372,3 +383,64 @@ def ExpireMessengerTokens(request):
 
 def HelpMessengerConnection(request):
     return render(request, "scheduyapp/help_messengerconnection.html")
+
+def ConfirmEmail(request):
+    if request.user.is_anonymous:
+        return HttpResponseRedirect(reverse('signup'))
+    if request.user.emailConfirmed:
+        return render(request, "scheduyapp/info_page.html", {'title': _("Email already confirmed"), 'message': _("Your email address has been already confirmed.")})
+    token = request.GET.get('token', None)
+    userId = request.GET.get('id', None)
+    if token and userId:
+        if EmailConfirmationToken.objects.filter(userId=userId).exists():
+            eToken = EmailConfirmationToken.objects.get(userId=userId)
+            if token == eToken.token:
+                request.user.ConfirmEmail()
+                eToken.delete()
+                return render(request, "scheduyapp/info_page.html", {'title': _("Account has been activated"), 'message': _("Your account has been activated successfully.")})
+            else:
+                return render(request, "scheduyapp/info_page.html", {'title': _("Invalid token"), 'message': _("Invalid authorization token.")})
+        else:
+            token = EmailConfirmationToken.objects.create(userId=request.user.pk, token=secrets.token_hex(25))
+            EmailTemplate.objects.create(subject=_('You have requested a new activation link'), to=request.user.email, template="new_token_request", toLang=request.user.languagePreference, variables="{'user_name':'%s', 'url': '%s'}" %(request.user.username, "http://127.0.0.1:8000/confirmemail?token=%s&id=%s" %(token.token, request.user.pk)))
+            return render(request, "scheduyapp/info_page.html", {'title': _("Authorization token has expired"), 'message': _("Authorization token has expired. We sent you new activation link. Check your email inbox.")})
+    else:
+        return render(request, "scheduyapp/info_page.html", {'title': _("Invalid link"), 'message': _("Invalid link.")})
+    return HttpResponseRedirect(reverse('DashboardView'))
+
+@allowed_ip_only
+def ExpireEmailTokens(request):
+    for token in EmailConfirmationToken.objects.all():
+        if token.isExpired():
+            token.delete()
+    return HttpResponse("OK")
+
+@allowed_ip_only
+def MailingService(request):
+    connection = mail.get_connection()
+    messages = list()
+    for email in EmailTemplate.objects.all():
+        html_message = loader.render_to_string("mailing/%s.html" % (email.template), eval(email.variables))
+        msg = EmailMultiAlternatives(email.subject, '', "Scheduy <%s>" % (settings.EMAIL_HOST_USER), [email.to])
+        msg.attach_alternative(html_message, "text/html")
+        messages.append(msg)
+        email.delete()
+    if messages:
+        connection.send_messages(messages)
+    return HttpResponse("OK")
+
+def AccountCreated(request):
+    return render(request, "scheduyapp/account_created.html")
+
+def ResendEmailToken(request):
+    if request.user.is_anonymous:
+        return HttpResponseRedirect(reverse_lazy(settings.LOGIN_URL))
+    if request.user.emailConfirmed:
+        return render(request, "scheduyapp/info_page.html", {'title': _("Email already confirmed"), 'message': _("Your email address has been already confirmed.")})
+    token = ''
+    if EmailConfirmationToken.objects.filter(userId=request.user.pk).exists():
+        token = EmailConfirmationToken.objects.get(userId=request.user.pk)
+    else:
+        token = EmailConfirmationToken.objects.create(userId=request.user.pk, token=secrets.token_hex(25))
+    EmailTemplate.objects.create(subject=_('You have requested a new activation link'), to=request.user.email, template="new_token_request", toLang=request.user.languagePreference, variables="{'user_name':'%s', 'url': '%s'}" %(request.user.username, "http://127.0.0.1:8000/confirmemail?token=%s&id=%s" %(token.token, request.user.pk)))
+    return render(request, "scheduyapp/new_token_request.html")

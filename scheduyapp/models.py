@@ -103,6 +103,7 @@ class Task(models.Model):
         self.save()
 
 class AppUser(AbstractUser):
+    emailConfirmed = models.BooleanField(default=False)
     taskGroups = models.ManyToManyField(TaskGroup)
     tasks = models.ManyToManyField(Task)
     showDonePreference = models.BooleanField(default=False)
@@ -179,8 +180,24 @@ class AppUser(AbstractUser):
         if self.messengerNotifications and self.messengerId:
             r = MessengerApiHandler().SendNotificationMessage(self.messengerId, notification.details)
 
+    def ConfirmEmail(self):
+        self.emailConfirmed = True
+        self.save()
+
 def get_default_token_expirationDate():
     return datetime.now(timezone.utc)+timedelta(minutes=10)
+
+def get_default_email_token_expirationDate():
+    return datetime.now(timezone.utc)+timedelta(days=1)
+
+class EmailConfirmationToken(models.Model):
+    userId = models.IntegerField()
+    expirationDate = models.DateTimeField(default=get_default_email_token_expirationDate)
+    token = models.CharField(max_length=60)
+
+    def isExpired(self):
+        now = datetime.now(timezone.utc)
+        return now > self.expirationDate
 
 class MessengerToken(models.Model):
     token = models.CharField(max_length=60)
@@ -190,3 +207,10 @@ class MessengerToken(models.Model):
     def isExpired(self):
         now = datetime.now(timezone.utc)
         return now > self.expirationDate
+
+class EmailTemplate(models.Model):
+    subject = models.CharField(max_length=255, blank=True, null=True)
+    to = models.CharField(max_length=255, blank=True, null=True)
+    toLang = models.CharField(max_length=2, blank=True, null=True, default='en')
+    template = models.CharField(max_length=255, blank=True, null=True)
+    variables = models.CharField(max_length=510, blank=True, null=True)

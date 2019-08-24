@@ -1,0 +1,36 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style type="text/css">
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; }
+        img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+        table { border-collapse: collapse !important; }
+        body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; }
+    </style>
+  </head>
+  <body style="margin: 0 !important; padding: 60px 0 60px 0 !important; color: black;">
+    <table border="0" cellspacing="0" cellpadding="0" role="presentation" width="100%">
+      <tr>
+          <td width="600" style="border-radius: 4px; font-family: 'Roboto', sans-serif; font-size: 18px; line-height: 28px; padding: 40px 40px; color: black;">
+            <article color="black;">
+              <img alt="Scheduy logo" src="http://185.238.75.128/static/scheduyapp/img/logo.png" height="77" width="300" style="display: block; font-family: 'Roboto', sans-serif; font-size: 72px; font-weight: bold; height: auto; max-width: 100%; text-align: center; margin: 0 auto;">
+              {% block content %}{% endblock %}
+              <p style="font-size: 15px; text-align: center; font-weight: bold; padding-top: 50px; margin-bottom: 0; color: #5a5a5a">Scheduy</p>
+              <p style="font-size: 12px; text-align: center; margin-top: 0px;">
+                 <a style="margin-left: 5px; margin-right: 5px; color: #0095ff;" href="http://185.238.75.128/" target="_blank" rel="noopener noreferrer">{% trans "Home" %}</a>•
+                 <a style="margin-left: 5px; margin-right: 5px; color: #0095ff;" href="http://185.238.75.128/userupdate/" target="_blank" rel="noopener noreferrer">{% trans "Preferences" %}</a>
+              </p>
+            </article>
+          </td>
+      </tr>
+    </table>
+  </body>
+</html>

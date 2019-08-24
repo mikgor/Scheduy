@@ -23,7 +23,12 @@ urlpatterns = [
     url(r'^sendnotifications/$', views.SendNotifications, name='SendNotifications'),
     url(r'^messengerrequest/$', views.MessengerRequest, name='MessengerRequest'),
     url(r'^connectmessenger/$', views.ConnectMessenger, name='connectmessenger'),
+    url(r'^confirmemail/$', views.ConfirmEmail, name='ConfirmEmail'),
     url(r'^expiremessengertokens/$', views.ExpireMessengerTokens, name='ExpireMessengerTokens'),
+    url(r'^expireemailtokens/$', views.ExpireEmailTokens, name='ExpireEmailTokens'),
     url(r'^help_messengerconnection/$', views.HelpMessengerConnection, name='HelpMessengerConnection'),
+    url(r'^mailing/$', views.MailingService, name='mailing'),
+    url(r'^accountcreated/$', views.AccountCreated, name='AccountCreated'),
+    url(r'^resendemailtoken/$', views.ResendEmailToken, name='ResendEmailToken'),
     path('admin/', admin.site.urls),
 ]

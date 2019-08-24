@@ -1,0 +1,7 @@
+{% extends "mailing/base.html" %}
+{% load i18n %}
+{% block content %}
+<h1>{% trans "Welcome" %} {{ user_name }}</h1>
+<p>{% trans "Thanks for registering on Scheduy. First, you need to confirm your e-mail. Just click the button below." %}</p>
+<p><a href="{{ url }}" target="_blank" rel="noopener noreferrer" style="font-size: 18px; font-family: 'Roboto', sans-serif; font-weight: bold; color: white; text-decoration: none; border-radius: 8px; -webkit-border-radius: 8px; background-color: #0095ff; border: 13px solid #0095ff; text-align: center;">{% trans "Confirm my e-mail" %}</a></p>
+{% endblock content %}

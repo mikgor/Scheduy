@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-27 22:50+0200\n"
+"POT-Creation-Date: 2019-08-24 21:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,25 +69,58 @@ msgstr "Category"
 msgid "Notification"
 msgstr "Notification"
 
-#: .\scheduyapp\models.py:109
+#: .\scheduyapp\models.py:110
 #: .\scheduyapp\templates\registration\userupdate.html:25
 #: .\scheduyapp\templates\scheduyapp\base.html:31
 msgid "Timezone"
 msgstr "Timezone"
 
-#: .\scheduyapp\models.py:110
+#: .\scheduyapp\models.py:111
 #: .\scheduyapp\templates\registration\userupdate.html:41
 msgid "Datetime format"
 msgstr "Date and time format"
 
-#: .\scheduyapp\models.py:111
+#: .\scheduyapp\models.py:112
 #: .\scheduyapp\templates\registration\userupdate.html:35
 msgid "Language"
 msgstr "Language"
 
-#: .\scheduyapp\models.py:112
+#: .\scheduyapp\models.py:113
 msgid "Task order"
 msgstr "Task order"
+
+#: .\scheduyapp\templates\mailing\base.html:28
+#: .\scheduyapp\templates\scheduy\base.html:19
+#: .\scheduyapp\templates\scheduy\base.html:21
+#: .\scheduyapp\templates\scheduyapp\base.html:21
+msgid "Home"
+msgstr "Home"
+
+#: .\scheduyapp\templates\mailing\base.html:29
+#: .\scheduyapp\templates\scheduyapp\base.html:33
+msgid "Preferences"
+msgstr "Preferences"
+
+#: .\scheduyapp\templates\mailing\new_token_request.html:4
+#: .\scheduyapp\templates\mailing\welcome.html:4
+msgid "Welcome"
+msgstr ""
+
+#: .\scheduyapp\templates\mailing\new_token_request.html:5
+msgid ""
+"You have requested for the new activation link. In order to complete the "
+"sign-up process, just click the button below."
+msgstr ""
+
+#: .\scheduyapp\templates\mailing\welcome.html:5
+msgid ""
+"Thanks for registering on Scheduy. First, you need to confirm your e-mail. "
+"Just click the button below."
+msgstr ""
+
+#: .\scheduyapp\templates\mailing\welcome.html:6
+msgid "Confirm my e-mail"
+msgstr ""
 
 #: .\scheduyapp\templates\registration\login.html:3
 #: .\scheduyapp\templates\registration\login.html:6
@@ -143,12 +176,6 @@ msgstr "Task list"
 #: .\scheduyapp\templates\scheduyapp\base.html:30
 msgid "Show or hide menu"
 msgstr "Show or hide menu"
-
-#: .\scheduyapp\templates\scheduy\base.html:19
-#: .\scheduyapp\templates\scheduy\base.html:21
-#: .\scheduyapp\templates\scheduyapp\base.html:21
-msgid "Home"
-msgstr "Home"
 
 #: .\scheduyapp\templates\scheduy\base.html:22
 #: .\scheduyapp\templates\scheduyapp\base.html:22
@@ -209,9 +236,25 @@ msgstr ""
 msgid "Enable notifictions to be up-to-date."
 msgstr ""
 
-#: .\scheduyapp\templates\scheduyapp\base.html:33
-msgid "Preferences"
-msgstr "Preferences"
+#: .\scheduyapp\templates\scheduyapp\account_created.html:5
+#: .\scheduyapp\templates\scheduyapp\account_created.html:16
+msgid "Account has been created"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\account_created.html:17
+msgid "We have sent an email with a confirmation link to your email address."
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\account_created.html:18
+#: .\scheduyapp\templates\scheduyapp\new_token_request.html:10
+msgid ""
+"In order to complete the sign-up process, click the confirmation button. If "
+"you did not receive the email, please check your spam folder."
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\account_created.html:19
+msgid "I have not received my activation link"
+msgstr ""
 
 #: .\scheduyapp\templates\scheduyapp\base.html:34
 msgid "Logout"
@@ -304,14 +347,6 @@ msgstr "You have not added any category yet"
 msgid "You have added group, create task now"
 msgstr "You have added category, create task now"
 
-#: .\scheduyapp\templates\scheduyapp\error_page.html:5
-msgid "Error page"
-msgstr ""
-
-#: .\scheduyapp\templates\scheduyapp\error_page.html:8
-msgid "Something gone wrong"
-msgstr ""
-
 #: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:5
 #: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:13
 #, fuzzy
@@ -366,6 +401,15 @@ msgstr ""
 
 #: .\scheduyapp\templates\scheduyapp\help_messengerconnection.html:24
 msgid "In order to disable click on <b>Disable notifications</b> button"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\new_token_request.html:5
+#: .\scheduyapp\templates\scheduyapp\new_token_request.html:8
+msgid "New link has been sent"
+msgstr ""
+
+#: .\scheduyapp\templates\scheduyapp\new_token_request.html:9
+msgid "We have resent an email with a confirmation link to your email address."
 msgstr ""
 
 #: .\scheduyapp\templates\scheduyapp\task_confirm_delete.html:5
@@ -444,14 +488,64 @@ msgstr "Are you sure you want to delete category"
 msgid "Edit group"
 msgstr "Edit category"
 
-#: .\scheduyapp\views.py:68 .\scheduyapp\views.py:161
+#: .\scheduyapp\views.py:103 .\scheduyapp\views.py:196
 msgid "Notification time field must be later than now"
 msgstr ""
 
-#: .\scheduyapp\views.py:356
+#: .\scheduyapp\views.py:374
+msgid "Your token has expired"
+msgstr ""
+
+#: .\scheduyapp\views.py:374
 msgid ""
 "Authorization token has expired. You can generate new one using Enable "
 "notifictions button."
+msgstr ""
+
+#: .\scheduyapp\views.py:391 .\scheduyapp\views.py:439
+msgid "Email already confirmed"
+msgstr ""
+
+#: .\scheduyapp\views.py:391 .\scheduyapp\views.py:439
+msgid "Your email address has been already confirmed."
+msgstr ""
+
+#: .\scheduyapp\views.py:400
+msgid "Account has been activated"
+msgstr ""
+
+#: .\scheduyapp\views.py:400
+msgid "Your account has been activated successfully."
+msgstr ""
+
+#: .\scheduyapp\views.py:402
+msgid "Invalid token"
+msgstr ""
+
+#: .\scheduyapp\views.py:402
+msgid "Invalid authorization token."
+msgstr ""
+
+#: .\scheduyapp\views.py:405 .\scheduyapp\views.py:445
+msgid "You have requested a new activation link"
+msgstr ""
+
+#: .\scheduyapp\views.py:406
+msgid "Authorization token has expired"
+msgstr ""
+
+#: .\scheduyapp\views.py:406
+msgid ""
+"Authorization token has expired. We sent you new activation link. Check your "
+"email inbox."
+msgstr ""
+
+#: .\scheduyapp\views.py:408
+msgid "Invalid link"
+msgstr ""
+
+#: .\scheduyapp\views.py:408
+msgid "Invalid link."
 msgstr ""
 
 #~ msgid "Tasks"

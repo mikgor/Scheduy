@@ -1,0 +1,20 @@
+{% extends "scheduyapp/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+{% trans "Account has been created" %}
+{% endblock title %}
+{% block content %}
+<style>
+a {
+   color: #0095ff;
+}
+#form {
+   padding-bottom: 40px;
+}
+</style>
+<div id="form"><h1>{% trans "Account has been created" %}</h1>
+<p>{% trans "We have sent an email with a confirmation link to your email address." %}</p>
+<p>{% trans "In order to complete the sign-up process, click the confirmation button. If you did not receive the email, please check your spam folder." %}</p>
+<br><br><a href='{% url 'ResendEmailToken' %}'>{% trans "I have not received my activation link" %}</a></div>
+{% endblock content %}

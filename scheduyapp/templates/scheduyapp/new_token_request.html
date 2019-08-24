@@ -1,0 +1,12 @@
+{% extends "scheduyapp/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+{% trans "New link has been sent" %}
+{% endblock title %}
+{% block content %}
+<div id="form"><h1>{% trans "New link has been sent" %}</h1>
+<p>{% trans "We have resent an email with a confirmation link to your email address." %}</p>
+<p>{% trans "In order to complete the sign-up process, click the confirmation button. If you did not receive the email, please check your spam folder." %}</p>
+</div>
+{% endblock content %}
